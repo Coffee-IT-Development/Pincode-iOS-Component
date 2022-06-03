@@ -1,5 +1,5 @@
 import XCTest
-@testable import CITPincodeView
+@testable import CITPincode
 
 final class CITPincodeViewTests: XCTestCase {
     func testExample() throws {
