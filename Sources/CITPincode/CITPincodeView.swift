@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-struct CITPincodeView: View {
-    var body: some View {
+public struct CITPincodeView: View {
+    public var body: some View {
         Text("Hello, World!")
     }
 }
