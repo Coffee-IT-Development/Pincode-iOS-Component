@@ -8,6 +8,8 @@
 import SwiftUI
 
 public struct CITPincodeView: View {
+    public init() {}
+    
     public var body: some View {
         Text("Hello, World!")
     }
