@@ -1,0 +1,6 @@
+public struct CITPincodeView {
+    public private(set) var text = "Hello, World!"
+
+    public init() {
+    }
+}
