@@ -53,6 +53,7 @@ public extension CITPincodeConfig {
                 .background(resendButtonStyle.backgroundColor)
                 .cornerRadius(resendButtonStyle.cornerRadius)
                 .disabled(isOnCooldown)
+                .opacity(isOnCooldown ? 0.5 : 1.0)
         }
     }
     
