@@ -9,29 +9,25 @@ import SwiftUI
 
 public struct CITPincodeView: View {
     let config: CITPincodeConfig
-    
-    @State var cells: [CITPincodeCell] = []
+    var cells: [CITPincodeCell]
     
     public init(config: CITPincodeConfig) {
         self.config = config
-        setupCells()
-    }
-    
-    private func setupCells() {
+        
+        var newCells: [CITPincodeCell] = []
         for i in 0 ..< config.codeLength {
-            cells.append(CITPincodeCell(
+            newCells.append(CITPincodeCell(
                 config: config,
-                character: "\(i)",
+                character: "",
                 isSelected: i == 0
             ))
         }
+        
+        self.cells = newCells
     }
     
     public var body: some View {
-        HStack {
-            CITPincodeCell.exampleCell(character: "", isSelected: false)
-            Text(String(cells.count))
-            
+        HStack {            
             ForEach(cells, content: CITPincodeCellView.init)
         }
     }
