@@ -37,7 +37,7 @@ extension CITPincodeConfig {
         cellSize: CGSize(width: 40, height: 56),
         cellCornerRadius: CornerRadius.small,
         codeType: .numeric,
-        divider: .none,
+        divider: .custom(afterIndex: 2, color: Color(#colorLiteral(red: 0.2117647059, green: 0.2039215686, blue: 0.2392156863, alpha: 1)), size: .init(width: 8, height: 2), cornerRadius: .infinity),
         resendButton: .plain(cooldown: .duration(value: 60))
     )
 }
