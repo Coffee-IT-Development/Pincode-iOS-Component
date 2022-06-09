@@ -28,9 +28,9 @@ public extension CITPincodeConfig {
     enum Divider {
         case none
         case plain(afterIndex: Int)
-        case custom(afterIndex: Int, color: Color, size: CGSize, cornerRadius: CGFloat)
+        case custom(afterIndex: Int, color: Color, size: CGSize = Divider.defaultSize, cornerRadius: CGFloat = Divider.defaultCornerRadius)
         
-        fileprivate static let defaultSize = CGSize(width: 8, height: 2)
-        fileprivate static let defaultCornerRadius = CGFloat.infinity
+        public static let defaultSize = CGSize(width: 8, height: 2)
+        public static let defaultCornerRadius = CGFloat.infinity
     }
 }

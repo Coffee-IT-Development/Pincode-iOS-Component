@@ -21,8 +21,10 @@ public struct CITPincodeConfig {
     let codeType: CodeType
     let divider: Divider
     let resendButton: ResendButton
+
     
-    var hasError: Bool = false
+    @State var hasError: Bool = false
+    @State var resentCodeTimestamp: Date? = nil
 }
 
 extension CITPincodeConfig {
@@ -38,6 +40,6 @@ extension CITPincodeConfig {
         cellCornerRadius: CornerRadius.small,
         codeType: .numeric,
         divider: .custom(afterIndex: 2, color: Color(#colorLiteral(red: 0.2117647059, green: 0.2039215686, blue: 0.2392156863, alpha: 1)), size: .init(width: 8, height: 2), cornerRadius: .infinity),
-        resendButton: .plain(cooldown: .duration(value: 60))
+        resendButton: .plain(font: .system(size: 16, weight: .bold), cooldown: .duration(value: 60))
     )
 }

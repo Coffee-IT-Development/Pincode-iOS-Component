@@ -7,14 +7,12 @@
 
 import SwiftUI
 
-public struct CITPincodeView<Content> : View where Content : View {
-    let config: CITPincodeConfig
+public struct CITPincodeView: View {
+    var config: CITPincodeConfig
     var cells: [CITPincodeCell]
-    let content: (([CITPincodeCell]) -> Content)?
     
-    public init(config: CITPincodeConfig, content: (([CITPincodeCell]) -> Content)? = nil) {
+    public init(config: CITPincodeConfig) {
         self.config = config
-        self.content = content
         
         var newCells: [CITPincodeCell] = []
         for i in 0 ..< config.codeLength {
@@ -29,22 +27,24 @@ public struct CITPincodeView<Content> : View where Content : View {
     }
     
     public var body: some View {
-        HStack {
-            ForEach((0 ..< config.codeLength), id: \.self) {
-                CITPincodeCellView(cell: cells[$0])
-                
-                if config.dividerStyle.afterIndex == $0 {
-                    config.dividerView
+        VStack(alignment: config.resendButtonStyle.alignment) {
+            HStack {
+                ForEach((0 ..< config.codeLength), id: \.self) {
+                    CITPincodeCellView(cell: cells[$0])
+                    
+                    if config.dividerStyle.afterIndex == $0 {
+                        config.dividerView
+                    }
                 }
             }
+            
+            config.resendButtonView
         }
     }
 }
 
 struct CITPincodeView_Previews: PreviewProvider {
     static var previews: some View {
-        CITPincodeView(config: .socialBlox) { cells in
-            Text("Just like that")
-        }
+        CITPincodeView(config: .socialBlox)
     }
 }
