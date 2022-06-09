@@ -7,10 +7,11 @@
 
 import SwiftUI
 
-struct CITPincodeCell {
+struct CITPincodeCell: Identifiable {
+    let id = UUID()
     let config: CITPincodeConfig
-    let character: String
-    let isSelected: Bool
+    var character: String
+    var isSelected: Bool
 }
 
 extension CITPincodeCell {
@@ -23,11 +24,11 @@ extension CITPincodeCell {
     }
     
     var foregroundColor: Color {
-        config.getForegroundColor(for: self)
+        config.hasError ? config.errorColor : config.textColor
     }
     
     var backgroundColor: Color {
-        config.getBackgroundColor(for: self)
+        isSelected ? config.selectedBackgroundColor : config.backgroundColor
     }
     
     var selectedBorderColor: Color {

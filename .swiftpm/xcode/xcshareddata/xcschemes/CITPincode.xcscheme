@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1330"
+   LastUpgradeVersion = "1400"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "CITPincodeView"
-               BuildableName = "CITPincodeView"
-               BlueprintName = "CITPincodeView"
+               BlueprintIdentifier = "CITPincode"
+               BuildableName = "CITPincode"
+               BlueprintName = "CITPincode"
                ReferencedContainer = "container:">
             </BuildableReference>
          </BuildActionEntry>
@@ -28,9 +28,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "CITPincodeViewTests"
-               BuildableName = "CITPincodeViewTests"
-               BlueprintName = "CITPincodeViewTests"
+               BlueprintIdentifier = "CITPincodeTests"
+               BuildableName = "CITPincodeTests"
+               BlueprintName = "CITPincodeTests"
                ReferencedContainer = "container:">
             </BuildableReference>
          </BuildActionEntry>
@@ -46,9 +46,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "CITPincodeViewTests"
-               BuildableName = "CITPincodeViewTests"
-               BlueprintName = "CITPincodeViewTests"
+               BlueprintIdentifier = "CITPincodeTests"
+               BuildableName = "CITPincodeTests"
+               BlueprintName = "CITPincodeTests"
                ReferencedContainer = "container:">
             </BuildableReference>
          </TestableReference>
@@ -74,9 +74,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "CITPincodeView"
-            BuildableName = "CITPincodeView"
-            BlueprintName = "CITPincodeView"
+            BlueprintIdentifier = "CITPincode"
+            BuildableName = "CITPincode"
+            BlueprintName = "CITPincode"
             ReferencedContainer = "container:">
          </BuildableReference>
       </MacroExpansion>

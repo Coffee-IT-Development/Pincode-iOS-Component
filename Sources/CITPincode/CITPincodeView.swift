@@ -8,15 +8,37 @@
 import SwiftUI
 
 public struct CITPincodeView: View {
-    public init() {}
+    let config: CITPincodeConfig
+    
+    @State var cells: [CITPincodeCell] = []
+    
+    public init(config: CITPincodeConfig) {
+        self.config = config
+        setupCells()
+    }
+    
+    private func setupCells() {
+        for i in 0 ..< config.codeLength {
+            cells.append(CITPincodeCell(
+                config: config,
+                character: "\(i)",
+                isSelected: i == 0
+            ))
+        }
+    }
     
     public var body: some View {
-        Text("Hello, World!")
+        HStack {
+            CITPincodeCell.exampleCell(character: "", isSelected: false)
+            Text(String(cells.count))
+            
+            ForEach(cells, content: CITPincodeCellView.init)
+        }
     }
 }
 
-struct SwiftUIView_Previews: PreviewProvider {
+struct CITPincodeView_Previews: PreviewProvider {
     static var previews: some View {
-        CITPincodeView()
+        CITPincodeView(config: .socialBlox)
     }
 }
