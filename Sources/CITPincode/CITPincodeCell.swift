@@ -7,11 +7,11 @@
 
 import SwiftUI
 
-struct CITPincodeCell: Identifiable {
-    let id = UUID()
-    let config: CITPincodeConfig
-    var character: String
-    var isSelected: Bool
+public struct CITPincodeCell: Identifiable {
+    public let id = UUID()
+    public let config: CITPincodeConfig
+    public var character: String
+    public var isSelected: Bool
 }
 
 extension CITPincodeCell {

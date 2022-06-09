@@ -18,6 +18,10 @@ public struct CITPincodeConfig {
     let selectedBorderColor: Color
     let cellSize: CGSize
     let cellCornerRadius: CGFloat
+    let codeType: CodeType
+    let divider: Divider
+    let resendButton: ResendButton
+    
     var hasError: Bool = false
 }
 
@@ -31,6 +35,9 @@ extension CITPincodeConfig {
         selectedBackgroundColor: Color(#colorLiteral(red: 0.2117647059, green: 0.2039215686, blue: 0.2392156863, alpha: 1)),
         selectedBorderColor: Color(#colorLiteral(red: 0.5294117647, green: 0.5333333333, blue: 0.5411764706, alpha: 1)),
         cellSize: CGSize(width: 40, height: 56),
-        cellCornerRadius: CornerRadius.small
+        cellCornerRadius: CornerRadius.small,
+        codeType: .numeric,
+        divider: .none,
+        resendButton: .plain(cooldown: .duration(value: 60))
     )
 }
