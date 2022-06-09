@@ -41,7 +41,7 @@ public extension CITPincodeConfig {
     
     var isOnCooldown: Bool {
         print("[TEST] \(#function): date: \(resentCodeTimestamp ?? Date()), timeSinceResend: \(Date().timeIntervalSince(resentCodeTimestamp ?? Date())), cooldown: \(resendButtonStyle.cooldown.time)")
-        return Date().timeIntervalSince(resentCodeTimestamp ?? Date()) <= resendButtonStyle.cooldown.time
+        return resentCodeTimestamp != nil && Date().timeIntervalSince(resentCodeTimestamp ?? Date()) <= resendButtonStyle.cooldown.time
     }
     
     var resendButtonView: some View {
