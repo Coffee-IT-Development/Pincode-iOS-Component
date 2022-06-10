@@ -21,10 +21,31 @@ public struct CITPincodeConfig {
     let codeType: CodeType
     let divider: Divider
     let resendButton: ResendButton
+}
 
+extension CITPincodeConfig {
+    enum ResendButton {
+        case none
+        case plain(text: String = "Send code again", font: Font, cooldown: CITPincodeResendCodeCooldown = .none)
+        case custom(style: CITPincodeResendButtonStyle)
+    }
     
-    @State var hasError: Bool = false
-    @State var resentCodeTimestamp: Date? = nil
+    var resendButtonStyle: CITPincodeResendButtonStyle {
+        switch resendButton {
+        case let .custom(style):
+            return style
+        case let .plain(text, font, cooldown):
+            return CITPincodeResendButtonStyle(
+                text: text,
+                font: font,
+                textColor: textColor,
+                backgroundColor: backgroundColor,
+                cooldown: cooldown
+            )
+        case .none:
+            return .none
+        }
+    }
 }
 
 extension CITPincodeConfig {

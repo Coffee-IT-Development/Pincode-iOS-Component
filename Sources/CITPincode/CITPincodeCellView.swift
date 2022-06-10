@@ -25,12 +25,13 @@ struct CITPincodeCellView: View {
 }
 
 extension CITPincodeCell {
-    static func exampleCell(character: String, isSelected: Bool) -> CITPincodeCellView {
+    static func exampleCell(character: String, isSelected: Bool, hasError: Bool = false) -> CITPincodeCellView {
         CITPincodeCellView(
             cell: CITPincodeCell.init(
                 config: .socialBlox,
                 character: character,
-                isSelected: isSelected
+                isSelected: isSelected,
+                hasError: hasError
             )
         )
     }

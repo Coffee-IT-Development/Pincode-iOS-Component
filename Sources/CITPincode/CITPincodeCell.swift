@@ -12,6 +12,7 @@ public struct CITPincodeCell: Identifiable {
     public let config: CITPincodeConfig
     public var character: String
     public var isSelected: Bool
+    public var hasError: Bool
 }
 
 extension CITPincodeCell {
@@ -24,7 +25,7 @@ extension CITPincodeCell {
     }
     
     var foregroundColor: Color {
-        config.hasError ? config.errorColor : config.textColor
+        hasError ? config.errorColor : config.textColor
     }
     
     var backgroundColor: Color {

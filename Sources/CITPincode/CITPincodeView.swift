@@ -11,6 +11,9 @@ public struct CITPincodeView: View {
     var config: CITPincodeConfig
     var cells: [CITPincodeCell]
     
+    @State private var hasError: Bool = false
+    @State private var resentCodeTimestamp: Date? = nil
+    
     public init(config: CITPincodeConfig) {
         self.config = config
         
@@ -19,7 +22,8 @@ public struct CITPincodeView: View {
             newCells.append(CITPincodeCell(
                 config: config,
                 character: "",
-                isSelected: i == 0
+                isSelected: i == 0,
+                hasError: false
             ))
         }
         
@@ -38,7 +42,7 @@ public struct CITPincodeView: View {
                 }
             }
             
-            config.resendButtonView
+            CITPincodeResendButton(config: config, resentCodeTimestamp: $resentCodeTimestamp)
         }
     }
 }
