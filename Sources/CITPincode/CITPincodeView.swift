@@ -11,8 +11,13 @@ public struct CITPincodeView: View {
     @Binding var code: String
     var config: CITPincodeConfig
     
+    @FocusState private var focus: Focusable?
     @State private var hasError: Bool = false
     @State private var resentCodeTimestamp: Date? = nil
+    
+    private enum Focusable: Hashable {
+        case codeInput
+    }
     
     public var body: some View {
         VStack(alignment: config.resendButtonStyle.alignment) {
@@ -30,10 +35,20 @@ public struct CITPincodeView: View {
                     }
                 }
             }
+            .background(
+                TextField("", text: $code)
+                    .focused($focus, equals: .codeInput)
+            )
+            .onTapGesture {
+                focus = .codeInput
+            }
             
             if config.resendButton.showButton {
                 CITPincodeResendButton(config: config, resentCodeTimestamp: $resentCodeTimestamp)
             }
+        }
+        .onTapGesture {
+            focus = nil
         }
         .onChange(of: code) { newValue in
             if newValue.count == config.codeLength {
