@@ -8,31 +8,63 @@
 import SwiftUI
 
 struct CITPincodeCellView: View {
-    let cell: CITPincodeCell
+    let config: CITPincodeConfig
+    let character: Character?
+    let isSelected: Bool
+    let hasError: Bool
+    
+    private var font: Font {
+        config.font
+    }
+    
+    private var size: CGSize {
+        config.cellSize
+    }
+    
+    private var foregroundColor: Color {
+        hasError ? config.errorColor : config.textColor
+    }
+    
+    private var backgroundColor: Color {
+        isSelected ? config.selectedBackgroundColor : config.backgroundColor
+    }
+    
+    private var selectedBorderColor: Color {
+        config.selectedBorderColor
+    }
+    
+    private var cornerRadius: CGFloat {
+        config.cellCornerRadius
+    }
+    
+    private var text: String {
+        if let character = character {
+            return String(character)
+        }
+        return ""
+    }
     
     var body: some View {
-        Text(cell.character)
-            .font(cell.font)
-            .foregroundColor(cell.foregroundColor)
-            .frame(width: cell.size.width, height: cell.size.height)
-            .background(cell.backgroundColor)
-            .cornerRadius(cell.cornerRadius)
+        Text(text)
+            .font(font)
+            .foregroundColor(foregroundColor)
+            .frame(width: size.width, height: size.height)
+            .background(backgroundColor)
+            .cornerRadius(cornerRadius)
             .overlay(
-                RoundedRectangle(cornerRadius: cell.cornerRadius)
-                    .stroke(cell.selectedBorderColor, lineWidth: cell.isSelected ? 1 : 0)
+                RoundedRectangle(cornerRadius: cornerRadius)
+                    .stroke(selectedBorderColor, lineWidth: isSelected ? 1 : 0)
             )
     }
 }
 
-extension CITPincodeCell {
-    static func exampleCell(character: String, isSelected: Bool, hasError: Bool = false) -> CITPincodeCellView {
+extension CITPincodeCellView {
+    static func exampleCell(character: Character? = nil, isSelected: Bool, hasError: Bool = false) -> CITPincodeCellView {
         CITPincodeCellView(
-            cell: CITPincodeCell.init(
-                config: .socialBlox,
-                character: character,
-                isSelected: isSelected,
-                hasError: hasError
-            )
+            config: .socialBlox,
+            character: character,
+            isSelected: isSelected,
+            hasError: hasError
         )
     }
 }
@@ -40,10 +72,10 @@ extension CITPincodeCell {
 struct CITPincodeCellView_Previews: PreviewProvider {
     static var previews: some View {
         HStack {
-            CITPincodeCell.exampleCell(character: "A", isSelected: false)
-            CITPincodeCell.exampleCell(character: "B", isSelected: false)
-            CITPincodeCell.exampleCell(character: "C", isSelected: false)
-            CITPincodeCell.exampleCell(character: "", isSelected: true)
+            CITPincodeCellView.exampleCell(character: "A", isSelected: false)
+            CITPincodeCellView.exampleCell(character: "B", isSelected: false)
+            CITPincodeCellView.exampleCell(character: "C", isSelected: false)
+            CITPincodeCellView.exampleCell(isSelected: true)
         }
     }
 }

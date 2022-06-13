@@ -28,6 +28,15 @@ extension CITPincodeConfig {
         case none
         case plain(text: String = "Send code again", font: Font, cooldown: CITPincodeResendCodeCooldown = .none)
         case custom(style: CITPincodeResendButtonStyle)
+    
+        var showButton: Bool {
+            switch self {
+            case .none:
+                return false
+            default:
+                return true
+            }
+        }
     }
     
     var resendButtonStyle: CITPincodeResendButtonStyle {
