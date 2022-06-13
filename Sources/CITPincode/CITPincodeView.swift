@@ -43,7 +43,13 @@ public struct CITPincodeView: View {
             .background(
                 TextField("", text: $code)
                     .focused($focus, equals: .codeInput)
+                    .keyboardType(.numberPad)
+                    .opacity(0)
+                    .allowsHitTesting(false)
             )
+            .onAppear {
+                focus = .codeInput
+            }
             .onTapGesture {
                 focus = .codeInput
             }
@@ -51,9 +57,6 @@ public struct CITPincodeView: View {
             if config.resendButton.showButton {
                 CITPincodeResendButton(config: config, resentCodeTimestamp: $resentCodeTimestamp)
             }
-        }
-        .onTapGesture {
-            focus = nil
         }
         .onChange(of: code) { newValue in
             if newValue.count == config.codeLength {
