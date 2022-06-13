@@ -11,6 +11,11 @@ public struct CITPincodeView: View {
     @Binding var code: String
     var config: CITPincodeConfig
     
+    public init(code: Binding<String>, config: CITPincodeConfig) {
+        self._code = code
+        self.config = config
+    }
+    
     @FocusState private var focus: Focusable?
     @State private var hasError: Bool = false
     @State private var resentCodeTimestamp: Date? = nil
