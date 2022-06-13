@@ -35,6 +35,15 @@ public struct CITPincodeView: View {
                 CITPincodeResendButton(config: config, resentCodeTimestamp: $resentCodeTimestamp)
             }
         }
+        .onChange(of: code) { newValue in
+            if newValue.count == config.codeLength {
+                onEnteredCode()
+            }
+        }
+    }
+    
+    private func onEnteredCode() {
+        // Notify code filled.
     }
     
     private func character(for index: Int) -> Character? {
