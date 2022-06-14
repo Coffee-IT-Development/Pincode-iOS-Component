@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Introspect
 
 public struct CITPincodeView: View {
     @Binding var code: String
@@ -15,14 +16,10 @@ public struct CITPincodeView: View {
         self._code = code
         self.config = config
     }
-    
-    @FocusState private var focus: Focusable?
+
     @State private var hasError: Bool = false
     @State private var resentCodeTimestamp: Date? = nil
-    
-    private enum Focusable: Hashable {
-        case codeInput
-    }
+    @State private var codeInputField: UITextField?
     
     public var body: some View {
         VStack(alignment: config.resendButtonStyle.alignment) {
@@ -42,30 +39,30 @@ public struct CITPincodeView: View {
             }
             .background(
                 TextField("", text: $code)
-                    .focused($focus, equals: .codeInput)
                     .keyboardType(.numberPad)
                     .opacity(0)
                     .allowsHitTesting(false)
             )
-            .onAppear {
-                focus = .codeInput
+            .introspectTextField { textField in
+                codeInputField = textField
+                codeInputField?.becomeFirstResponder()
             }
             .onTapGesture {
-                focus = .codeInput
+                codeInputField?.becomeFirstResponder()
             }
             
             if config.resendButton.showButton {
                 CITPincodeResendButton(config: config, resentCodeTimestamp: $resentCodeTimestamp)
             }
         }
-        .onChange(of: code) { newValue in
-            if newValue.count == config.codeLength {
-                onEnteredCode()
-            } else if newValue.count > config.codeLength {
-                code = String(newValue.prefix(config.codeLength))
-            }
-            print("[TEST] Code changed: \(code)")
-        }
+//        .onChange(of: code) { newValue in
+//            if newValue.count == config.codeLength {
+//                onEnteredCode()
+//            } else if newValue.count > config.codeLength {
+//                code = String(newValue.prefix(config.codeLength))
+//            }
+//            print("[TEST] Code changed: \(code)")
+//        }
     }
     
     private func onEnteredCode() {
