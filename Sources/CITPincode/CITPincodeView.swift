@@ -16,7 +16,7 @@ public struct CITPincodeView: View {
         self._code = code
         self.config = config
     }
-
+    
     @State private var hasError: Bool = false
     @State private var resentCodeTimestamp: Date? = nil
     @State private var codeInputField: UITextField?
@@ -46,6 +46,7 @@ public struct CITPincodeView: View {
             .introspectTextField { textField in
                 codeInputField = textField
                 codeInputField?.becomeFirstResponder()
+                codeInputField?.addDoneButton()
             }
             .onTapGesture {
                 codeInputField?.becomeFirstResponder()
@@ -55,14 +56,14 @@ public struct CITPincodeView: View {
                 CITPincodeResendButton(config: config, resentCodeTimestamp: $resentCodeTimestamp)
             }
         }
-//        .onChange(of: code) { newValue in
-//            if newValue.count == config.codeLength {
-//                onEnteredCode()
-//            } else if newValue.count > config.codeLength {
-//                code = String(newValue.prefix(config.codeLength))
-//            }
-//            print("[TEST] Code changed: \(code)")
-//        }
+        //        .onChange(of: code) { newValue in
+        //            if newValue.count == config.codeLength {
+        //                onEnteredCode()
+        //            } else if newValue.count > config.codeLength {
+        //                code = String(newValue.prefix(config.codeLength))
+        //            }
+        //            print("[TEST] Code changed: \(code)")
+        //        }
     }
     
     private func onEnteredCode() {
