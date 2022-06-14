@@ -17,7 +17,7 @@ public struct CITPincodeView: View {
         self.config = config
     }
     
-    @State private var hasError: Bool = false
+    @State private var hasError = false
     @State private var resentCodeTimestamp: Date? = nil
     @State private var codeInputField: UITextField?
     
