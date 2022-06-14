@@ -20,6 +20,10 @@ let package = Package(
         .package(
             url: "https://github.com/siteline/SwiftUI-Introspect.git",
             from: "0.1.4"
+        ),
+        .package(
+            url: "https://github.com/SwiftUIX/SwiftUIX.git",
+            from: "0.1.2"
         )
     ],
     targets: [
@@ -27,7 +31,11 @@ let package = Package(
         // Targets can depend on other targets in this package, and on products in packages this package depends on.
         .target(
             name: "CITPincode",
-            dependencies: [.product(name: "Introspect", package: "SwiftUI-Introspect")]),
+            dependencies: [
+                .product(name: "Introspect", package: "SwiftUI-Introspect"),
+                .product(name: "SwiftUIX", package: "SwiftUIX")
+            ]
+        ),
         .testTarget(
             name: "CITPincodeTests",
             dependencies: ["CITPincode"]),
