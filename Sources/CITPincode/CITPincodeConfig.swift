@@ -69,7 +69,22 @@ extension CITPincodeConfig {
         cellSize: CGSize(width: 40, height: 56),
         cellCornerRadius: CornerRadius.small,
         codeType: .numeric,
-        divider: .custom(afterIndex: 2, color: Color(#colorLiteral(red: 0.2117647059, green: 0.2039215686, blue: 0.2392156863, alpha: 1)), size: .init(width: 8, height: 2), cornerRadius: .infinity),
+        divider: .none,
         resendButton: .plain(font: .system(size: 16, weight: .bold), cooldown: .duration(value: 60))
+    )
+    
+    public static var bagtag = CITPincodeConfig(
+        codeLength: 6,
+        font: .system(size: 16),
+        textColor: .white,
+        errorColor: Color(#colorLiteral(red: 0.937254902, green: 0.3137254902, blue: 0.3137254902, alpha: 1)),
+        backgroundColor: Color(#colorLiteral(red: 0.9607843137, green: 0.9607843137, blue: 0.9607843137, alpha: 1)),
+        selectedBackgroundColor: Color(#colorLiteral(red: 0.9607843137, green: 0.9607843137, blue: 0.9607843137, alpha: 1)),
+        selectedBorderColor: Color(#colorLiteral(red: 0.7725490196, green: 0.8039215686, blue: 0.8509803922, alpha: 1)),
+        cellSize: CGSize(width: 46, height: 56),
+        cellCornerRadius: CornerRadius.small,
+        codeType: .alphaNumeric,
+        divider: .custom(afterIndex: 2, color: Color(#colorLiteral(red: 0.1215686275, green: 0.1960784314, blue: 0.3529411765, alpha: 1)), size: .init(width: 8, height: 2), cornerRadius: .infinity),
+        resendButton: .none
     )
 }
