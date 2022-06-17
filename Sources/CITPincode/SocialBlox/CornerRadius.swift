@@ -12,6 +12,9 @@ enum CornerRadius {
     static let smallest: CGFloat = 4
     
     /// The small corner radius 8pts
+    static let smaller: CGFloat = 6
+    
+    /// The small corner radius 8pts
     static let small: CGFloat = 8
     
     /// The medium corner radius 16pts
