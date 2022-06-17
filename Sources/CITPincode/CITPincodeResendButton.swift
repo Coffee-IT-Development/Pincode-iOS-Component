@@ -36,16 +36,28 @@ struct CITPincodeResendButton: View {
 extension CITPincodeResendButton {
     var resendButtonText: String {
         switch style.cooldown {
-        case let .duration(time):
-            // TODO: Use current time, e.g. time - currentTime.
-            return "\(style.text) \(time)"
+        case .duration(_):
+            if isOnCooldown {
+                return "\(style.text) \(timeString)"
+            } else {
+                return style.text
+            }
         default:
             return style.text
         }
     }
     
+    var timeString: String {
+        let value = min(style.cooldown.time - timeSinceLastUse, style.cooldown.time)
+        return String(format: "(%.0f)", value)
+    }
+    
+    var timeSinceLastUse: CGFloat {
+        Date().timeIntervalSince(resentCodeTimestamp ?? Date())
+    }
+    
     var isOnCooldown: Bool {
-        return resentCodeTimestamp != nil && Date().timeIntervalSince(resentCodeTimestamp ?? Date()) <= style.cooldown.time
+        return resentCodeTimestamp != nil && timeSinceLastUse <= style.cooldown.time
     }
 }
 
