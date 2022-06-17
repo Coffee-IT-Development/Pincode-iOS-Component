@@ -10,7 +10,6 @@ import SwiftUI
 
 struct CITPincodeResendButton: View {
     let config: CITPincodeConfig
-    @Binding var resentCodeTimestamp: Date?
     @StateObject private var cooldownTimer = ResendCooldownTimer()
     
     var style: CITPincodeResendButtonStyle {
@@ -36,7 +35,7 @@ struct CITPincodeResendButton: View {
     }
     
     class ResendCooldownTimer: ObservableObject {
-        @Published var current: CGFloat = 60
+        @Published var current: CGFloat = 0
         @Published var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
         
         private var subscriptions: [AnyCancellable] = []
@@ -75,12 +74,8 @@ extension CITPincodeResendButton {
     }
     
     var timeString: String {
-        let value = min(style.cooldown.time - timeSinceLastUse, style.cooldown.time)
+        let value = min(cooldownTimer.current, style.cooldown.time)
         return String(format: "(%.0f)", value)
-    }
-    
-    var timeSinceLastUse: CGFloat {
-        Date().timeIntervalSince(resentCodeTimestamp ?? Date())
     }
     
     var isOnCooldown: Bool {
@@ -90,6 +85,6 @@ extension CITPincodeResendButton {
 
 struct CITPincodeResendButton_Previews: PreviewProvider {
     static var previews: some View {
-        CITPincodeResendButton(config: .socialBlox, resentCodeTimestamp: .constant(nil))
+        CITPincodeResendButton(config: .socialBlox)
     }
 }

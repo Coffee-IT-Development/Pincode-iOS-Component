@@ -55,7 +55,7 @@ public struct CITPincodeView: View {
             }
             
             if config.resendButton.showButton {
-                CITPincodeResendButton(config: config, resentCodeTimestamp: $resentCodeTimestamp)
+                CITPincodeResendButton(config: config)
             }
         }
         .onChange(of: code) { newValue in
