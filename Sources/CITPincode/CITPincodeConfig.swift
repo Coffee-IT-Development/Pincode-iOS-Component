@@ -18,7 +18,7 @@ public struct CITPincodeConfig {
     let selectedBorderColor: Color
     let cellSize: CGSize
     let cellCornerRadius: CGFloat
-    let codeType: CodeType
+    let codeType: UIKeyboardType
     let divider: Divider
     let resendButton: ResendButton
 }
@@ -68,7 +68,7 @@ extension CITPincodeConfig {
         selectedBorderColor: Color(#colorLiteral(red: 0.5294117647, green: 0.5333333333, blue: 0.5411764706, alpha: 1)),
         cellSize: CGSize(width: 40, height: 56),
         cellCornerRadius: CornerRadius.small,
-        codeType: .numeric,
+        codeType: .numberPad,
         divider: .none,
         resendButton: .plain(font: .system(size: 16, weight: .bold), cooldown: .duration(value: 60))
     )
@@ -83,7 +83,7 @@ extension CITPincodeConfig {
         selectedBorderColor: Color(#colorLiteral(red: 0.7725490196, green: 0.8039215686, blue: 0.8509803922, alpha: 1)),
         cellSize: CGSize(width: 46, height: 56),
         cellCornerRadius: CornerRadius.small,
-        codeType: .alphaNumeric,
+        codeType: .default,
         divider: .custom(afterIndex: 2, color: Color(#colorLiteral(red: 0.1215686275, green: 0.1960784314, blue: 0.3529411765, alpha: 1)), size: .init(width: 8, height: 2), cornerRadius: .infinity),
         resendButton: .none
     )

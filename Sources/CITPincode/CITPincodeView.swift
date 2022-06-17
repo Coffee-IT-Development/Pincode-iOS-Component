@@ -40,7 +40,8 @@ public struct CITPincodeView: View {
             }
             .background(
                 TextField("", text: $code)
-                    .keyboardType(.numberPad)
+                    .keyboardType(config.codeType)
+                    .textContentType(.oneTimeCode)
                     .opacity(0)
                     .allowsHitTesting(false)
             )
