@@ -59,12 +59,13 @@ public struct CITPincodeView: View {
             }
         }
         .onChange(of: code) { newValue in
+            print("[TEST] Code changed: \(code), newValue: \(newValue)")
             if newValue.count == config.codeLength {
                 onEnteredCode()
             } else if newValue.count > config.codeLength {
                 code = String(newValue.prefix(config.codeLength))
             }
-            print("[TEST] Code changed: \(code)")
+            
         }
     }
     
