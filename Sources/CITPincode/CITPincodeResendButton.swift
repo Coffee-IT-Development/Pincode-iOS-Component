@@ -5,11 +5,13 @@
 //  Created by Lex Brouwers on 10/06/2022.
 //
 
+import Combine
 import SwiftUI
 
 struct CITPincodeResendButton: View {
     let config: CITPincodeConfig
     @Binding var resentCodeTimestamp: Date?
+    @StateObject private var cooldownTimer = ResendCooldownTimer()
     
     var style: CITPincodeResendButtonStyle {
         config.resendButtonStyle
@@ -29,7 +31,32 @@ struct CITPincodeResendButton: View {
     }
     
     private func resendCode() {
-        resentCodeTimestamp = Date()
+        cooldownTimer.current = style.cooldown.time
+        cooldownTimer.restartTimer()
+    }
+    
+    class ResendCooldownTimer: ObservableObject {
+        @Published var current: CGFloat = 60
+        @Published var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+        
+        private var subscriptions: [AnyCancellable] = []
+        
+        func restartTimer() {
+            cancelTimer()
+            timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+            timer.sink { [self] _ in
+                if current > 0 {
+                    current -= 1
+                } else {
+                    cancelTimer()
+                }
+            }
+            .store(in: &subscriptions)
+        }
+        
+        private func cancelTimer() {
+            timer.upstream.connect().cancel()
+        }
     }
 }
 
@@ -57,7 +84,7 @@ extension CITPincodeResendButton {
     }
     
     var isOnCooldown: Bool {
-        return resentCodeTimestamp != nil && timeSinceLastUse <= style.cooldown.time
+        cooldownTimer.current > 0
     }
 }
 
