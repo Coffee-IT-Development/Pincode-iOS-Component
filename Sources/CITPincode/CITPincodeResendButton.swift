@@ -24,10 +24,9 @@ struct CITPincodeResendButton: View {
                 .padding(style.contentInsets)
                 .background(style.backgroundColor)
                 .cornerRadius(style.cornerRadius)
-                .disabled(isOnCooldown)
-                .allowsHitTesting(!isOnCooldown)
                 .opacity(isOnCooldown ? 0.5 : 1.0)
         }
+        .disabled(isOnCooldown)
     }
     
     private func resendCode() {
