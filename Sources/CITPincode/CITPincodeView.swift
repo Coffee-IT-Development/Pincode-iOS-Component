@@ -11,16 +11,26 @@ import Introspect
 
 public struct CITPincodeView: View {
     @Binding var code: String
+    @Binding var busyCheckingCode: Bool
     var config: CITPincodeConfig
+    var onEnteredCode: (String) -> Void
     
-    public init(code: Binding<String>, config: CITPincodeConfig) {
-        self._code = code
-        self.config = config
-    }
-    
+    @State private var enteredCode = ""
     @State private var hasError = false
     @State private var resentCodeTimestamp: Date? = nil
     @State private var codeInputField: UITextField?
+    
+    public init(
+        code: Binding<String>,
+        busyCheckingCode: Binding<Bool> = .constant(false),
+        config: CITPincodeConfig,
+        onEnteredCode: @escaping (String) -> Void
+    ) {
+        self._code = code
+        self._busyCheckingCode = busyCheckingCode
+        self.config = config
+        self.onEnteredCode = onEnteredCode
+    }
     
     public var body: some View {
         VStack(alignment: config.resendButtonStyle.alignment) {
@@ -59,18 +69,21 @@ public struct CITPincodeView: View {
             }
         }
         .onChange(of: code) { newValue in
-            print("[TEST] Code changed: \(code), newValue: \(newValue)")
             if newValue.count == config.codeLength {
-                onEnteredCode()
+                handleEnteredCode()
             } else if newValue.count > config.codeLength {
-                code = String(newValue.prefix(config.codeLength))
+                let limitedNewCode = String(newValue.prefix(config.codeLength))
+                if limitedNewCode != enteredCode {
+                    code = limitedNewCode
+                }
             }
-            
         }
     }
     
-    private func onEnteredCode() {
-        // Notify code filled.
+    private func handleEnteredCode() {
+        print("[TEST] \(#function): ENTER THAT CODE!")
+        enteredCode = code
+        onEnteredCode(code)
     }
     
     private func character(for index: Int) -> Character? {
@@ -80,6 +93,6 @@ public struct CITPincodeView: View {
 
 struct CITPincodeView_Previews: PreviewProvider {
     static var previews: some View {
-        CITPincodeView(code: .constant(""), config: .socialBlox)
+        CITPincodeView(code: .constant(""), config: .socialBlox, onEnteredCode: { _ in })
     }
 }

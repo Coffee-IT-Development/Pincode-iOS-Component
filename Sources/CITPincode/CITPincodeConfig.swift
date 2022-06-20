@@ -127,6 +127,8 @@ extension CITPincodeConfig {
         codeType: .numberPad
     )
     
+    // TODO: Ensure when entering code, submit code is only called once, not multiple times.
+    // TODO: Clear code on resendCode.
     // TODO: pass error, then if error, show error hint and show error color instead of selectedBorderColor for borders until pincode change.
     // TODO: add option for placeholder, show placeholder in text fields if available and character is not filled.
     
