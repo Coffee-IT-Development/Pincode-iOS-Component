@@ -8,15 +8,19 @@
 import Combine
 import SwiftUI
 
-struct CITPincodeResendButton: View {
+public struct CITPincodeResendButton: View {
     let config: CITPincodeConfig
-    @StateObject private var cooldownTimer = ResendCooldownTimer()
+    @StateObject private var cooldownTimer = CITPincodeCooldownTimer()
     
     var style: CITPincodeResendButtonStyle {
         config.resendButtonStyle
     }
     
-    var body: some View {
+    public init(config: CITPincodeConfig) {
+        self.config = config
+    }
+    
+    public var body: some View {
         Button(action: resendCode) {
             Text(resendButtonText)
                 .font(style.font)
@@ -32,30 +36,6 @@ struct CITPincodeResendButton: View {
     private func resendCode() {
         cooldownTimer.current = style.cooldown.time
         cooldownTimer.restartTimer()
-    }
-    
-    class ResendCooldownTimer: ObservableObject {
-        @Published var current: CGFloat = 0
-        @Published var timer: Publishers.Autoconnect<Timer.TimerPublisher>?
-        
-        private var subscriptions: [AnyCancellable] = []
-        
-        func restartTimer() {
-            cancelTimer()
-            timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-            timer?.sink { [self] _ in
-                if current > 0 {
-                    current -= 1
-                } else {
-                    cancelTimer()
-                }
-            }
-            .store(in: &subscriptions)
-        }
-        
-        private func cancelTimer() {
-            timer?.upstream.connect().cancel()
-        }
     }
 }
 
