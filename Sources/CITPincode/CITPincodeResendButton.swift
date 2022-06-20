@@ -10,7 +10,7 @@ import SwiftUI
 
 struct CITPincodeResendButton: View {
     let config: CITPincodeConfig
-    @StateObject private var cooldownTimer = ResendCooldownTimer()
+//    @StateObject private var cooldownTimer = ResendCooldownTimer()
     
     var style: CITPincodeResendButtonStyle {
         config.resendButtonStyle
@@ -30,8 +30,8 @@ struct CITPincodeResendButton: View {
     }
     
     private func resendCode() {
-        cooldownTimer.current = style.cooldown.time
-        cooldownTimer.restartTimer()
+//        cooldownTimer.current = style.cooldown.time
+//        cooldownTimer.restartTimer()
     }
     
     class ResendCooldownTimer: ObservableObject {
@@ -74,12 +74,12 @@ extension CITPincodeResendButton {
     }
     
     var timeString: String {
-        let value = min(cooldownTimer.current, style.cooldown.time)
+        let value = min(0, style.cooldown.time)
         return String(format: "(%.0f)", value)
     }
     
     var isOnCooldown: Bool {
-        cooldownTimer.current > 0
+        false
     }
 }
 
