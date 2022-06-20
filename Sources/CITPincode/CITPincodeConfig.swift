@@ -16,15 +16,46 @@ public struct CITPincodeConfig {
     let backgroundColor: Color
     let selectedBackgroundColor: Color
     let selectedBorderColor: Color
+    let alwaysShowSelectedBorder: Bool
     let cellSize: CGSize
     let cellCornerRadius: CGFloat
     let codeType: UIKeyboardType
     let divider: Divider
     let resendButton: ResendButton
+    
+    public init(
+        codeLength: Int = 6,
+        font: Font,
+        textColor: Color,
+        errorColor: Color,
+        backgroundColor: Color,
+        selectedBackgroundColor: Color? = nil,
+        selectedBorderColor: Color? = nil,
+        alwaysShowSelectedBorder: Bool = false,
+        cellSize: CGSize,
+        cellCornerRadius: CGFloat,
+        codeType: UIKeyboardType,
+        divider: Divider,
+        resendButton: ResendButton
+    ) {
+        self.codeLength = codeLength
+        self.font = font
+        self.textColor = textColor
+        self.errorColor = errorColor
+        self.backgroundColor = backgroundColor
+        self.selectedBackgroundColor = selectedBackgroundColor ?? backgroundColor
+        self.selectedBorderColor = selectedBorderColor ?? backgroundColor
+        self.alwaysShowSelectedBorder = alwaysShowSelectedBorder
+        self.cellSize = cellSize
+        self.cellCornerRadius = cellCornerRadius
+        self.codeType = codeType
+        self.divider = divider
+        self.resendButton = resendButton
+    }
 }
 
 extension CITPincodeConfig {
-    enum ResendButton {
+    public enum ResendButton {
         case none
         case plain(text: String = "Send code again", font: Font, cooldown: CITPincodeResendCodeCooldown = .none, alignment: HorizontalAlignment = .leading)
         case custom(style: CITPincodeResendButtonStyle)
@@ -60,12 +91,10 @@ extension CITPincodeConfig {
 
 extension CITPincodeConfig {
     public static var socialBlox = CITPincodeConfig(
-        codeLength: 6,
         font: .system(size: 28, weight: .bold), // Font.custom(CITFont.Lato.bold.name, size: 28) & lineheight .size(24)
         textColor: Color(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)),
         errorColor: Color(#colorLiteral(red: 0.968627451, green: 0.4117647059, blue: 0.2901960784, alpha: 1)),
         backgroundColor: Color(#colorLiteral(red: 0.2117647059, green: 0.2039215686, blue: 0.2392156863, alpha: 1)),
-        selectedBackgroundColor: Color(#colorLiteral(red: 0.2117647059, green: 0.2039215686, blue: 0.2392156863, alpha: 1)),
         selectedBorderColor: Color(#colorLiteral(red: 0.5294117647, green: 0.5333333333, blue: 0.5411764706, alpha: 1)),
         cellSize: CGSize(width: 40, height: 56),
         cellCornerRadius: CornerRadius.small,
@@ -75,13 +104,10 @@ extension CITPincodeConfig {
     )
     
     public static var inlite = CITPincodeConfig(
-        codeLength: 6,
         font: .system(size: 18),
         textColor: Color(#colorLiteral(red: 0.168627451, green: 0.2352941176, blue: 0.2745098039, alpha: 1)),
         errorColor: Color(#colorLiteral(red: 1, green: 0.3333333333, blue: 0.4156862745, alpha: 1)),
         backgroundColor: Color(#colorLiteral(red: 0.9607843137, green: 0.9607843137, blue: 0.9607843137, alpha: 1)),
-        selectedBackgroundColor: Color(#colorLiteral(red: 0.9607843137, green: 0.9607843137, blue: 0.9607843137, alpha: 1)),
-        selectedBorderColor: Color(#colorLiteral(red: 0.9607843137, green: 0.9607843137, blue: 0.9607843137, alpha: 1)),
         cellSize: CGSize(width: 46, height: 60),
         cellCornerRadius: CornerRadius.smaller,
         codeType: .default,
@@ -90,7 +116,6 @@ extension CITPincodeConfig {
     )
     
     public static var workstead = CITPincodeConfig(
-        codeLength: 6,
         font: .system(size: 16),
         textColor: Color(#colorLiteral(red: 0.1215686275, green: 0.1960784314, blue: 0.3529411765, alpha: 1)),
         errorColor: Color(#colorLiteral(red: 0.937254902, green: 0.3137254902, blue: 0.3137254902, alpha: 1)),
@@ -105,7 +130,6 @@ extension CITPincodeConfig {
     )
     
     public static var babyManager = CITPincodeConfig(
-        codeLength: 6,
         font: .system(size: 16),
         textColor: Color(#colorLiteral(red: 0.1215686275, green: 0.1960784314, blue: 0.3529411765, alpha: 1)),
         errorColor: Color(#colorLiteral(red: 0.937254902, green: 0.3137254902, blue: 0.3137254902, alpha: 1)),
@@ -120,12 +144,10 @@ extension CITPincodeConfig {
     )
     
     public static var bagtag = CITPincodeConfig(
-        codeLength: 6,
         font: .system(size: 16),
         textColor: Color(#colorLiteral(red: 0.1215686275, green: 0.1960784314, blue: 0.3529411765, alpha: 1)),
         errorColor: Color(#colorLiteral(red: 0.937254902, green: 0.3137254902, blue: 0.3137254902, alpha: 1)),
         backgroundColor: Color(#colorLiteral(red: 0.9607843137, green: 0.9607843137, blue: 0.9607843137, alpha: 1)),
-        selectedBackgroundColor: Color(#colorLiteral(red: 0.9607843137, green: 0.9607843137, blue: 0.9607843137, alpha: 1)),
         selectedBorderColor: Color(#colorLiteral(red: 0.7725490196, green: 0.8039215686, blue: 0.8509803922, alpha: 1)),
         cellSize: CGSize(width: 46, height: 56),
         cellCornerRadius: CornerRadius.small,

@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-struct CITPincodeResendButtonStyle {
+public struct CITPincodeResendButtonStyle {
     var text: String = "Send code again"
     var font: Font
     var textColor: Color
