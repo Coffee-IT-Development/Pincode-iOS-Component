@@ -30,7 +30,7 @@ struct CITPincodeCellView: View {
     }
     
     private var selectedBorderColor: Color {
-        config.selectedBorderColor
+        hasError ? config.errorColor : config.selectedBorderColor
     }
     
     private var cornerRadius: CGFloat {

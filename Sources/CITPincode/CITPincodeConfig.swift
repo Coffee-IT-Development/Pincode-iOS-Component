@@ -11,6 +11,7 @@ import SwiftUI
 public struct CITPincodeConfig {
     public let codeLength: Int
     public let font: Font
+    public let errorFont: Font
     public let textColor: Color
     public let errorColor: Color
     public let placeholderColor: Color
@@ -27,6 +28,7 @@ public struct CITPincodeConfig {
     public init(
         codeLength: Int = 6,
         font: Font,
+        errorFont: Font? = nil,
         textColor: Color,
         errorColor: Color,
         placeholderColor: Color? = nil,
@@ -42,6 +44,7 @@ public struct CITPincodeConfig {
     ) {
         self.codeLength = codeLength
         self.font = font
+        self.errorFont = errorFont ?? font
         self.textColor = textColor
         self.errorColor = errorColor
         self.placeholderColor = placeholderColor ?? textColor
@@ -127,9 +130,6 @@ extension CITPincodeConfig {
         codeType: .numberPad
     )
     
-    // TODO: Ensure when entering code, submit code is only called once, not multiple times.
-    // TODO: Clear code on resendCode.
-    // TODO: pass error, then if error, show error hint and show error color instead of selectedBorderColor for borders until pincode change.
     // TODO: add option for placeholder, show placeholder in text fields if available and character is not filled.
     
     public static var babyManager = CITPincodeConfig(

@@ -9,15 +9,18 @@ import Combine
 import SwiftUI
 
 public struct CITPincodeResendButton: View {
-    let config: CITPincodeConfig
+    private let config: CITPincodeConfig
+    private let onResendCode: () -> Void
+    
     @StateObject private var cooldownTimer = CITPincodeCooldownTimer()
     
-    var style: CITPincodeResendButtonStyle {
+    private var style: CITPincodeResendButtonStyle {
         config.resendButtonStyle
     }
     
-    public init(config: CITPincodeConfig) {
+    public init(config: CITPincodeConfig, onResendCode: @escaping () -> Void) {
         self.config = config
+        self.onResendCode = onResendCode
     }
     
     public var body: some View {
@@ -36,6 +39,7 @@ public struct CITPincodeResendButton: View {
     private func resendCode() {
         cooldownTimer.current = style.cooldown.time
         cooldownTimer.restartTimer()
+        onResendCode()
     }
 }
 
@@ -65,6 +69,6 @@ extension CITPincodeResendButton {
 
 struct CITPincodeResendButton_Previews: PreviewProvider {
     static var previews: some View {
-        CITPincodeResendButton(config: .socialBlox)
+        CITPincodeResendButton(config: .socialBlox, onResendCode: {})
     }
 }

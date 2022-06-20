@@ -12,24 +12,32 @@ import Introspect
 public struct CITPincodeView: View {
     @Binding var code: String
     @Binding var busyCheckingCode: Bool
+    @Binding var error: String?
     var config: CITPincodeConfig
     var onEnteredCode: (String) -> Void
+    var onResendCode: () -> Void
+    
+    var hasError: Bool {
+        error != nil
+    }
     
     @State private var enteredCode = ""
-    @State private var hasError = false
-    @State private var resentCodeTimestamp: Date? = nil
     @State private var codeInputField: UITextField?
     
     public init(
         code: Binding<String>,
         busyCheckingCode: Binding<Bool> = .constant(false),
+        error: Binding<String?> = .constant(nil),
         config: CITPincodeConfig,
-        onEnteredCode: @escaping (String) -> Void
+        onEnteredCode: @escaping (String) -> Void,
+        onResendCode: @escaping () -> Void
     ) {
         self._code = code
         self._busyCheckingCode = busyCheckingCode
+        self._error = error
         self.config = config
         self.onEnteredCode = onEnteredCode
+        self.onResendCode = onResendCode
     }
     
     public var body: some View {
@@ -65,23 +73,36 @@ public struct CITPincodeView: View {
             }
             
             if config.resendButton.showButton {
-                CITPincodeResendButton(config: config)
+                CITPincodeResendButton(config: config, onResendCode: handleResendCode)
+            }
+            
+            if let error = error {
+                Text(error)
+                    .foregroundColor(config.errorColor)
+                    .font(config.errorFont)
+                    .padding(.vertical, 8)
             }
         }
         .onChange(of: code) { newValue in
-            print("[TEST] \(#function): Change code: \(newValue)")
             if newValue.count == config.codeLength && newValue != enteredCode {
                 handleEnteredCode()
             } else if newValue.count > config.codeLength {
                 code = String(newValue.prefix(config.codeLength))
+            } else if newValue.count < config.codeLength {
+                enteredCode = ""
+                error = nil
             }
         }
     }
     
     private func handleEnteredCode() {
-        print("[TEST] \(#function): ENTER THAT CODE! \(code)")
         enteredCode = code
         onEnteredCode(code)
+    }
+    
+    private func handleResendCode() {
+        code = ""
+        onResendCode()
     }
     
     private func character(for index: Int) -> Character? {
@@ -91,6 +112,11 @@ public struct CITPincodeView: View {
 
 struct CITPincodeView_Previews: PreviewProvider {
     static var previews: some View {
-        CITPincodeView(code: .constant(""), config: .socialBlox, onEnteredCode: { _ in })
+        CITPincodeView(
+            code: .constant(""),
+            config: .socialBlox,
+            onEnteredCode: { _ in },
+            onResendCode: {}
+        )
     }
 }
