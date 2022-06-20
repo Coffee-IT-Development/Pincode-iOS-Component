@@ -69,19 +69,17 @@ public struct CITPincodeView: View {
             }
         }
         .onChange(of: code) { newValue in
-            if newValue.count == config.codeLength {
+            print("[TEST] \(#function): Change code: \(newValue)")
+            if newValue.count == config.codeLength && newValue != enteredCode {
                 handleEnteredCode()
             } else if newValue.count > config.codeLength {
-                let limitedNewCode = String(newValue.prefix(config.codeLength))
-                if limitedNewCode != enteredCode {
-                    code = limitedNewCode
-                }
+                code = String(newValue.prefix(config.codeLength))
             }
         }
     }
     
     private func handleEnteredCode() {
-        print("[TEST] \(#function): ENTER THAT CODE!")
+        print("[TEST] \(#function): ENTER THAT CODE! \(code)")
         enteredCode = code
         onEnteredCode(code)
     }
