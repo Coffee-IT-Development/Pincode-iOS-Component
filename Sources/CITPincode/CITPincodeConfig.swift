@@ -9,20 +9,20 @@ import Foundation
 import SwiftUI
 
 public struct CITPincodeConfig {
-    let codeLength: Int
-    let font: Font
-    let textColor: Color
-    let errorColor: Color
-    let placeholderColor: Color
-    let backgroundColor: Color
-    let selectedBackgroundColor: Color
-    let selectedBorderColor: Color
-    let alwaysShowSelectedBorder: Bool
-    let cellSize: CGSize
-    let cellCornerRadius: CGFloat
-    let codeType: UIKeyboardType
-    let divider: Divider
-    let resendButton: ResendButton
+    public let codeLength: Int
+    public let font: Font
+    public let textColor: Color
+    public let errorColor: Color
+    public let placeholderColor: Color
+    public let backgroundColor: Color
+    public let selectedBackgroundColor: Color
+    public let selectedBorderColor: Color
+    public let alwaysShowSelectedBorder: Bool
+    public let cellSize: CGSize
+    public let cellCornerRadius: CGFloat
+    public let codeType: UIKeyboardType
+    public let divider: Divider
+    public let resendButton: ResendButton
     
     public init(
         codeLength: Int = 6,
