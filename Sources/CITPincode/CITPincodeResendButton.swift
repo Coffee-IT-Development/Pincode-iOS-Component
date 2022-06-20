@@ -36,14 +36,14 @@ struct CITPincodeResendButton: View {
     
     class ResendCooldownTimer: ObservableObject {
         @Published var current: CGFloat = 0
-        @Published var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+        @Published var timer: Publishers.Autoconnect<Timer.TimerPublisher>?
         
         private var subscriptions: [AnyCancellable] = []
         
         func restartTimer() {
             cancelTimer()
             timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-            timer.sink { [self] _ in
+            timer?.sink { [self] _ in
                 if current > 0 {
                     current -= 1
                 } else {
@@ -54,7 +54,7 @@ struct CITPincodeResendButton: View {
         }
         
         private func cancelTimer() {
-            timer.upstream.connect().cancel()
+            timer?.upstream.connect().cancel()
         }
     }
 }
