@@ -116,6 +116,7 @@ extension CITPincodeConfig {
         placeholderColor: Color(#colorLiteral(red: 0.6392156863, green: 0.7294117647, blue: 0.831372549, alpha: 1)),
         backgroundColor: Color(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)),
         selectedBorderColor: Color(#colorLiteral(red: 0.6392156863, green: 0.7294117647, blue: 0.831372549, alpha: 1)),
+        alwaysShowSelectedBorder: true,
         cellSize: CGSize(width: 40, height: 48),
         codeType: .numberPad
     )
