@@ -65,11 +65,16 @@ public struct CITPincodeView: View {
                     .allowsHitTesting(false)
             )
             .introspectTextField { textField in
+                print("[TEST] \(#function): Introspect textfield")
                 codeInputField = textField
-                codeInputField?.becomeFirstResponder()
                 codeInputField?.addDoneButton()
             }
             .onTapGesture {
+                print("[TEST] \(#function): onTapGesture")
+                codeInputField?.becomeFirstResponder()
+            }
+            .onAppear {
+                print("[TEST] \(#function): onAppear!")
                 codeInputField?.becomeFirstResponder()
             }
             
