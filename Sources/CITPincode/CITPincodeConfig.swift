@@ -9,22 +9,22 @@ import Foundation
 import SwiftUI
 
 public struct CITPincodeConfig {
-    public let codeLength: Int
-    public let font: Font
-    public let errorFont: Font
-    public let textColor: Color
-    public let errorColor: Color
-    public let placeholder: String
-    public let placeholderColor: Color
-    public let backgroundColor: Color
-    public let selectedBackgroundColor: Color
-    public let selectedBorderColor: Color
-    public let alwaysShowSelectedBorder: Bool
-    public let cellSize: CGSize
-    public let cellCornerRadius: CGFloat
-    public let codeType: UIKeyboardType
-    public let divider: Divider
-    public let resendButton: ResendButton
+    public var codeLength: Int
+    public var font: Font
+    public var errorFont: Font
+    public var textColor: Color
+    public var errorColor: Color
+    public var placeholder: String
+    public var placeholderColor: Color
+    public var backgroundColor: Color
+    public var selectedBackgroundColor: Color
+    public var selectedBorderColor: Color
+    public var alwaysShowSelectedBorder: Bool
+    public var cellSize: CGSize
+    public var cellCornerRadius: CGFloat
+    public var codeType: UIKeyboardType
+    public var divider: Divider
+    public var resendButton: ResendButton
     
     public init(
         codeLength: Int = 6,
@@ -79,7 +79,7 @@ extension CITPincodeConfig {
         }
     }
     
-    var resendButtonStyle: CITPincodeResendButtonStyle {
+    public var resendButtonStyle: CITPincodeResendButtonStyle {
         switch resendButton {
         case let .custom(style):
             return style
