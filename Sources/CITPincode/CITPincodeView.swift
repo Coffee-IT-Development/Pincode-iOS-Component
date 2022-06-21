@@ -47,6 +47,7 @@ public struct CITPincodeView: View {
                     CITPincodeCellView(
                         config: config,
                         character: character(for: i),
+                        placeholder: placeholder(for: i),
                         isSelected: i == code.count,
                         hasError: hasError
                     )
@@ -107,6 +108,11 @@ public struct CITPincodeView: View {
     
     private func character(for index: Int) -> Character? {
         code.count > index ? code[code.index(code.startIndex, offsetBy: index)] : nil
+    }
+    
+    private func placeholder(for index: Int) -> Character? {
+        let text = config.placeholder
+        return text.count > index ? text[text.index(text.startIndex, offsetBy: index)] : nil
     }
 }
 

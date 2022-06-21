@@ -10,6 +10,7 @@ import SwiftUI
 struct CITPincodeCellView: View {
     let config: CITPincodeConfig
     let character: Character?
+    let placeholder: Character?
     let isSelected: Bool
     let hasError: Bool
     
@@ -38,8 +39,8 @@ struct CITPincodeCellView: View {
     }
     
     private var text: String {
-        if let character = character {
-            return String(character)
+        if let value = character ?? placeholder {
+            return String(value)
         }
         return ""
     }
@@ -59,10 +60,11 @@ struct CITPincodeCellView: View {
 }
 
 extension CITPincodeCellView {
-    static func exampleCell(character: Character? = nil, isSelected: Bool, hasError: Bool = false) -> CITPincodeCellView {
+    static func exampleCell(character: Character? = nil, placeholder: Character? = nil, isSelected: Bool, hasError: Bool = false) -> CITPincodeCellView {
         CITPincodeCellView(
             config: .socialBlox,
             character: character,
+            placeholder: placeholder,
             isSelected: isSelected,
             hasError: hasError
         )

@@ -14,6 +14,7 @@ public struct CITPincodeConfig {
     public let errorFont: Font
     public let textColor: Color
     public let errorColor: Color
+    public let placeholder: String
     public let placeholderColor: Color
     public let backgroundColor: Color
     public let selectedBackgroundColor: Color
@@ -31,6 +32,7 @@ public struct CITPincodeConfig {
         errorFont: Font? = nil,
         textColor: Color,
         errorColor: Color,
+        placeholder: String = "",
         placeholderColor: Color? = nil,
         backgroundColor: Color,
         selectedBackgroundColor: Color? = nil,
@@ -47,6 +49,7 @@ public struct CITPincodeConfig {
         self.errorFont = errorFont ?? font
         self.textColor = textColor
         self.errorColor = errorColor
+        self.placeholder = String(placeholder.prefix(codeLength))
         self.placeholderColor = placeholderColor ?? textColor
         self.backgroundColor = backgroundColor
         self.selectedBackgroundColor = selectedBackgroundColor ?? backgroundColor
@@ -120,17 +123,17 @@ extension CITPincodeConfig {
     )
     
     public static var workstead = CITPincodeConfig(
+        codeLength: 5,
         font: .system(size: 14),
         textColor: Color(#colorLiteral(red: 0.09803921569, green: 0.3254901961, blue: 0.5764705882, alpha: 1)),
         errorColor: Color(#colorLiteral(red: 0.937254902, green: 0.3137254902, blue: 0.3137254902, alpha: 1)),
+        placeholder: "12345",
         placeholderColor: Color(#colorLiteral(red: 0.6392156863, green: 0.7294117647, blue: 0.831372549, alpha: 1)),
         backgroundColor: Color(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)),
         selectedBorderColor: Color(#colorLiteral(red: 0.6392156863, green: 0.7294117647, blue: 0.831372549, alpha: 1)),
         cellSize: CGSize(width: 40, height: 48),
         codeType: .numberPad
     )
-    
-    // TODO: add option for placeholder, show placeholder in text fields if available and character is not filled.
     
     public static var babyManager = CITPincodeConfig(
         font: .system(size: 16),
