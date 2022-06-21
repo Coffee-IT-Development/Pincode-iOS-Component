@@ -23,6 +23,7 @@ public struct CITPincodeView: View {
     
     @State private var enteredCode = ""
     @State private var codeInputField: UITextField?
+    @State private var shownKeyboardOnce = false
     
     public init(
         code: Binding<String>,
@@ -65,16 +66,11 @@ public struct CITPincodeView: View {
                     .allowsHitTesting(false)
             )
             .introspectTextField { textField in
-                print("[TEST] \(#function): Introspect textfield")
                 codeInputField = textField
                 codeInputField?.addDoneButton()
+                showKeyboardInitially()
             }
             .onTapGesture {
-                print("[TEST] \(#function): onTapGesture")
-                codeInputField?.becomeFirstResponder()
-            }
-            .onAppear {
-                print("[TEST] \(#function): onAppear!")
                 codeInputField?.becomeFirstResponder()
             }
             
@@ -99,6 +95,14 @@ public struct CITPincodeView: View {
                 error = nil
             }
         }
+    }
+    
+    private func showKeyboardInitially() {
+        guard !shownKeyboardOnce else {
+            return
+        }
+        shownKeyboardOnce = true
+        codeInputField?.becomeFirstResponder()
     }
     
     private func handleEnteredCode() {
