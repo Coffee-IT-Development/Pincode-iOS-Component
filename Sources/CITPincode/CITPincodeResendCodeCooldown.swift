@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum CITPincodeResendCodeCooldown {
+public enum CITPincodeResendCodeCooldown: Equatable {
     case none
     case duration(value: TimeInterval)
     

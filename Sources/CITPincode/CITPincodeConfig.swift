@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-public struct CITPincodeConfig {
+public struct CITPincodeConfig: Equatable {
     public var codeLength: Int
     public var font: Font
     public var errorFont: Font
@@ -23,8 +23,8 @@ public struct CITPincodeConfig {
     public var cellSize: CGSize
     public var cellCornerRadius: CGFloat
     public var codeType: UIKeyboardType
-    public var divider: Divider
-    public var resendButton: ResendButton
+    public var divider: CITPincodeDividerConfig
+    public var resendButton: CITPincodeResendButtonConfig
     
     public init(
         codeLength: Int = 6,
@@ -41,8 +41,8 @@ public struct CITPincodeConfig {
         cellSize: CGSize,
         cellCornerRadius: CGFloat = CornerRadius.small,
         codeType: UIKeyboardType = .default,
-        divider: Divider = .none,
-        resendButton: ResendButton = .none
+        divider: CITPincodeDividerConfig = .none,
+        resendButton: CITPincodeResendButtonConfig = .none
     ) {
         self.codeLength = codeLength
         self.font = font
@@ -64,21 +64,6 @@ public struct CITPincodeConfig {
 }
 
 extension CITPincodeConfig {
-    public enum ResendButton {
-        case none
-        case plain(text: String = "Send code again", font: Font, cooldown: CITPincodeResendCodeCooldown = .none, alignment: HorizontalAlignment = .leading)
-        case custom(style: CITPincodeResendButtonStyle)
-    
-        var showButton: Bool {
-            switch self {
-            case .none:
-                return false
-            default:
-                return true
-            }
-        }
-    }
-    
     public var resendButtonStyle: CITPincodeResendButtonStyle {
         switch resendButton {
         case let .custom(style):
@@ -100,7 +85,7 @@ extension CITPincodeConfig {
 
 extension CITPincodeConfig {
     public static var socialBlox = CITPincodeConfig(
-        font: .system(size: 28, weight: .bold), // Font.custom(CITFont.Lato.bold.name, size: 28) & lineheight .size(24)
+        font: .system(size: 28, weight: .bold),
         textColor: Color(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)),
         errorColor: Color(#colorLiteral(red: 0.968627451, green: 0.4117647059, blue: 0.2901960784, alpha: 1)),
         backgroundColor: Color(#colorLiteral(red: 0.2117647059, green: 0.2039215686, blue: 0.2392156863, alpha: 1)),
