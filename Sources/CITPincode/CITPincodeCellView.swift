@@ -22,8 +22,22 @@ struct CITPincodeCellView: View {
         config.cellSize
     }
     
+    private var hasCharacter: Bool {
+        character != nil
+    }
+    
+    private var hasPlaceholder: Bool {
+        placeholder != nil
+    }
+    
     private var foregroundColor: Color {
-        hasError ? config.errorColor : config.textColor
+        if hasCharacter {
+            return hasError ? config.errorColor : config.textColor
+        } else if hasPlaceholder {
+            return config.placeholderColor
+        } else {
+            return config.textColor
+        }
     }
     
     private var backgroundColor: Color {
