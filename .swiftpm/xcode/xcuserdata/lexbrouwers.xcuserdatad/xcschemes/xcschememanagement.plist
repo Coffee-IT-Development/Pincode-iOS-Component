@@ -4,7 +4,7 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>CITPincodeView.xcscheme_^#shared#^_</key>
+		<key>CITPincode.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
@@ -12,6 +12,16 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>CITPincode</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>CITPincodeTests</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>CITPincodeView</key>
 		<dict>
 			<key>primary</key>
