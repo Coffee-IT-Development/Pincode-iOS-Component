@@ -13,7 +13,7 @@ public struct CITPincodeView: View {
     @Binding var code: String
     @Binding var busyCheckingCode: Bool
     @Binding var error: String?
-    @Binding var config: CITPincodeConfig
+    var config: CITPincodeConfig
     var onEnteredCode: (String) -> Void
     var onResendCode: () -> Void
     
@@ -28,14 +28,14 @@ public struct CITPincodeView: View {
         code: Binding<String>,
         busyCheckingCode: Binding<Bool> = .constant(false),
         error: Binding<String?> = .constant(nil),
-        config: Binding<CITPincodeConfig>,
+        config: CITPincodeConfig,
         onEnteredCode: @escaping (String) -> Void,
         onResendCode: @escaping () -> Void
     ) {
         self._code = code
         self._busyCheckingCode = busyCheckingCode
         self._error = error
-        self._config = config
+        self.config = config
         self.onEnteredCode = onEnteredCode
         self.onResendCode = onResendCode
     }
@@ -120,7 +120,7 @@ struct CITPincodeView_Previews: PreviewProvider {
     static var previews: some View {
         CITPincodeView(
             code: .constant(""),
-            config: .constant(.socialBlox),
+            config: .socialBlox,
             onEnteredCode: { _ in },
             onResendCode: {}
         )
