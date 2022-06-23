@@ -17,13 +17,13 @@ public struct CITPincodeView: View {
     var onEnteredCode: (String) -> Void
     var onResendCode: () -> Void
     
-    var hasError: Bool {
-        error != nil
-    }
-    
     @State private var enteredCode = ""
     @State private var codeInputField: UITextField?
     @State private var shownKeyboardOnce = false
+
+    var hasError: Bool {
+        error != nil
+    }
     
     public init(
         code: Binding<String>,

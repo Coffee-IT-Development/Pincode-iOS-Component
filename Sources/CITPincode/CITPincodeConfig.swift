@@ -19,6 +19,7 @@ public struct CITPincodeConfig: Equatable {
     public var backgroundColor: Color
     public var selectedBackgroundColor: Color
     public var selectedBorderColor: Color
+    public var selectedBorderWidth: CGFloat
     public var alwaysShowSelectedBorder: Bool
     public var cellSize: CGSize
     public var cellCornerRadius: CGFloat
@@ -37,6 +38,7 @@ public struct CITPincodeConfig: Equatable {
         backgroundColor: Color,
         selectedBackgroundColor: Color? = nil,
         selectedBorderColor: Color? = nil,
+        selectedBorderWidth: CGFloat = 1,
         alwaysShowSelectedBorder: Bool = false,
         cellSize: CGSize,
         cellCornerRadius: CGFloat = CornerRadius.small,
@@ -54,6 +56,7 @@ public struct CITPincodeConfig: Equatable {
         self.backgroundColor = backgroundColor
         self.selectedBackgroundColor = selectedBackgroundColor ?? backgroundColor
         self.selectedBorderColor = selectedBorderColor ?? backgroundColor
+        self.selectedBorderWidth = selectedBorderWidth
         self.alwaysShowSelectedBorder = alwaysShowSelectedBorder
         self.cellSize = cellSize
         self.cellCornerRadius = cellCornerRadius
