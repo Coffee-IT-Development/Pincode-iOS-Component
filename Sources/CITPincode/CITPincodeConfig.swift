@@ -64,7 +64,7 @@ public struct CITPincodeConfig: Equatable {
         selectedBorderWidth: CGFloat = 1,
         alwaysShowSelectedBorder: Bool = false,
         cellSize: CGSize = .init(width: 40, height: 56),
-        cellCornerRadius: CGFloat = CornerRadius.small,
+        cellCornerRadius: CGFloat = 8,
         codeType: UIKeyboardType = .default,
         divider: CITPincodeDividerConfig = .none,
         resendButton: CITPincodeResendButtonConfig = .none
@@ -124,7 +124,7 @@ extension CITPincodeConfig {
         backgroundColor: Color(#colorLiteral(red: 0.2117647059, green: 0.2039215686, blue: 0.2392156863, alpha: 1)),
         selectedBorderColor: Color(#colorLiteral(red: 0.5294117647, green: 0.5333333333, blue: 0.5411764706, alpha: 1)),
         cellSize: CGSize(width: 40, height: 56),
-        cellCornerRadius: CornerRadius.small,
+        cellCornerRadius: 8,
         codeType: .numberPad,
         divider: .none,
         resendButton: .plain(font: .system(size: 16, weight: .bold), cooldown: .duration(value: 60))
@@ -136,7 +136,7 @@ extension CITPincodeConfig {
         errorColor: Color(#colorLiteral(red: 1, green: 0.3333333333, blue: 0.4156862745, alpha: 1)),
         backgroundColor: Color(#colorLiteral(red: 0.9607843137, green: 0.9607843137, blue: 0.9607843137, alpha: 1)),
         cellSize: CGSize(width: 46, height: 60),
-        cellCornerRadius: CornerRadius.smaller,
+        cellCornerRadius: 6,
         resendButton: .plain(text: "Resend code", font: .system(size: 15), cooldown: .duration(value: 60), alignment: .trailing)
     )
     
