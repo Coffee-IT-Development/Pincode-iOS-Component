@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// When the resendCode button is pressed, it is disabled for the given cooldown duration, can be none or any non-nil absolute value.
 public enum CITPincodeResendCodeCooldown: Equatable {
     case none
     case duration(value: TimeInterval)
@@ -14,7 +15,7 @@ public enum CITPincodeResendCodeCooldown: Equatable {
     var time: CGFloat {
         switch self {
         case let .duration(value):
-            return value
+            return abs(value)
         default:
             return 0
         }
