@@ -50,7 +50,7 @@ public struct CITPincodeConfig: Equatable {
         self.textColor = textColor
         self.errorColor = errorColor
         self.placeholder = String(placeholder.prefix(codeLength))
-        self.placeholderColor = placeholderColor ?? textColor
+        self.placeholderColor = placeholderColor ?? selectedBorderColor ?? textColor
         self.backgroundColor = backgroundColor
         self.selectedBackgroundColor = selectedBackgroundColor ?? backgroundColor
         self.selectedBorderColor = selectedBorderColor ?? backgroundColor
