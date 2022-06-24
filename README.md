@@ -39,9 +39,10 @@ struct CITPincodeExample: View {
 }
 ```
 
-The error can be set to any text message or nil, the CITPincodeView will update dynamically.
-The code input can be used realtime via the code binding, but the code is also automatically passed to the onEnteredCode method once enough characters have been entered.
-The CITPincodeView is set to receive One Time Passcode(s) and can alternatively be long pressed to let the user paste a code directly from their clipboard.
+Extra details:
+- The error can be set to any text message or nil, the CITPincodeView will update dynamically.
+- The code input can be used realtime via the code binding, but the code is also automatically passed to the onEnteredCode method once enough characters have been entered.
+- The CITPincodeView is set to receive One Time Passcode(s) and can alternatively be long pressed to let the user paste a code directly from their clipboard.
 
 
 ## Maintainer
