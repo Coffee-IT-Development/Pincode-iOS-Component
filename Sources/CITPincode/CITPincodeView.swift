@@ -62,8 +62,8 @@ public struct CITPincodeView: View {
                 TextField("", text: $code)
                     .keyboardType(config.codeType)
                     .textContentType(.oneTimeCode)
-//                    .opacity(0)
-//                    .allowsHitTesting(false)
+                    .opacity(0)
+                    .allowsHitTesting(false)
             )
             .introspectTextField { textField in
                 codeInputField = textField
@@ -73,9 +73,9 @@ public struct CITPincodeView: View {
             .onTapGesture {
                 codeInputField?.becomeFirstResponder()
             }
-//            .onLongPressGesture {
-//                code
-//            }
+            .contextMenu {
+                Button("Paste", action: pasteFromClipboard)
+            }
             
             if config.resendButton.showButton {
                 CITPincodeResendButton(
@@ -109,6 +109,14 @@ public struct CITPincodeView: View {
         }
         shownKeyboardOnce = true
         codeInputField?.becomeFirstResponder()
+    }
+    
+    private func pasteFromClipboard() {
+        guard let clipboardText = UIPasteboard.general.string else {
+            return
+        }
+        
+        code = clipboardText
     }
     
     private func handleEnteredCode() {
