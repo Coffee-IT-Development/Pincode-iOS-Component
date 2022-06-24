@@ -1,13 +1,15 @@
-# ````
+# ``CITPincode``
 
-<!--@START_MENU_TOKEN@-->Summary<!--@END_MENU_TOKEN@-->
+A customisable pincode view.
 
 ## Overview
 
-<!--@START_MENU_TOKEN@-->Text<!--@END_MENU_TOKEN@-->
+The CITPincode package provides a customisable pincode view. 
+It comes with an optional resend code button with a built-in cooldown and an optional divider to be placed anywhere between the cells.
 
 ## Topics
 
-### <!--@START_MENU_TOKEN@-->Group<!--@END_MENU_TOKEN@-->
+### Here's an example group
 
-- <!--@START_MENU_TOKEN@-->``Symbol``<!--@END_MENU_TOKEN@-->
+- ``CITPincodeView``
+- ``CITPincodeConfig``
