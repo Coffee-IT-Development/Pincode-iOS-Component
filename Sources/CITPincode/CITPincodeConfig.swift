@@ -11,9 +11,8 @@ import SwiftUI
 /// The CITPincodeConfig provides most of the static attributes of the CITPincodeView as a single object, incl. code length, fonts, colors, border settings, divider- and resendButton options.
 /// It can also be used dynamically with @State if desired, e.g. to animate cellSize, cornerRadius or colors.
 public struct CITPincodeConfig: Equatable {
-    
+
     /// The length of the pincode.
-    ///
     /// Determines amount of shown pincode cells as well as how many characters have to be entered before the code is checked.
     public var codeLength: Int
     
@@ -66,26 +65,6 @@ public struct CITPincodeConfig: Equatable {
     /// Optional config used to show a resendButton, meant to resend an One Time Passcode on press and is automatically disabled for a given cooldown duration to limit usage.
     public var resendButton: CITPincodeResendButtonConfig
     
-    /// The initializer for CITPincodeConfig, choose values to your liking, the default values or use the static examples.
-    /// - Parameters:
-    ///   - codeLength: The length of the pincode.
-    ///   - font: The font used to display text within the pincode cells.
-    ///   - errorFont: The font used to display the error message if any error is visible.
-    ///   - textColor: The color of the text within the pincode cells.
-    ///   - errorColor: The color of the error message if visible.
-    ///   - placeholder: An optional placeholder code, shown within the pincode cells, should be entire codeLength if displayed at all,
-    ///   each placeholder character individually checks if there's no input at its position, and will be shown if there's none.
-    ///   - placeholderColor: The color of the shown placeholder text shown within cells if any.
-    ///   - backgroundColor: The background color of pincode cells.
-    ///   - selectedBackgroundColor: The background color of a pincode cell when it is currently selected, a cell is selected when that cell would be filled with the next entered pincode character.
-    ///   - selectedBorderColor: The border color of any selected pincode cell.
-    ///   - selectedBorderWidth: The border width of any selected pincode cell.
-    ///   - alwaysShowSelectedBorder: If set to true, all pincode cells will always be shown as if they are selected.
-    ///   - cellSize: The size of each pincode cell.
-    ///   - cellCornerRadius: The cornerRadius of each pincode cell, used to set rounded corners, e.g. set to 0 for sharp corners, to 8 for small rounding or .infinity for maximum rounding.
-    ///   - codeType: The type of pincode, you can choose any UIKeyboardType, but the most common types are ".default" for a text keyboard and .numberPad for a numbers only keyboard.
-    ///   - divider: Optional config used to show a single divider somewhere between the pincode cells. Does not impact user input, and can be customised slightly.
-    ///   - resendButton: Optional config used to show a resendButton, meant to resend an One Time Passcode on press and is automatically disabled for a given cooldown duration to limit usage.
     public init(
         codeLength: Int = 6,
         font: Font = .system(size: 16),
@@ -128,9 +107,12 @@ public struct CITPincodeConfig: Equatable {
 // MARK: - Resend Button
 
 extension CITPincodeConfig {
-
+    
     /// Returns the style that configures an optional resendButton that is meant to resend an One Time Passcode on press.
     /// This button will be disabled for the given cooldown if any and automatically re-enable itself once the cooldown duration has passed.
+    /// - Use `.custom` to set `text, font, textColor, backgroundColor, contentInsets, cornerRadius, cooldown, alignment`.
+    /// - Use `.plain` to set `text, font, cooldown, alignment` and use default values for the other fields.
+    /// - Use `.none` when no resend button should be shown.
     public var resendButtonStyle: CITPincodeResendButtonStyle {
         switch resendButton {
         case let .custom(style):

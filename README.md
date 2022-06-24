@@ -1,6 +1,31 @@
-# CITPincode
+# ``CITPincode``
 
-A customisable pin code view.
+A customisable pincode view.
+
+## Overview
+
+The CITPincode package provides a customisable pincode view. 
+It comes with an optional resend code button with a built-in cooldown and an optional divider to be placed anywhere between the cells.
+
+## Usage
+
+
+
+## Maintainer
+
+Actively maintained by Lex Brouwers.
+
+## Changelog
+
+#### 1.0.0
+
+- Setup CITPincodeView, add customization & documentation.
+
+
+
+
+
+
 
 ## Getting started
 
