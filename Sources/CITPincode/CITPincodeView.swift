@@ -73,9 +73,6 @@ public struct CITPincodeView: View {
             .onTapGesture {
                 codeInputField?.becomeFirstResponder()
             }
-            .contextMenu {
-                Button("Paste", action: pasteFromClipboard)
-            }
             
             if config.resendButton.showButton {
                 CITPincodeResendButton(
