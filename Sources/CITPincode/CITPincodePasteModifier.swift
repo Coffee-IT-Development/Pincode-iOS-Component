@@ -22,6 +22,9 @@ extension View {
 }
 
 public struct MenuLabelRepresentable: UIViewRepresentable {
+    
+    public init() {}
+    
     public func makeUIView(context: Context) -> MenuLabel {
         MenuLabel()
     }
