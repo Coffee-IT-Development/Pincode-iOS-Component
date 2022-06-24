@@ -54,7 +54,7 @@ public struct CITPincodeView: View {
                     )
                     
                     if config.dividerStyle.afterIndex == i {
-                        config.dividerView
+                        CITPincodeDivider(config: config)
                     }
                 }
             }

@@ -130,6 +130,24 @@ extension CITPincodeConfig {
             return .none
         }
     }
+    
+    /// The style of a shown divider if any.
+    /// - Use `.custom` to set `afterIndex, color, size & cornerRadius`.
+    /// - Use `.plain` to set `afterIndex` and use default values for the other fields.
+    /// - Use `.none` when no divider should be shown.
+    public var dividerStyle: CITPincodeDividerStyle {
+        switch divider {
+        case let .custom(style):
+            return style
+        case let .plain(afterIndex):
+            return CITPincodeDividerStyle(
+                afterIndex: afterIndex,
+                color: textColor
+            )
+        case .none:
+            return .none
+        }
+    }
 }
 
 // MARK: - Example Configurations
@@ -189,6 +207,6 @@ extension CITPincodeConfig {
         selectedBorderColor: Color(#colorLiteral(red: 0.7725490196, green: 0.8039215686, blue: 0.8509803922, alpha: 1)),
         cellSize: CGSize(width: 46, height: 56),
         codeType: .default,
-        divider: .custom(afterIndex: 2, color: Color(#colorLiteral(red: 0.1215686275, green: 0.1960784314, blue: 0.3529411765, alpha: 1)), size: .init(width: 8, height: 2), cornerRadius: .infinity)
+        divider: .custom(style: CITPincodeDividerStyle(afterIndex: 2, color: Color(#colorLiteral(red: 0.1215686275, green: 0.1960784314, blue: 0.3529411765, alpha: 1)), size: .init(width: 8, height: 2), cornerRadius: .infinity))
     )
 }
