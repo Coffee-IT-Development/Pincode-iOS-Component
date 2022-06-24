@@ -58,11 +58,11 @@ public struct CITPincodeView: View {
                     }
                 }
             }
-            .background(
+            .overlay(
                 TextField("", text: $code)
                     .keyboardType(config.codeType)
                     .textContentType(.oneTimeCode)
-                    .opacity(0)
+//                    .opacity(0)
                     .allowsHitTesting(false)
             )
             .introspectTextField { textField in
@@ -73,6 +73,9 @@ public struct CITPincodeView: View {
             .onTapGesture {
                 codeInputField?.becomeFirstResponder()
             }
+//            .onLongPressGesture {
+//                code
+//            }
             
             if config.resendButton.showButton {
                 CITPincodeResendButton(
