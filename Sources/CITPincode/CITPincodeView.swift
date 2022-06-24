@@ -69,6 +69,7 @@ public struct CITPincodeView: View {
                 codeInputField = textField
                 codeInputField?.addDoneButton()
                 showKeyboardInitially()
+                addPasteGesture()
             }
             .onTapGesture {
                 codeInputField?.becomeFirstResponder()
@@ -108,12 +109,21 @@ public struct CITPincodeView: View {
         codeInputField?.becomeFirstResponder()
     }
     
-    private func pasteFromClipboard() {
-        guard let clipboardText = UIPasteboard.general.string else {
+    private func addPasteGesture() {
+        guard let inputField = codeInputField else {
             return
         }
         
-        code = clipboardText
+        inputField.addGestureRecognizer(
+            UILongPressGestureRecognizer(
+                target: self,
+                action: #selector(inputField.customHandleLongPressed)
+            )
+        )
+    }
+    
+    private func pasteFromClipboard() {
+        
     }
     
     private func handleEnteredCode() {
