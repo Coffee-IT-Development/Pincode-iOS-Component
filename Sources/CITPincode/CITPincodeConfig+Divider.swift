@@ -8,6 +8,11 @@
 import SwiftUI
 
 public extension CITPincodeConfig {
+    
+    /// The style of a shown divider if any.
+    /// - Use `.custom` to set `afterIndex, color, size & cornerRadius`.
+    /// - Use `.plain` to set `afterIndex` and use default values for the other fields.
+    /// - Use `.none` when no divider should be shown.
     var dividerStyle: (afterIndex: Int, color: Color, size: CGSize, cornerRadius: CGFloat) {
         switch divider {
         case let .custom(afterIndex, color, size, cornerRadius):

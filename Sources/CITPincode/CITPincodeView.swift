@@ -75,7 +75,10 @@ public struct CITPincodeView: View {
             }
             
             if config.resendButton.showButton {
-                CITPincodeResendButton(config: config, onResendCode: handleResendCode)
+                CITPincodeResendButton(
+                    config: config,
+                    onResendCode: handleResendCode
+                )
             }
             
             if let error = error {
