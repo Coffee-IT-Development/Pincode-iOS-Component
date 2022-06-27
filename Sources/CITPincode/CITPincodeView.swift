@@ -71,13 +71,15 @@ public struct CITPincodeView: View {
                 codeInputField = textField
                 codeInputField?.addDoneButton()
                 showKeyboardInitially()
-                addPasteGesture()
             }
             .introspectViewController { viewController in
                 pincodeView = viewController.view
             }
             .onTapGesture {
                 codeInputField?.becomeFirstResponder()
+            }
+            .onLongPressGesture {
+                showPasteMenu()
             }
             
             if config.resendButton.showButton {
@@ -114,19 +116,15 @@ public struct CITPincodeView: View {
         codeInputField?.becomeFirstResponder()
     }
     
-    private func addPasteGesture() {
-        guard let inputField = codeInputField else {
-            return
-        }
-
+    private func showPasteMenu() {
         pasteActionMenu.setOnPaste(action: pasteFromClipboard)
         
-        inputField.addGestureRecognizer(
-            UILongPressGestureRecognizer(
-                target: self,
-                action: #selector(pasteActionMenu.showMenu)
-            )
-        )
+        if let pincodeView = pincodeView {
+            print("[TEST] YES! pincodeView found, show menu.")
+            pasteActionMenu.showMenu(in: pincodeView)
+        } else {
+            print("[TEST] NO pincodeView found!")
+        }
     }
     
     private func pasteFromClipboard() {
