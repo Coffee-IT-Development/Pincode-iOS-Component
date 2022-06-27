@@ -18,7 +18,6 @@ public struct CITPincodeView: View {
     var onResendCode: () -> Void
     
     @State private var enteredCode = ""
-    @State private var pincodeView: UIView?
     @State private var codeInputField: UITextField?
     @State private var shownKeyboardOnce = false
     @State private var pasteActionMenu = PasteActionMenu()
@@ -72,9 +71,6 @@ public struct CITPincodeView: View {
                 codeInputField?.addDoneButton()
                 showKeyboardInitially()
             }
-            .introspectViewController { viewController in
-                pincodeView = viewController.view
-            }
             .onTapGesture {
                 codeInputField?.becomeFirstResponder()
             }
@@ -119,9 +115,9 @@ public struct CITPincodeView: View {
     private func showPasteMenu() {
         pasteActionMenu.setOnPaste(action: pasteFromClipboard)
         
-        if let pincodeView = pincodeView {
+        if let codeInputField = codeInputField {
             print("[TEST] YES! pincodeView found, show menu.")
-            pasteActionMenu.showMenu(in: pincodeView)
+            pasteActionMenu.showMenu(in: codeInputField)
         } else {
             print("[TEST] NO pincodeView found!")
         }
