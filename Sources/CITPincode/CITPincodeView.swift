@@ -21,8 +21,7 @@ public struct CITPincodeView: View {
     @State private var pincodeView: UIView?
     @State private var codeInputField: UITextField?
     @State private var shownKeyboardOnce = false
-    
-    private lazy var pasteActionMenu = PasteActionMenu(onPaste: pasteFromClipboard)
+    @State private var pasteActionMenu = PasteActionMenu()
     
     var hasError: Bool {
         error != nil
@@ -72,18 +71,13 @@ public struct CITPincodeView: View {
                 codeInputField = textField
                 codeInputField?.addDoneButton()
                 showKeyboardInitially()
-//                addPasteGesture()
+                addPasteGesture()
             }
             .introspectViewController { viewController in
                 pincodeView = viewController.view
             }
             .onTapGesture {
                 codeInputField?.becomeFirstResponder()
-            }
-            .onLongPressGesture {
-                if let pincodeView = pincodeView {
-                    pasteActionMenu.showMenu(in: pincodeView)
-                }
             }
             
             if config.resendButton.showButton {
@@ -120,18 +114,20 @@ public struct CITPincodeView: View {
         codeInputField?.becomeFirstResponder()
     }
     
-//    private func addPasteGesture() {
-//        guard let inputField = codeInputField else {
-//            return
-//        }
-//
-//        inputField.addGestureRecognizer(
-//            UILongPressGestureRecognizer(
-//                target: self,
-//                action: #selector(inputField.customHandleLongPressed)
-//            )
-//        )
-//    }
+    private func addPasteGesture() {
+        guard let inputField = codeInputField else {
+            return
+        }
+
+        pasteActionMenu.setOnPaste(action: pasteFromClipboard)
+        
+        inputField.addGestureRecognizer(
+            UILongPressGestureRecognizer(
+                target: self,
+                action: #selector(pasteActionMenu.showMenu)
+            )
+        )
+    }
     
     private func pasteFromClipboard() {
         guard let clipboardText = UIPasteboard.general.string else {
@@ -162,11 +158,10 @@ public struct CITPincodeView: View {
 }
 
 public class PasteActionMenu {
-    private let onPaste: () -> Void
+    private var onPaste: (() -> Void)?
     private let menuController: UIMenuController
     
-    public init(onPaste: @escaping () -> Void) {
-        self.onPaste = onPaste
+    public init() {
         menuController = UIMenuController.shared
         menuController.arrowDirection = UIMenuController.ArrowDirection.default
         
@@ -177,8 +172,13 @@ public class PasteActionMenu {
         menuController.menuItems = myMenuItems
     }
     
+    @objc
     public func showMenu(in view: UIView) {
         menuController.showMenu(from: view, rect: .zero)
+    }
+    
+    public func setOnPaste(action: @escaping () -> Void) {
+        onPaste = action
     }
     
 //    @objc
@@ -207,8 +207,7 @@ public class PasteActionMenu {
 //
     @objc
     public func pasteFromClipboard() {
-        onPaste()
-        
+        onPaste?()
     }
 }
 
