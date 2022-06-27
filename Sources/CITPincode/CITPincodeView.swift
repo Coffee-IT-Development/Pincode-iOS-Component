@@ -172,7 +172,7 @@ public class PasteActionMenu {
     
     @objc
     public func showMenu(in view: UIView) {
-        menuController.showMenu(from: view, rect: .zero)
+        menuController.showMenu(from: view, rect: .init(x: 100, y: 200, width: 300, height: 300))
     }
     
     public func setOnPaste(action: @escaping () -> Void) {
