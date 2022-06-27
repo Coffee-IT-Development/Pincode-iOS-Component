@@ -18,9 +18,12 @@ public struct CITPincodeView: View {
     var onResendCode: () -> Void
     
     @State private var enteredCode = ""
+    @State private var pincodeView: UIView?
     @State private var codeInputField: UITextField?
     @State private var shownKeyboardOnce = false
-
+    
+    private lazy var pasteActionMenu = PasteActionMenu(onPaste: pasteFromClipboard)
+    
     var hasError: Bool {
         error != nil
     }
@@ -69,10 +72,18 @@ public struct CITPincodeView: View {
                 codeInputField = textField
                 codeInputField?.addDoneButton()
                 showKeyboardInitially()
-                addPasteGesture()
+//                addPasteGesture()
+            }
+            .introspectViewController { viewController in
+                pincodeView = viewController.view
             }
             .onTapGesture {
                 codeInputField?.becomeFirstResponder()
+            }
+            .onLongPressGesture {
+                if let pincodeView = pincodeView {
+                    pasteActionMenu.showMenu(in: pincodeView)
+                }
             }
             
             if config.resendButton.showButton {
@@ -109,21 +120,25 @@ public struct CITPincodeView: View {
         codeInputField?.becomeFirstResponder()
     }
     
-    private func addPasteGesture() {
-        guard let inputField = codeInputField else {
+//    private func addPasteGesture() {
+//        guard let inputField = codeInputField else {
+//            return
+//        }
+//
+//        inputField.addGestureRecognizer(
+//            UILongPressGestureRecognizer(
+//                target: self,
+//                action: #selector(inputField.customHandleLongPressed)
+//            )
+//        )
+//    }
+    
+    private func pasteFromClipboard() {
+        guard let clipboardText = UIPasteboard.general.string else {
             return
         }
         
-        inputField.addGestureRecognizer(
-            UILongPressGestureRecognizer(
-                target: self,
-                action: #selector(inputField.customHandleLongPressed)
-            )
-        )
-    }
-    
-    private func pasteFromClipboard() {
-        
+        code = clipboardText
     }
     
     private func handleEnteredCode() {
@@ -143,6 +158,57 @@ public struct CITPincodeView: View {
     private func placeholder(for index: Int) -> Character? {
         let text = config.placeholder
         return text.count > index ? text[text.index(text.startIndex, offsetBy: index)] : nil
+    }
+}
+
+public class PasteActionMenu {
+    private let onPaste: () -> Void
+    private let menuController: UIMenuController
+    
+    public init(onPaste: @escaping () -> Void) {
+        self.onPaste = onPaste
+        menuController = UIMenuController.shared
+        menuController.arrowDirection = UIMenuController.ArrowDirection.default
+        
+        let myMenuItems: [UIMenuItem] = [
+            UIMenuItem(title: "Paste", action: #selector(pasteFromClipboard))
+        ]
+        
+        menuController.menuItems = myMenuItems
+    }
+    
+    public func showMenu(in view: UIView) {
+        menuController.showMenu(from: view, rect: .zero)
+    }
+    
+//    @objc
+//    public func customHandleLongPressed(_ gesture: UILongPressGestureRecognizer) {
+//        guard let gestureView = gesture.view, let superView = gestureView.superview else {
+//            return
+//        }
+//
+//        let menuController = UIMenuController.shared
+//
+//        guard !menuController.isMenuVisible, gestureView.canBecomeFirstResponder else {
+//            return
+//        }
+//
+//        gestureView.becomeFirstResponder()
+//
+//        menuController.menuItems = [
+//            UIMenuItem(
+//                title: "Paste",
+//                action: #selector(pasteFromClipboard)
+//            ),
+//        ]
+//
+//        menuController.showMenu(from: superView, rect: gestureView.frame)
+//    }
+//
+    @objc
+    public func pasteFromClipboard() {
+        onPaste()
+        
     }
 }
 

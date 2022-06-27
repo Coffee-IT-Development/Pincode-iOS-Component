@@ -34,37 +34,4 @@ extension UITextField {
     public func onDonePressed() {
         self.resignFirstResponder()
     }
-    
-    @objc
-    public func customHandleLongPressed(_ gesture: UILongPressGestureRecognizer) {
-        guard let gestureView = gesture.view, let superView = gestureView.superview else {
-            return
-        }
-        
-        let menuController = UIMenuController.shared
-        
-        guard !menuController.isMenuVisible, gestureView.canBecomeFirstResponder else {
-            return
-        }
-        
-        gestureView.becomeFirstResponder()
-        
-        menuController.menuItems = [
-            UIMenuItem(
-                title: "Paste",
-                action: #selector(pasteFromClipboard)
-            ),
-        ]
-        
-        menuController.showMenu(from: superView, rect: gestureView.frame)
-    }
-    
-    @objc
-    public func pasteFromClipboard() {
-        guard let clipboardText = UIPasteboard.general.string else {
-            return
-        }
-        
-        text = clipboardText
-    }
 }
