@@ -63,8 +63,8 @@ public struct CITPincodeView: View {
                 TextField("", text: $code)
                     .keyboardType(config.codeType)
                     .textContentType(.oneTimeCode)
-                    .opacity(0)
-                    .allowsHitTesting(false)
+//                    .opacity(0)
+//                    .allowsHitTesting(false)
             )
             .introspectTextField { textField in
                 codeInputField = textField
