@@ -193,7 +193,7 @@ public class PasteActionMenu {
         menuController.arrowDirection = UIMenuController.ArrowDirection.default
         
         let myMenuItems: [UIMenuItem] = [
-            UIMenuItem(title: "Paste", action: #selector(pasteFromClipboard))
+            UIMenuItem(title: "Blow blow", action: #selector(pasteFromClipboard))
         ]
         
         menuController.menuItems = myMenuItems
