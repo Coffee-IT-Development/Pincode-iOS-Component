@@ -128,25 +128,8 @@ public struct CITPincodeView: View {
     }
     
     private func showPasteMenu() {
-        guard let codeInputField = codeInputField else {
-            return
-        }
-        
-        guard let copiedValue = UIPasteboard.general.string, !copiedValue.isEmpty else {
-            let generator = UINotificationFeedbackGenerator()
-            generator.notificationOccurred(.warning)
-            return
-        }
-        
-        if #available(iOS 16.0, *) {
-            EditMenuHelper.shared.showEditMenu(in: codeInputField.frame)
-        } else {
-            UIMenuController.shared.showMenu(from: codeInputField, rect: codeInputField.frame)
-        }
-    }
-    
-    private func pasteFromClipboard() {
-        guard var clipboardText = UIPasteboard.general.string else {
+        guard let codeInputField = codeInputField,
+              var clipboardText = UIPasteboard.general.string else {
             return
         }
         
@@ -158,7 +141,11 @@ public struct CITPincodeView: View {
             return
         }
         
-        code = clipboardText
+        if #available(iOS 16.0, *) {
+            EditMenuHelper.shared.showEditMenu(in: codeInputField.frame)
+        } else {
+            UIMenuController.shared.showMenu(from: codeInputField, rect: codeInputField.frame)
+        }
     }
     
     private func handleEnteredCode() {
