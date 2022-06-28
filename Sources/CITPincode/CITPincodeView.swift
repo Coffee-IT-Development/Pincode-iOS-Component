@@ -16,11 +16,10 @@ public struct CITPincodeView: View {
     var config: CITPincodeConfig
     var onEnteredCode: (String) -> Void
     var onResendCode: () -> Void
-    
     @State private var enteredCode = ""
     @State private var codeInputField: UITextField?
     @State private var shownKeyboardOnce = false
-    @State private var pasteActionMenu = PasteActionMenu()
+    @State private var showEditMenu = false
     
     var hasError: Bool {
         error != nil
@@ -74,13 +73,18 @@ public struct CITPincodeView: View {
                 codeInputField = textField
                 codeInputField?.addDoneButton()
                 showKeyboardInitially()
+                setupEditMenu()
             }
             .onTapGesture {
                 codeInputField?.becomeFirstResponder()
             }
             .onLongPressGesture {
-                showPasteMenu()
+                setupEditMenu()
+//                showEditMenu = true
             }
+//            .editMenu(isVisible: $showEditMenu) {
+//                EditMenuItem("Paste", action: pasteFromClipboard)
+//            }
 //            .editMenu(isVisible: .constant(true), content: {
 //
 //            })
@@ -123,15 +127,22 @@ public struct CITPincodeView: View {
         codeInputField?.becomeFirstResponder()
     }
     
-    private func showPasteMenu() {
-        pasteActionMenu.setOnPaste(action: pasteFromClipboard)
-        
-        if let codeInputField = codeInputField {
-            print("[TEST] YES! pincodeView found, show menu.")
-            pasteActionMenu.showMenu(in: codeInputField)
-        } else {
-            print("[TEST] NO pincodeView found!")
+    private func setupEditMenu() {
+        if #available(iOS 16.0, *) {
+            guard let codeInputField = codeInputField else {
+                return
+            }
+            
+            EditMenuHelper.shared.setupPasteEditMenu(for: codeInputField)
         }
+    }
+    
+    private func showPasteMenu() {
+        guard let codeInputField = codeInputField else {
+            return
+        }
+        
+        UIMenuController.shared.showMenu(from: codeInputField, rect: codeInputField.frame)
     }
     
     private func pasteFromClipboard() {
@@ -159,36 +170,6 @@ public struct CITPincodeView: View {
     private func placeholder(for index: Int) -> Character? {
         let text = config.placeholder
         return text.count > index ? text[text.index(text.startIndex, offsetBy: index)] : nil
-    }
-}
-
-public class PasteActionMenu {
-    private var onPaste: (() -> Void)?
-    private let menuController: UIMenuController
-    
-    public init() {
-        menuController = UIMenuController.shared
-        menuController.arrowDirection = UIMenuController.ArrowDirection.default
-        
-        let myMenuItems: [UIMenuItem] = [
-            UIMenuItem(title: "Blow blow", action: #selector(pasteFromClipboard))
-        ]
-        
-        menuController.menuItems = myMenuItems
-    }
-    
-    @objc
-    public func showMenu(in view: UIView) {
-        menuController.showMenu(from: view, rect: view.frame)
-    }
-    
-    public func setOnPaste(action: @escaping () -> Void) {
-        onPaste = action
-    }
-    
-    @objc
-    public func pasteFromClipboard() {
-        onPaste?()
     }
 }
 
