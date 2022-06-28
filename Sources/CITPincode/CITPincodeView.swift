@@ -87,12 +87,13 @@ public struct CITPincodeView: View {
 //                    .offset(x: 0, y: -proxy.size.height)
 //                }
 //            )
-            .background(
+            .overlay(
                 TextField("", text: $code)
                     .keyboardType(config.codeType)
                     .textContentType(.oneTimeCode)
-                    .opacity(0)
-                    .allowsHitTesting(false)
+                    .background(Color.blue)
+//                    .opacity(0)
+//                    .allowsHitTesting(false)
             )
             .introspectTextField { textField in
                 codeInputField = textField
@@ -200,7 +201,7 @@ public class PasteActionMenu {
     
     @objc
     public func showMenu(in view: UIView) {
-        menuController.showMenu(from: view, rect: .init(x: 100, y: 200, width: 300, height: 300))
+        menuController.showMenu(from: view, rect: view.frame)
     }
     
     public func setOnPaste(action: @escaping () -> Void) {
