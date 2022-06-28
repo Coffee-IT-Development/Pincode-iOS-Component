@@ -132,6 +132,12 @@ public struct CITPincodeView: View {
             return
         }
         
+        guard let copiedValue = UIPasteboard.general.string, !copiedValue.isEmpty else {
+            let generator = UINotificationFeedbackGenerator()
+            generator.notificationOccurred(.warning)
+            return
+        }
+        
         if #available(iOS 16.0, *) {
             EditMenuHelper.shared.showEditMenu(in: codeInputField.frame)
         } else {
