@@ -22,6 +22,8 @@ public struct CITPincodeView: View {
     @State private var shownKeyboardOnce = false
     @State private var pasteActionMenu = PasteActionMenu()
     
+    private let pasteMenuBackgroundColor = Color(#colorLiteral(red: 0.1529410481, green: 0.1529412568, blue: 0.1572425067, alpha: 1))
+    
     var hasError: Bool {
         error != nil
     }
@@ -60,11 +62,37 @@ public struct CITPincodeView: View {
                 }
             }
             .overlay(
+                GeometryReader { proxy in
+                
+                    HStack {
+                        Spacer()
+                        
+                        VStack(spacing: 0) {
+                            Text("Paste")
+                                .foregroundColor(.systemBackground)
+                                .padding()
+                                .background(pasteMenuBackgroundColor)
+                                .cornerRadius(config.cellCornerRadius)
+                            
+                            Image(systemName: "arrowtriangle.down.fill")
+                                .resizable()
+                                .foregroundColor(pasteMenuBackgroundColor)
+                                .frame(width: 20, height: 10)
+                                .offset(y: -2)
+                        }
+                        
+                        Spacer()
+                    }
+                    .frame(height: 40)
+                    .offset(x: 0, y: -proxy.size.height)
+                }
+            )
+            .background(
                 TextField("", text: $code)
                     .keyboardType(config.codeType)
                     .textContentType(.oneTimeCode)
-//                    .opacity(0)
-//                    .allowsHitTesting(false)
+                    .opacity(0)
+                    .allowsHitTesting(false)
             )
             .introspectTextField { textField in
                 codeInputField = textField
@@ -91,6 +119,10 @@ public struct CITPincodeView: View {
                     .font(config.errorFont)
                     .padding(.vertical, 8)
             }
+            
+            TextField("", text: $code)
+                .padding()
+                .background(Color.secondarySystemBackground)
         }
         .onChange(of: code) { newValue in
             if newValue.count == config.codeLength && newValue != enteredCode {
