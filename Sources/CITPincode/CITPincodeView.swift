@@ -22,8 +22,6 @@ public struct CITPincodeView: View {
     @State private var shownKeyboardOnce = false
     @State private var pasteActionMenu = PasteActionMenu()
     
-//    private let pasteMenuBackgroundColor = Color(#colorLiteral(red: 0.1529410481, green: 0.1529412568, blue: 0.1572425067, alpha: 1))
-    
     var hasError: Bool {
         error != nil
     }
@@ -61,39 +59,16 @@ public struct CITPincodeView: View {
                     }
                 }
             }
-//            .overlay(
-//                GeometryReader { proxy in
-//
-//                    HStack {
-//                        Spacer()
-//
-//                        VStack(spacing: 0) {
-//                            Text("Paste")
-//                                .foregroundColor(.systemBackground)
-//                                .padding()
-//                                .background(pasteMenuBackgroundColor)
-//                                .cornerRadius(config.cellCornerRadius)
-//
-//                            Image(systemName: "arrowtriangle.down.fill")
-//                                .resizable()
-//                                .foregroundColor(pasteMenuBackgroundColor)
-//                                .frame(width: 20, height: 10)
-//                                .offset(y: -2)
-//                        }
-//
-//                        Spacer()
-//                    }
-//                    .frame(height: 40)
-//                    .offset(x: 0, y: -proxy.size.height)
-//                }
-//            )
             .overlay(
-                TextField("", text: $code)
-                    .keyboardType(config.codeType)
-                    .textContentType(.oneTimeCode)
-                    .background(Color.blue)
-//                    .opacity(0)
-//                    .allowsHitTesting(false)
+                GeometryReader { proxy in
+                    TextField("", text: $code)
+                        .keyboardType(config.codeType)
+                        .textContentType(.oneTimeCode)
+                        .frame(width: proxy.size.width, height: proxy.size.height)
+                        .background(Color.blue)
+                        .opacity(0)
+                        .allowsHitTesting(false)
+                }
             )
             .introspectTextField { textField in
                 codeInputField = textField
@@ -106,6 +81,13 @@ public struct CITPincodeView: View {
             .onLongPressGesture {
                 showPasteMenu()
             }
+//            .editMenu(isVisible: .constant(true), content: {
+//
+//            })
+//            .onAppear {
+//                UIPasteboard.general.string = "123456"
+//                showPasteMenu()
+//            }
             
             if config.resendButton.showButton {
                 CITPincodeResendButton(
@@ -120,10 +102,6 @@ public struct CITPincodeView: View {
                     .font(config.errorFont)
                     .padding(.vertical, 8)
             }
-            
-//            TextField("", text: $code)
-//                .padding()
-//                .background(Color.secondarySystemBackground)
         }
         .onChange(of: code) { newValue in
             if newValue.count == config.codeLength && newValue != enteredCode {
@@ -208,30 +186,6 @@ public class PasteActionMenu {
         onPaste = action
     }
     
-//    @objc
-//    public func customHandleLongPressed(_ gesture: UILongPressGestureRecognizer) {
-//        guard let gestureView = gesture.view, let superView = gestureView.superview else {
-//            return
-//        }
-//
-//        let menuController = UIMenuController.shared
-//
-//        guard !menuController.isMenuVisible, gestureView.canBecomeFirstResponder else {
-//            return
-//        }
-//
-//        gestureView.becomeFirstResponder()
-//
-//        menuController.menuItems = [
-//            UIMenuItem(
-//                title: "Paste",
-//                action: #selector(pasteFromClipboard)
-//            ),
-//        ]
-//
-//        menuController.showMenu(from: superView, rect: gestureView.frame)
-//    }
-//
     @objc
     public func pasteFromClipboard() {
         onPaste?()
