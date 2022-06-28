@@ -79,7 +79,7 @@ public struct CITPincodeView: View {
                 codeInputField?.becomeFirstResponder()
             }
             .onLongPressGesture {
-                setupEditMenu()
+                showPasteMenu()
 //                showEditMenu = true
             }
 //            .editMenu(isVisible: $showEditMenu) {
@@ -142,7 +142,12 @@ public struct CITPincodeView: View {
             return
         }
         
-        UIMenuController.shared.showMenu(from: codeInputField, rect: codeInputField.frame)
+        if #available(iOS 16.0, *) {
+            EditMenuHelper.shared.showEditMenu()
+        } else {
+            print("[TEST] Not supporting iOS 16 or newer here.")
+            //        UIMenuController.shared.showMenu(from: codeInputField, rect: codeInputField.frame)
+        }
     }
     
     private func pasteFromClipboard() {

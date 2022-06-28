@@ -16,6 +16,12 @@ public class EditMenuHelper {
     public func setupPasteEditMenu(for inputField: UITextField) {
         inputField.addInteraction(pasteActionMenu.editMenuInteraction)
     }
+    
+    public func showEditMenu() {
+//        let location = recognizer.location(in: self.view)
+        let configuration = UIEditMenuConfiguration(identifier: nil, sourcePoint: .zero)
+        pasteActionMenu.editMenuInteraction.presentEditMenu(with: configuration)
+    }
 }
 
 @available(iOS 16.0, *)
