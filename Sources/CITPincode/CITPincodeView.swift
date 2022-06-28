@@ -146,7 +146,15 @@ public struct CITPincodeView: View {
     }
     
     private func pasteFromClipboard() {
-        guard let clipboardText = UIPasteboard.general.string else {
+        guard var clipboardText = UIPasteboard.general.string else {
+            return
+        }
+        
+        clipboardText = clipboardText.replacingOccurrences(of: "-", with: "")
+        guard config.codeLength == clipboardText.count,
+              config.codeType != .numberPad || clipboardText.isNumber else {
+            let generator = UINotificationFeedbackGenerator()
+            generator.notificationOccurred(.warning)
             return
         }
         
