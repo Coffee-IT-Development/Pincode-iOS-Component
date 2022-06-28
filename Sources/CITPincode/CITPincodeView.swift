@@ -138,6 +138,9 @@ public struct CITPincodeView: View {
             return
         }
         
+        let generator = UINotificationFeedbackGenerator()
+        generator.notificationOccurred(.success)
+        
         if #available(iOS 16.0, *) {
             EditMenuHelper.shared.showEditMenu(in: codeInputField.frame)
         } else {
