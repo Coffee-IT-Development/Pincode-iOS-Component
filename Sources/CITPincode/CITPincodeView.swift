@@ -13,13 +13,14 @@ public struct CITPincodeView: View {
     @Binding var code: String
     @Binding var busyCheckingCode: Bool
     @Binding var error: String?
-    var config: CITPincodeConfig
-    var onEnteredCode: (String) -> Void
-    var onResendCode: () -> Void
+    
+    private let config: CITPincodeConfig
+    private let onEnteredCode: (String) -> Void
+    private let onResendCode: () -> Void
+    
     @State private var enteredCode = ""
     @State private var codeInputField: UITextField?
     @State private var shownKeyboardOnce = false
-    @State private var showEditMenu = false
     
     var hasError: Bool {
         error != nil
@@ -80,18 +81,7 @@ public struct CITPincodeView: View {
             }
             .onLongPressGesture {
                 showPasteMenu()
-//                showEditMenu = true
             }
-//            .editMenu(isVisible: $showEditMenu) {
-//                EditMenuItem("Paste", action: pasteFromClipboard)
-//            }
-//            .editMenu(isVisible: .constant(true), content: {
-//
-//            })
-//            .onAppear {
-//                UIPasteboard.general.string = "123456"
-//                showPasteMenu()
-//            }
             
             if config.resendButton.showButton {
                 CITPincodeResendButton(
@@ -143,10 +133,9 @@ public struct CITPincodeView: View {
         }
         
         if #available(iOS 16.0, *) {
-            EditMenuHelper.shared.showEditMenu()
+            EditMenuHelper.shared.showEditMenu(in: codeInputField.frame)
         } else {
-            print("[TEST] Not supporting iOS 16 or newer here.")
-            //        UIMenuController.shared.showMenu(from: codeInputField, rect: codeInputField.frame)
+            UIMenuController.shared.showMenu(from: codeInputField, rect: codeInputField.frame)
         }
     }
     

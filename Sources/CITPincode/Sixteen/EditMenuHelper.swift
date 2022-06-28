@@ -17,9 +17,8 @@ public class EditMenuHelper {
         inputField.addInteraction(pasteActionMenu.editMenuInteraction)
     }
     
-    public func showEditMenu() {
-//        let location = recognizer.location(in: self.view)
-        let configuration = UIEditMenuConfiguration(identifier: nil, sourcePoint: .zero)
+    public func showEditMenu(in frame: CGRect) {
+        let configuration = UIEditMenuConfiguration(identifier: nil, sourcePoint: .init(x: frame.midX, y: 0))
         pasteActionMenu.editMenuInteraction.presentEditMenu(with: configuration)
     }
 }
