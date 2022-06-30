@@ -19,7 +19,7 @@ public struct CITPincodeView: View {
     
     @State private var enteredCode = ""
     @State private var codeInputField: UITextField?
-    @State private var shownKeyboardOnce = false
+    @State private var shownKeyboardOnceInitially = false
     
     var hasError: Bool {
         error != nil
@@ -109,10 +109,11 @@ public struct CITPincodeView: View {
     }
     
     private func showKeyboardInitially() {
-        guard !shownKeyboardOnce else {
+        guard !shownKeyboardOnceInitially && config.showKeyboardOnAppear else {
             return
         }
-        shownKeyboardOnce = true
+        
+        shownKeyboardOnceInitially = true
         codeInputField?.becomeFirstResponder()
     }
     

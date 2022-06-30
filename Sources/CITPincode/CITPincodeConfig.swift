@@ -50,6 +50,9 @@ public struct CITPincodeConfig: Equatable {
     /// If set to true, all pincode cells will always be shown as if they are selected.
     public var alwaysShowSelectedBorder: Bool
     
+    /// If set to true, the keyboard will show once the pincode view appears.
+    public var showKeyboardOnAppear: Bool
+    
     /// The size of each pincode cell.
     public var cellSize: CGSize
     
@@ -78,6 +81,7 @@ public struct CITPincodeConfig: Equatable {
         selectedBorderColor: Color? = nil,
         selectedBorderWidth: CGFloat = 1,
         alwaysShowSelectedBorder: Bool = false,
+        showKeyboardOnAppear: Bool = true,
         cellSize: CGSize = .init(width: 40, height: 56),
         cellCornerRadius: CGFloat = 8,
         codeType: UIKeyboardType = .default,
@@ -96,6 +100,7 @@ public struct CITPincodeConfig: Equatable {
         self.selectedBorderColor = selectedBorderColor ?? backgroundColor
         self.selectedBorderWidth = selectedBorderWidth
         self.alwaysShowSelectedBorder = alwaysShowSelectedBorder
+        self.showKeyboardOnAppear = showKeyboardOnAppear
         self.cellSize = cellSize
         self.cellCornerRadius = cellCornerRadius
         self.codeType = codeType
