@@ -76,7 +76,7 @@ struct CITPincodeCellView: View {
 extension CITPincodeCellView {
     static func exampleCell(character: Character? = nil, placeholder: Character? = nil, isSelected: Bool, hasError: Bool = false) -> CITPincodeCellView {
         CITPincodeCellView(
-            config: .socialBlox,
+            config: .example,
             character: character,
             placeholder: placeholder,
             isSelected: isSelected,

@@ -181,7 +181,7 @@ struct CITPincodeView_Previews: PreviewProvider {
     static var previews: some View {
         CITPincodeView(
             code: .constant(""),
-            config: .socialBlox,
+            config: .example,
             onEnteredCode: { _ in },
             onResendCode: {}
         )

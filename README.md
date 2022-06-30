@@ -23,7 +23,7 @@ struct CITPincodeExample: View {
         CITPincodeView(
             code: $code,
             error: $error,
-            config: .socialBlox,
+            config: .example,
             onEnteredCode: onEnteredCode,
             onResendCode: onResendCode
         )

@@ -155,10 +155,10 @@ extension CITPincodeConfig {
     }
 }
 
-// MARK: - Example Configurations
+// MARK: - Example Configuration
 
 extension CITPincodeConfig {
-    public static var socialBlox = CITPincodeConfig(
+    public static var example = CITPincodeConfig(
         font: .system(size: 28, weight: .bold),
         textColor: Color(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)),
         errorColor: Color(#colorLiteral(red: 0.968627451, green: 0.4117647059, blue: 0.2901960784, alpha: 1)),
@@ -169,49 +169,5 @@ extension CITPincodeConfig {
         codeType: .numberPad,
         divider: .none,
         resendButton: .plain(font: .system(size: 16, weight: .bold), cooldown: .duration(value: 60))
-    )
-    
-    public static var inlite = CITPincodeConfig(
-        font: .system(size: 18),
-        textColor: Color(#colorLiteral(red: 0.168627451, green: 0.2352941176, blue: 0.2745098039, alpha: 1)),
-        errorColor: Color(#colorLiteral(red: 1, green: 0.3333333333, blue: 0.4156862745, alpha: 1)),
-        backgroundColor: Color(#colorLiteral(red: 0.9607843137, green: 0.9607843137, blue: 0.9607843137, alpha: 1)),
-        cellSize: CGSize(width: 46, height: 60),
-        cellCornerRadius: 6,
-        resendButton: .plain(text: "Resend code", font: .system(size: 15), cooldown: .duration(value: 60), alignment: .trailing)
-    )
-    
-    public static var workstead = CITPincodeConfig(
-        codeLength: 5,
-        font: .system(size: 14),
-        textColor: Color(#colorLiteral(red: 0.09803921569, green: 0.3254901961, blue: 0.5764705882, alpha: 1)),
-        errorColor: Color(#colorLiteral(red: 0.937254902, green: 0.3137254902, blue: 0.3137254902, alpha: 1)),
-        placeholder: "12345",
-        placeholderColor: Color(#colorLiteral(red: 0.6392156863, green: 0.7294117647, blue: 0.831372549, alpha: 1)),
-        backgroundColor: Color(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)),
-        selectedBorderColor: Color(#colorLiteral(red: 0.6392156863, green: 0.7294117647, blue: 0.831372549, alpha: 1)),
-        alwaysShowSelectedBorder: true,
-        cellSize: CGSize(width: 40, height: 48),
-        codeType: .numberPad
-    )
-    
-    public static var babyManager = CITPincodeConfig(
-        font: .system(size: 16),
-        textColor: Color(#colorLiteral(red: 0.1215686275, green: 0.1960784314, blue: 0.3529411765, alpha: 1)),
-        errorColor: Color(#colorLiteral(red: 1, green: 0.2588235294, blue: 0.3921568627, alpha: 1)),
-        backgroundColor: Color(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)),
-        cellSize: CGSize(width: 48, height: 48),
-        codeType: .numberPad
-    )
-    
-    public static var bagtag = CITPincodeConfig(
-        font: .system(size: 16),
-        textColor: Color(#colorLiteral(red: 0.1215686275, green: 0.1960784314, blue: 0.3529411765, alpha: 1)),
-        errorColor: Color(#colorLiteral(red: 0.937254902, green: 0.3137254902, blue: 0.3137254902, alpha: 1)),
-        backgroundColor: Color(#colorLiteral(red: 0.9607843137, green: 0.9607843137, blue: 0.9607843137, alpha: 1)),
-        selectedBorderColor: Color(#colorLiteral(red: 0.7725490196, green: 0.8039215686, blue: 0.8509803922, alpha: 1)),
-        cellSize: CGSize(width: 46, height: 56),
-        codeType: .default,
-        divider: .custom(style: CITPincodeDividerStyle(afterIndex: 2, color: Color(#colorLiteral(red: 0.1215686275, green: 0.1960784314, blue: 0.3529411765, alpha: 1)), size: .init(width: 8, height: 2), cornerRadius: .infinity))
     )
 }

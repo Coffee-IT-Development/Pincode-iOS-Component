@@ -69,6 +69,6 @@ extension CITPincodeResendButton {
 
 struct CITPincodeResendButton_Previews: PreviewProvider {
     static var previews: some View {
-        CITPincodeResendButton(config: .socialBlox, onResendCode: {})
+        CITPincodeResendButton(config: .example, onResendCode: {})
     }
 }
