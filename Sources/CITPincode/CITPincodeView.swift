@@ -9,6 +9,8 @@ import SwiftUI
 import SwiftUIX // Can be removed when we only support iOS 14+
 import Introspect
 
+/// The CITPincodeView provides a simple One Time Passcode interface with deep customisation through its config.
+/// It includes an optional resend code button with built-in cooldown logic, an error label that's dynamically shown and error color tints, callbacks for when a code has been entered and when the resend code button is pressed and long press to paste logic that filters hyphens and denies codes of the wrong type, e.g. pasting letters into a numeric code.
 public struct CITPincodeView: View {
     @Binding var code: String
     @Binding var error: String?
@@ -25,6 +27,13 @@ public struct CITPincodeView: View {
         error != nil
     }
     
+    /// Intialise the pincode view with bindings, a config and callbacks.
+    /// - Parameters:
+    ///   - code: Text binding for code input.
+    ///   - error: Optional error binding for displaying error messages below the pincode view and showing error tint colors.
+    ///   - config: Used to configure various visual and functional aspects of the pincode view.
+    ///   - onEnteredCode: Called when a code has been entered, i.e. "code.count" equals "config.codeLength".
+    ///   - onResendCode: Called when the resend code button is pressed, the button is disabled on press for the given cooldown duration.
     public init(
         code: Binding<String>,
         error: Binding<String?> = .constant(nil),
