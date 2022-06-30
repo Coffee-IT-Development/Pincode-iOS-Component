@@ -6,34 +6,42 @@
 //
 
 import SwiftUI
-import SwiftUIX
+import SwiftUIX // Can be removed when we only support iOS 14+
 import Introspect
 
+/// The CITPincodeView provides a simple One Time Passcode interface with deep customisation through its config.
+/// It includes an optional resend code button with built-in cooldown logic, an error label that's dynamically shown and error color tints, callbacks for when a code has been entered and when the resend code button is pressed and long press to paste logic that filters hyphens and denies codes of the wrong type, e.g. pasting letters into a numeric code.
 public struct CITPincodeView: View {
     @Binding var code: String
-    @Binding var busyCheckingCode: Bool
     @Binding var error: String?
-    var config: CITPincodeConfig
-    var onEnteredCode: (String) -> Void
-    var onResendCode: () -> Void
+    
+    private let config: CITPincodeConfig
+    private let onEnteredCode: (String) -> Void
+    private let onResendCode: () -> Void
+    
+    @State private var enteredCode = ""
+    @State private var codeInputField: UITextField?
+    @State private var shownKeyboardOnceInitially = false
     
     var hasError: Bool {
         error != nil
     }
     
-    @State private var enteredCode = ""
-    @State private var codeInputField: UITextField?
-    
+    /// Intialise the pincode view with bindings, a config and callbacks.
+    /// - Parameters:
+    ///   - code: Text binding for code input.
+    ///   - error: Optional error binding for displaying error messages below the pincode view and showing error tint colors.
+    ///   - config: Used to configure various visual and functional aspects of the pincode view.
+    ///   - onEnteredCode: Called when a code has been entered, i.e. "code.count" equals "config.codeLength".
+    ///   - onResendCode: Called when the resend code button is pressed, the button is disabled on press for the given cooldown duration.
     public init(
         code: Binding<String>,
-        busyCheckingCode: Binding<Bool> = .constant(false),
         error: Binding<String?> = .constant(nil),
         config: CITPincodeConfig,
         onEnteredCode: @escaping (String) -> Void,
         onResendCode: @escaping () -> Void
     ) {
         self._code = code
-        self._busyCheckingCode = busyCheckingCode
         self._error = error
         self.config = config
         self.onEnteredCode = onEnteredCode
@@ -53,28 +61,40 @@ public struct CITPincodeView: View {
                     )
                     
                     if config.dividerStyle.afterIndex == i {
-                        config.dividerView
+                        CITPincodeDivider(config: config)
                     }
                 }
             }
-            .background(
-                TextField("", text: $code)
-                    .keyboardType(config.codeType)
-                    .textContentType(.oneTimeCode)
-                    .opacity(0)
-                    .allowsHitTesting(false)
+            .accessibility(label: Text("Pincode view"))
+            .overlay(
+                GeometryReader { proxy in
+                    TextField("", text: $code)
+                        .keyboardType(config.codeType)
+                        .textContentType(.oneTimeCode)
+                        .frame(width: proxy.size.width, height: proxy.size.height)
+                        .opacity(0)
+                        .allowsHitTesting(false)
+                }
             )
             .introspectTextField { textField in
                 codeInputField = textField
-                codeInputField?.becomeFirstResponder()
                 codeInputField?.addDoneButton()
+                showKeyboardInitially()
+                setupEditMenu()
             }
             .onTapGesture {
                 codeInputField?.becomeFirstResponder()
             }
+            .onLongPressGesture {
+                showPasteMenu()
+            }
             
             if config.resendButton.showButton {
-                CITPincodeResendButton(config: config, onResendCode: handleResendCode)
+                CITPincodeResendButton(
+                    config: config,
+                    onResendCode: handleResendCode
+                )
+                .accessibility(label: Text("Resend Code"))
             }
             
             if let error = error {
@@ -82,6 +102,7 @@ public struct CITPincodeView: View {
                     .foregroundColor(config.errorColor)
                     .font(config.errorFont)
                     .padding(.vertical, 8)
+                    .accessibility(label: Text("Error hint"))
             }
         }
         .onChange(of: code) { newValue in
@@ -93,6 +114,46 @@ public struct CITPincodeView: View {
                 enteredCode = ""
                 error = nil
             }
+        }
+    }
+    
+    private func showKeyboardInitially() {
+        guard !shownKeyboardOnceInitially && config.showKeyboardOnAppear else {
+            return
+        }
+        
+        shownKeyboardOnceInitially = true
+        codeInputField?.becomeFirstResponder()
+    }
+    
+    private func setupEditMenu() {
+        if #available(iOS 16.0, *) {
+            guard let codeInputField = codeInputField else {
+                return
+            }
+            
+            EditMenuHelper.shared.setupPasteEditMenu(for: codeInputField)
+        }
+    }
+    
+    private func showPasteMenu() {
+        guard let codeInputField = codeInputField,
+              var clipboardText = UIPasteboard.general.string else {
+            return
+        }
+        
+        clipboardText = clipboardText.replacingOccurrences(of: "-", with: "")
+        guard config.codeLength == clipboardText.count,
+              config.codeType != .numberPad || clipboardText.isNumber else {
+            let generator = UINotificationFeedbackGenerator()
+            generator.notificationOccurred(.warning)
+            return
+        }
+        
+        if #available(iOS 16.0, *) {
+            EditMenuHelper.shared.showEditMenu(in: codeInputField.frame)
+        } else {
+            UIMenuController.shared.showMenu(from: codeInputField, rect: codeInputField.frame)
         }
     }
     
@@ -120,7 +181,7 @@ struct CITPincodeView_Previews: PreviewProvider {
     static var previews: some View {
         CITPincodeView(
             code: .constant(""),
-            config: .socialBlox,
+            config: .example,
             onEnteredCode: { _ in },
             onResendCode: {}
         )

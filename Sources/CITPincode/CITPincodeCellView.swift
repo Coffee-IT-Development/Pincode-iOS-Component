@@ -68,7 +68,7 @@ struct CITPincodeCellView: View {
             .cornerRadius(cornerRadius)
             .overlay(
                 RoundedRectangle(cornerRadius: cornerRadius)
-                    .stroke(selectedBorderColor, lineWidth: isSelected ? 1 : 0)
+                    .stroke(selectedBorderColor, lineWidth: isSelected || config.alwaysShowSelectedBorder ? config.selectedBorderWidth : 0)
             )
     }
 }
@@ -76,7 +76,7 @@ struct CITPincodeCellView: View {
 extension CITPincodeCellView {
     static func exampleCell(character: Character? = nil, placeholder: Character? = nil, isSelected: Bool, hasError: Bool = false) -> CITPincodeCellView {
         CITPincodeCellView(
-            config: .socialBlox,
+            config: .example,
             character: character,
             placeholder: placeholder,
             isSelected: isSelected,

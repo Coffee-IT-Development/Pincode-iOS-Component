@@ -1,92 +1,128 @@
-# CITPincode
+# ``CITPincode``
 
-A customisable pin code view.
+A customisable pincode view.
 
-## Getting started
+## Overview
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
-
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
-
-## Add your files
-
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
-
-```
-cd existing_repo
-git remote add origin https://gitlab.com/CoffeeIT/ios/swift-packages/citpincodeview.git
-git branch -M main
-git push -uf origin main
-```
-
-## Integrate with your tools
-
-- [ ] [Set up project integrations](https://gitlab.com/CoffeeIT/ios/swift-packages/citpincodeview/-/settings/integrations)
-
-## Collaborate with your team
-
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Automatically merge when pipeline succeeds](https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
-
-## Test and Deploy
-
-Use the built-in continuous integration in GitLab.
-
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/index.html)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing(SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
-
-***
-
-# Editing this README
-
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!).  Thank you to [makeareadme.com](https://www.makeareadme.com/) for this template.
-
-## Suggestions for a good README
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
-
-## Name
-Choose a self-explaining name for your project.
-
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
-
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
-
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
-
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
+The CITPincode package provides a customisable pincode view. 
+It comes with an optional resend code button with a built-in cooldown and an optional divider to be placed anywhere between the cells.
 
 ## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
 
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
+Import CITPincode and add a CITPincodeView to your SwiftUI view.
 
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
+```swift
+import SwiftUI
+import CITPincode
 
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
+struct CITPincodeExample: View {
+    @State private var code = ""
+    @State private var error: String?
+    
+    var body: some View {
+        CITPincodeView(
+            code: $code,
+            error: $error,
+            config: .example,
+            onEnteredCode: onEnteredCode,
+            onResendCode: onResendCode
+        )
+    }
+    
+    private func onEnteredCode(_ code: String) {
+        
+    }
+    
+    private func onResendCode() {
+        
+    }
+}
+```
 
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
+Extra details:
+- The error can be set to any text message or nil, the CITPincodeView will update dynamically.
+- The code input can be used realtime via the code binding, but the code is also automatically passed to the onEnteredCode method once enough characters have been entered.
+- The CITPincodeView is set to receive One Time Passcode(s) and can alternatively be long pressed to let the user paste a code directly from their clipboard.
 
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
+## Customization
 
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
+```swift
+/// The length of the pincode.
+/// Determines amount of shown pincode cells as well as how many characters have to be entered before the code is checked.
+public var codeLength: Int
 
-## License
-For open source projects, say how it is licensed.
+/// The font used to display text within the pincode cells.
+public var font: Font
 
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+/// The font used to display the error message if any error is visible.
+public var errorFont: Font
+
+/// The color of the text within the pincode cells.
+public var textColor: Color
+
+/// The color of the error message if visible.
+public var errorColor: Color
+
+/// An optional placeholder code, shown within the pincode cells, should be entire codeLength if displayed at all,
+/// each placeholder character individually checks if there's no input at its position, and will be shown if there's none.
+public var placeholder: String
+
+/// The color of the shown placeholder text shown within cells if any.
+public var placeholderColor: Color
+
+/// The background color of pincode cells.
+public var backgroundColor: Color
+
+/// The background color of a pincode cell when it is currently selected, a cell is selected when that cell would be filled with the next entered pincode character.
+public var selectedBackgroundColor: Color
+
+/// The border color of any selected pincode cell.
+public var selectedBorderColor: Color
+
+/// The border width of any selected pincode cell.
+public var selectedBorderWidth: CGFloat
+
+/// If set to true, all pincode cells will always be shown as if they are selected.
+public var alwaysShowSelectedBorder: Bool
+
+/// If set to true, the keyboard will show once the pincode view appears.
+public var showKeyboardOnAppear: Bool
+
+/// The size of each pincode cell.
+public var cellSize: CGSize
+
+/// The cornerRadius of each pincode cell, used to set rounded corners, e.g. set to 0 for sharp corners, to 8 for small rounding or .infinity for maximum rounding.
+public var cellCornerRadius: CGFloat
+
+/// The type of pincode, you can choose any UIKeyboardType, but the most common types are ".default" for a text keyboard and .numberPad for a numbers only keyboard.
+public var codeType: UIKeyboardType
+
+/// Optional config used to show a single divider somewhere between the pincode cells. Does not impact user input, and can be customised slightly.
+public var divider: CITPincodeDividerConfig
+
+/// Optional config used to show a resendButton, meant to resend an One Time Passcode on press and is automatically disabled for a given cooldown duration to limit usage.
+public var resendButton: CITPincodeResendButtonConfig
+
+/// Returns the style that configures an optional resendButton that is meant to resend an One Time Passcode on press.
+/// This button will be disabled for the given cooldown if any and automatically re-enable itself once the cooldown duration has passed.
+/// - Use `.custom` to set `text, font, textColor, backgroundColor, contentInsets, cornerRadius, cooldown, alignment`.
+/// - Use `.plain` to set `text, font, cooldown, alignment` and use default values for the other fields.
+/// - Use `.none` when no resend button should be shown.
+public var resendButtonStyle: CITPincodeResendButtonStyle
+
+/// The style of a shown divider if any.
+/// - Use `.custom` to set `afterIndex, color, size & cornerRadius`.
+/// - Use `.plain` to set `afterIndex` and use default values for the other fields.
+/// - Use `.none` when no divider should be shown.
+public var dividerStyle: CITPincodeDividerStyle
+```
+
+## Maintainer
+
+Actively maintained by Lex Brouwers.
+
+## Changelog
+
+#### 1.0.0
+
+- Setup CITPincodeView, add customization & documentation.
