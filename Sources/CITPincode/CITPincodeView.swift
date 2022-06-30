@@ -65,7 +65,6 @@ public struct CITPincodeView: View {
                         .keyboardType(config.codeType)
                         .textContentType(.oneTimeCode)
                         .frame(width: proxy.size.width, height: proxy.size.height)
-                        .background(Color.blue)
                         .opacity(0)
                         .allowsHitTesting(false)
                 }
