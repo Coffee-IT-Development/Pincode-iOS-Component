@@ -11,8 +11,20 @@ import SwiftUI
 public struct CITPincodeDividerStyle: Equatable {
     public var afterIndex: Int
     public var color: Color
-    public var size: CGSize = CITPincodeDividerStyle.defaultSize
-    public var cornerRadius: CGFloat = CITPincodeDividerStyle.defaultCornerRadius
+    public var size: CGSize
+    public var cornerRadius: CGFloat
+    
+    public init(
+        afterIndex: Int,
+        color: Color,
+        size: CGSize = CITPincodeDividerStyle.defaultSize,
+        cornerRadius: CGFloat = CITPincodeDividerStyle.defaultCornerRadius
+    ) {
+        self.afterIndex = afterIndex
+        self.color = color
+        self.size = size
+        self.cornerRadius = cornerRadius
+    }
     
     public static let defaultSize = CGSize(width: 8, height: 2)
     public static let defaultCornerRadius = CGFloat.infinity
