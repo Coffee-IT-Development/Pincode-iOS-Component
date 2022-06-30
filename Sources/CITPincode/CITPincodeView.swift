@@ -59,6 +59,7 @@ public struct CITPincodeView: View {
                     }
                 }
             }
+            .accessibility(label: Text("Pincode view"))
             .overlay(
                 GeometryReader { proxy in
                     TextField("", text: $code)
@@ -87,6 +88,7 @@ public struct CITPincodeView: View {
                     config: config,
                     onResendCode: handleResendCode
                 )
+                .accessibility(label: Text("Resend Code"))
             }
             
             if let error = error {
@@ -94,6 +96,7 @@ public struct CITPincodeView: View {
                     .foregroundColor(config.errorColor)
                     .font(config.errorFont)
                     .padding(.vertical, 8)
+                    .accessibility(label: Text("Error hint"))
             }
         }
         .onChange(of: code) { newValue in
