@@ -11,7 +11,6 @@ import Introspect
 
 public struct CITPincodeView: View {
     @Binding var code: String
-    @Binding var busyCheckingCode: Bool
     @Binding var error: String?
     
     private let config: CITPincodeConfig
@@ -28,14 +27,12 @@ public struct CITPincodeView: View {
     
     public init(
         code: Binding<String>,
-        busyCheckingCode: Binding<Bool> = .constant(false),
         error: Binding<String?> = .constant(nil),
         config: CITPincodeConfig,
         onEnteredCode: @escaping (String) -> Void,
         onResendCode: @escaping () -> Void
     ) {
         self._code = code
-        self._busyCheckingCode = busyCheckingCode
         self._error = error
         self.config = config
         self.onEnteredCode = onEnteredCode
