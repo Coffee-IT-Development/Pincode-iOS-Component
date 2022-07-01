@@ -85,7 +85,7 @@ public struct CITPincodeConfig: Equatable {
         selectedBorderWidth: CGFloat = 1,
         alwaysShowSelectedBorder: Bool = false,
         showKeyboardOnAppear: Bool = true,
-        keyboardDoneButtonText: String = "Done",
+        keyboardDoneButtonText: String = "keyboard_done_button_text".localized,
         cellSize: CGSize = .init(width: 40, height: 56),
         cellCornerRadius: CGFloat = 8,
         codeType: UIKeyboardType = .default,

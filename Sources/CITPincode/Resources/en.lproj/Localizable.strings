@@ -5,3 +5,6 @@
   Created by Lex Brouwers on 01/07/2022.
   
 */
+
+"keyboard_done_button_text" = "Done";
+"resend_code_button_text" = "Send code again";
