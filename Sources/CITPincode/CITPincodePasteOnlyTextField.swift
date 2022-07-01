@@ -9,17 +9,9 @@ import UIKit
 
 public class CITPincodePasteOnlyTextField: UITextField {
     public override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
-        super.canPerformAction(action, withSender: sender)
-//        UIResponderStandardEditActions.
-//
-//        if action == #selector(UIResponderStandardEditActions.copy(_:)) ||
-//                    action == #selector(UIResponderStandardEditActions.selectAll(_:)) ||
-//                    action == #selector(UIResponderStandardEditActions.paste(_:))
-//        {
+//        if action == #selector(UIResponderStandardEditActions.paste(_:)) {
+//            return false
 //        }
-    }
-    
-    public override func shouldChangeText(in range: UITextRange, replacementText text: String) -> Bool {
-        true
+        return super.canPerformAction(action, withSender: sender)
     }
 }
