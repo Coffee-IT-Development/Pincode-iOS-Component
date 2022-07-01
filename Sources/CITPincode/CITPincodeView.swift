@@ -114,9 +114,11 @@ public struct CITPincodeView: View {
     }
     
     private func setupPasteOnlyTextField(_ textField: CITPincodePasteOnlyTextField) {
-        textField.addDoneButton()
-        codeInputField = textField
-        setupEditMenu(for: textField)
+        DispatchQueue.main.async {
+            codeInputField = textField
+            textField.addDoneButton()
+            setupEditMenu(for: textField)
+        }
     }
     
     private func setupEditMenu(for textField: CITPincodePasteOnlyTextField) {
