@@ -9,10 +9,13 @@ import SwiftUI
 
 struct CITPincodeTextField: UIViewRepresentable {
     @Binding var text: String
+    var config: CITPincodeConfig
     var configure: (CITPincodePasteOnlyTextField) -> Void
 
     func makeUIView(context: Context) -> UITextField {
         let textField = CITPincodePasteOnlyTextField()
+        textField.keyboardType = config.codeType
+        textField.textContentType = .oneTimeCode
         configure(textField)
         return textField
     }

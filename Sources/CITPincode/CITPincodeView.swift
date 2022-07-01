@@ -67,17 +67,16 @@ public struct CITPincodeView: View {
             .accessibility(label: Text("Pincode view"))
             .overlay(
                 GeometryReader { proxy in
-                    CITPincodeTextField(text: $code, configure: setupPasteOnlyTextField)
-                        .keyboardType(config.codeType)
-                        .textContentType(.oneTimeCode)
-                        .frame(width: proxy.size.width, height: proxy.size.height)
-                        .opacity(0)
-                        .allowsHitTesting(false)
+                    CITPincodeTextField(
+                        text: $code,
+                        config: config,
+                        configure: setupPasteOnlyTextField
+                    )
+                    .frame(width: proxy.size.width, height: proxy.size.height)
+                    .opacity(0)
+                    .allowsHitTesting(false)
                 }
             )
-            .onAppear {
-                showKeyboardInitially()
-            }
             .onTapGesture {
                 codeInputField?.becomeFirstResponder()
             }
@@ -118,6 +117,7 @@ public struct CITPincodeView: View {
             codeInputField = textField
             textField.addDoneButton()
             setupEditMenu(for: textField)
+            showKeyboardInitially()
         }
     }
     
