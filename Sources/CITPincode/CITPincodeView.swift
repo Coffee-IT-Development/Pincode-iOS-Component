@@ -150,6 +150,7 @@ public struct CITPincodeView: View {
             return
         }
         
+        codeInputField.becomeFirstResponder()
         if #available(iOS 16.0, *) {
             CITEditMenuHelper.shared.showEditMenu(in: codeInputField.frame)
         } else {
