@@ -53,6 +53,9 @@ public struct CITPincodeConfig: Equatable {
     /// If set to true, the keyboard will show once the pincode view appears.
     public var showKeyboardOnAppear: Bool
     
+    /// Text shown for the button that can close the keyboard from a toolbar.
+    public var keyboardDoneButtonText: String
+    
     /// The size of each pincode cell.
     public var cellSize: CGSize
     
@@ -82,6 +85,7 @@ public struct CITPincodeConfig: Equatable {
         selectedBorderWidth: CGFloat = 1,
         alwaysShowSelectedBorder: Bool = false,
         showKeyboardOnAppear: Bool = true,
+        keyboardDoneButtonText: String = "Done",
         cellSize: CGSize = .init(width: 40, height: 56),
         cellCornerRadius: CGFloat = 8,
         codeType: UIKeyboardType = .default,
@@ -101,6 +105,7 @@ public struct CITPincodeConfig: Equatable {
         self.selectedBorderWidth = selectedBorderWidth
         self.alwaysShowSelectedBorder = alwaysShowSelectedBorder
         self.showKeyboardOnAppear = showKeyboardOnAppear
+        self.keyboardDoneButtonText = keyboardDoneButtonText
         self.cellSize = cellSize
         self.cellCornerRadius = cellCornerRadius
         self.codeType = codeType

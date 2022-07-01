@@ -8,8 +8,7 @@
 import UIKit
 
 extension UITextField {
-    public func addDoneButton() {
-        let doneText = "Done"
+    public func addDoneButton(_ doneText: String) {
         let doneToolbar: UIToolbar = UIToolbar(
             frame: CGRect.init(
                 x: 0,
