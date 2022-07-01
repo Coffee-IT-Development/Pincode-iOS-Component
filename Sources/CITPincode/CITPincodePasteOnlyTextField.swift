@@ -7,8 +7,8 @@
 
 import UIKit
 
-class CITPincodePasteOnlyTextField: UITextField {
-    override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
+public class CITPincodePasteOnlyTextField: UITextField {
+    public override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
         action == #selector(paste(_:))
     }
 }
