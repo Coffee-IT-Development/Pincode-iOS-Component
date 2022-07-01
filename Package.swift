@@ -5,6 +5,7 @@ import PackageDescription
 
 let package = Package(
     name: "CITPincode",
+    defaultLocalization: "en",
     platforms: [
         .iOS(.v13)
     ],
@@ -28,10 +29,8 @@ let package = Package(
             name: "CITPincode",
             dependencies: [
                 .product(name: "SwiftUIX", package: "SwiftUIX")
-            ]
-        ),
-        .testTarget(
-            name: "CITPincodeTests",
-            dependencies: ["CITPincode"]),
+            ],
+            resources: [.process("Resources")]
+        )
     ]
 )
