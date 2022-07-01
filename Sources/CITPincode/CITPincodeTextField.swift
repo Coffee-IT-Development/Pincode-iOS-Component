@@ -23,6 +23,7 @@ public struct CITPincodeTextField: UIViewRepresentable {
         let textField = CITPincodePasteOnlyTextField()
         textField.keyboardType = config.codeType
         textField.textContentType = .oneTimeCode
+        textField.delegate = context.coordinator
         return textField
     }
 
@@ -31,19 +32,19 @@ public struct CITPincodeTextField: UIViewRepresentable {
     }
     
     public func makeCoordinator() -> Coordinator {
-        Coordinator(text: $text)
+        Coordinator(self)
     }
     
     public class Coordinator: NSObject, UITextFieldDelegate {
-        @Binding var text: String
+        private let pincodeTextField: CITPincodeTextField
 
-        public init(text: Binding<String>) {
-            self._text = text
+        public init(_ pincodeTextField: CITPincodeTextField) {
+            self.pincodeTextField = pincodeTextField
         }
 
         public func textFieldDidChangeSelection(_ textField: UITextField) {
             DispatchQueue.main.async {
-                self.text = textField.text ?? ""
+                self.pincodeTextField.text = textField.text ?? ""
             }
         }
     }
