@@ -8,7 +8,7 @@
 import UIKit
 
 extension UITextField {
-    func addDoneButton(_ doneText: String) {
+    public func addDoneButton(_ doneText: String) {
         let doneToolbar: UIToolbar = UIToolbar(
             frame: CGRect.init(
                 x: 0,
@@ -30,7 +30,7 @@ extension UITextField {
     }
     
     @objc
-    func onDonePressed() {
+    private func onDonePressed() {
         self.resignFirstResponder()
     }
 }
