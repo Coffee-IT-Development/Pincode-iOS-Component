@@ -123,6 +123,15 @@ Actively maintained by Lex Brouwers.
 
 ## Changelog
 
+#### 1.1.0
+
+- Limit codeInputField interaction to paste only.
+- Refactor away Introspect dependency.
+- Remove unused documentation catalog and tests.
+- Restructure folders.
+- Localize and expose texts.
+- Clean up code.
+
 #### 1.0.0
 
 - Setup CITPincodeView, add customization & documentation.
