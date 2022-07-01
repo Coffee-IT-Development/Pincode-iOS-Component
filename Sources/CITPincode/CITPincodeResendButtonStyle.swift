@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 public struct CITPincodeResendButtonStyle: Equatable {
-    public var text: String = "Send code again"
+    public var text: String = "resend_code_button_text".localized
     public var font: Font
     public var textColor: Color
     public var backgroundColor: Color
