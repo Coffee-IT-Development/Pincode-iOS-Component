@@ -7,7 +7,6 @@
 
 import SwiftUI
 import SwiftUIX // Can be removed when we only support iOS 14+
-import Introspect
 
 /// The CITPincodeView provides a simple One Time Passcode interface with deep customisation through its config.
 /// It includes an optional resend code button with built-in cooldown logic, an error label that's dynamically shown and error color tints, callbacks for when a code has been entered and when the resend code button is pressed and long press to paste logic that filters hyphens and denies codes of the wrong type, e.g. pasting letters into a numeric code.
@@ -70,16 +69,14 @@ public struct CITPincodeView: View {
                 GeometryReader { proxy in
                     CITPincodeTextField(
                         text: $code,
-                        config: config
+                        config: config,
+                        setup: setupPasteOnlyTextField
                     )
                     .frame(width: proxy.size.width, height: proxy.size.height)
                     .opacity(0)
                     .allowsHitTesting(false)
                 }
             )
-            .introspectTextField { textField in
-                setupPasteOnlyTextField(textField)
-            }
             .onTapGesture {
                 codeInputField?.becomeFirstResponder()
             }
@@ -116,10 +113,12 @@ public struct CITPincodeView: View {
     }
     
     private func setupPasteOnlyTextField(_ textField: UITextField) {
-        codeInputField = textField
-        textField.addDoneButton()
-        setupEditMenu(for: textField)
-        showKeyboardInitially()
+        DispatchQueue.main.async {
+            codeInputField = textField
+            textField.addDoneButton()
+            setupEditMenu(for: textField)
+            showKeyboardInitially()
+        }
     }
     
     private func setupEditMenu(for textField: UITextField) {
