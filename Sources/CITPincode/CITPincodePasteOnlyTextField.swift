@@ -18,4 +18,8 @@ public class CITPincodePasteOnlyTextField: UITextField {
 //        {
 //        }
     }
+    
+    public override func shouldChangeText(in range: UITextRange, replacementText text: String) -> Bool {
+        true
+    }
 }
