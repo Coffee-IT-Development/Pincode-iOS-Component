@@ -29,4 +29,22 @@ public struct CITPincodeTextField: UIViewRepresentable {
     public func updateUIView(_ uiView: UITextField, context: Context) {
         uiView.text = text
     }
+    
+    public func makeCoordinator() -> Coordinator {
+        Coordinator(text: $text)
+    }
+    
+    public class Coordinator: NSObject, UITextFieldDelegate {
+        @Binding var text: String
+
+        public init(text: Binding<String>) {
+            self._text = text
+        }
+
+        public func textFieldDidChangeSelection(_ textField: UITextField) {
+            DispatchQueue.main.async {
+                self.text = textField.text ?? ""
+            }
+        }
+    }
 }
