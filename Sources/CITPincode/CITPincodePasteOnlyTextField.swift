@@ -9,6 +9,13 @@ import UIKit
 
 public class CITPincodePasteOnlyTextField: UITextField {
     public override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
-        action == #selector(paste(_:))
+        true
+//        UIResponderStandardEditActions.
+//
+//        if action == #selector(UIResponderStandardEditActions.copy(_:)) ||
+//                    action == #selector(UIResponderStandardEditActions.selectAll(_:)) ||
+//                    action == #selector(UIResponderStandardEditActions.paste(_:))
+//        {
+//        }
     }
 }
