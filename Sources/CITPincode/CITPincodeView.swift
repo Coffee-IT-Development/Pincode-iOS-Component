@@ -7,7 +7,6 @@
 
 import SwiftUI
 import SwiftUIX // Can be removed when we only support iOS 14+
-import Introspect
 
 /// The CITPincodeView provides a simple One Time Passcode interface with deep customisation through its config.
 /// It includes an optional resend code button with built-in cooldown logic, an error label that's dynamically shown and error color tints, callbacks for when a code has been entered and when the resend code button is pressed and long press to paste logic that filters hyphens and denies codes of the wrong type, e.g. pasting letters into a numeric code.
@@ -20,7 +19,7 @@ public struct CITPincodeView: View {
     private let onResendCode: () -> Void
     
     @State private var enteredCode = ""
-    @State private var codeInputField: UITextField?
+    @State private var codeInputField: CITPincodePasteOnlyTextField?
     @State private var shownKeyboardOnceInitially = false
     
     var hasError: Bool {
@@ -68,7 +67,7 @@ public struct CITPincodeView: View {
             .accessibility(label: Text("Pincode view"))
             .overlay(
                 GeometryReader { proxy in
-                    TextField("", text: $code)
+                    CITPincodeTextField(text: $code, configure: setupPasteOnlyTextField)
                         .keyboardType(config.codeType)
                         .textContentType(.oneTimeCode)
                         .frame(width: proxy.size.width, height: proxy.size.height)
@@ -76,11 +75,8 @@ public struct CITPincodeView: View {
                         .allowsHitTesting(false)
                 }
             )
-            .introspectTextField { textField in
-                codeInputField = textField
-                codeInputField?.addDoneButton()
+            .onAppear {
                 showKeyboardInitially()
-                setupEditMenu()
             }
             .onTapGesture {
                 codeInputField?.becomeFirstResponder()
@@ -117,6 +113,18 @@ public struct CITPincodeView: View {
         }
     }
     
+    private func setupPasteOnlyTextField(_ textField: CITPincodePasteOnlyTextField) {
+        textField.addDoneButton()
+        codeInputField = textField
+        setupEditMenu(for: textField)
+    }
+    
+    private func setupEditMenu(for textField: CITPincodePasteOnlyTextField) {
+        if #available(iOS 16.0, *) {
+            CITEditMenuHelper.shared.setupPasteEditMenu(for: textField)
+        }
+    }
+    
     private func showKeyboardInitially() {
         guard !shownKeyboardOnceInitially && config.showKeyboardOnAppear else {
             return
@@ -124,16 +132,6 @@ public struct CITPincodeView: View {
         
         shownKeyboardOnceInitially = true
         codeInputField?.becomeFirstResponder()
-    }
-    
-    private func setupEditMenu() {
-        if #available(iOS 16.0, *) {
-            guard let codeInputField = codeInputField else {
-                return
-            }
-            
-            CITEditMenuHelper.shared.setupPasteEditMenu(for: codeInputField)
-        }
     }
     
     private func showPasteMenu() {
