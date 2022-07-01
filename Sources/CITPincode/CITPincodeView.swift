@@ -132,7 +132,7 @@ public struct CITPincodeView: View {
                 return
             }
             
-            EditMenuHelper.shared.setupPasteEditMenu(for: codeInputField)
+            CITEditMenuHelper.shared.setupPasteEditMenu(for: codeInputField)
         }
     }
     
@@ -151,7 +151,7 @@ public struct CITPincodeView: View {
         }
         
         if #available(iOS 16.0, *) {
-            EditMenuHelper.shared.showEditMenu(in: codeInputField.frame)
+            CITEditMenuHelper.shared.showEditMenu(in: codeInputField.frame)
         } else {
             UIMenuController.shared.showMenu(from: codeInputField, rect: codeInputField.frame)
         }

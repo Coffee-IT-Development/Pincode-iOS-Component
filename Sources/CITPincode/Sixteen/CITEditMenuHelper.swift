@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  CITEditMenuHelper.swift
 //  
 //
 //  Created by Lex Brouwers on 28/06/2022.
@@ -8,8 +8,8 @@
 import SwiftUI
 
 @available(iOS 16.0, *)
-public class EditMenuHelper {
-    public static var shared = EditMenuHelper()
+public class CITEditMenuHelper {
+    public static var shared = CITEditMenuHelper()
     
     private let pasteActionMenu = PasteActionMenu()
     
