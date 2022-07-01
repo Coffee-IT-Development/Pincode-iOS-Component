@@ -68,10 +68,11 @@ public struct CITPincodeView: View {
             .accessibility(label: Text("Pincode view"))
             .overlay(
                 GeometryReader { proxy in
-                    CITPincodeTextField(
-                        text: $code,
-                        config: config
-                    )
+//                    CITPincodeTextField(
+//                        text: $code,
+//                        config: config
+//                    )
+                    TextField("", text: $code)
                     .frame(width: proxy.size.width, height: proxy.size.height)
                     .opacity(0)
                     .allowsHitTesting(false)
