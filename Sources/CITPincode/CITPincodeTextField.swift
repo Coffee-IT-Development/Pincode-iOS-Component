@@ -28,6 +28,7 @@ public struct CITPincodeTextField: UIViewRepresentable {
     }
 
     public func updateUIView(_ uiView: UITextField, context: Context) {
+        uiView.keyboardType = config.codeType
         uiView.text = text
     }
     

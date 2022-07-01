@@ -73,8 +73,8 @@ public struct CITPincodeView: View {
                         config: config
                     )
                     .frame(width: proxy.size.width, height: proxy.size.height)
-//                    .opacity(0)
-//                    .allowsHitTesting(false)
+                    .opacity(0)
+                    .allowsHitTesting(false)
                 }
             )
             .introspectTextField { textField in
