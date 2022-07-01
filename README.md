@@ -1,4 +1,4 @@
-# ``CITPincode``
+# CITPincode
 
 A customisable pincode view.
 
