@@ -6,5 +6,5 @@
   
 */
 
-"keyboard_done_button_text" = "Done";
-"resend_code_button_text" = "Send code again";
+"citpincode_keyboard_done_button_text" = "Done";
+"citpincode_resend_code_button_text" = "Send code again";

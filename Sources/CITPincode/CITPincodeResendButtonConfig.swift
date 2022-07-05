@@ -9,7 +9,7 @@ import SwiftUI
 
 public enum CITPincodeResendButtonConfig: Equatable {
     case none
-    case plain(text: String = "resend_code_button_text".localized, font: Font = .system(size: 16), cooldown: CITPincodeResendCodeCooldown = .none, alignment: HorizontalAlignment = .leading)
+    case plain(text: String = "citpincode_resend_code_button_text".localized, font: Font = .system(size: 16), cooldown: CITPincodeResendCodeCooldown = .none, alignment: HorizontalAlignment = .leading)
     case custom(style: CITPincodeResendButtonStyle)
 
     var showButton: Bool {
