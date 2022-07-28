@@ -5,7 +5,9 @@ A customisable pincode view.
 ## Overview
 
 The CITPincode package provides a customisable pincode view. 
-It comes with an optional resend code button with a built-in cooldown and an optional divider to be placed anywhere between the cells.
+It comes with an optional resend code button with a built-in cooldown and an optional divider to be placed anywhere between the cells.  
+<br>
+Mirror only. Official repository is private.
 
 ## Install
 
@@ -124,14 +126,16 @@ public var dividerStyle: CITPincodeDividerStyle
 ```
 
 ## Contact
-Coffee IT - contact@coffeeit.nl
-[Our website](https://coffeeit.nl/)
-Twitter: [@CoffeeIT](https://mobile.twitter.com/coffeeitnl)
-Facebook: [CoffeeITNL](https://nl-nl.facebook.com/CoffeeITNL/)
-Instagram: [CoffeeITNL](https://www.instagram.com/coffeeitnl/)
+For questions, ideas or help you can reach us by email.    
+Coffee IT - contact@coffeeit.nl  
+[Our website](https://coffeeit.nl/)  
+Twitter: [@CoffeeIT](https://mobile.twitter.com/coffeeitnl)  
+Facebook: [CoffeeITNL](https://nl-nl.facebook.com/CoffeeITNL/)  
+Instagram: [CoffeeITNL](https://www.instagram.com/coffeeitnl/)  
 
 ## Maintainer
 
+Owned by Coffee IT.  
 Actively maintained by Lex Brouwers.
 
 ## Changelog
@@ -148,3 +152,7 @@ Actively maintained by Lex Brouwers.
 #### 1.0.0
 
 - Setup CITPincodeView, add customization & documentation.
+
+## License
+
+Distributed under the MIT License. See ```LICENSE.txt``` for more information.
