@@ -13,7 +13,8 @@ Mirror only. Official repository is private.
 
 ### SwiftPM
 
-```https://github.com/Coffee-IT-Development/Pincode-iOS-Component/```
+```https://github.com/Coffee-IT-Development/Pincode-iOS-Component/
+```
 
 ## Usage
 
