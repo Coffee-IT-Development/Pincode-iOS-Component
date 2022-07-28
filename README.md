@@ -1,11 +1,17 @@
 # CITPincode
-
+![Coffee IT](https://coffeeit.nl/wp-content/uploads/2016/09/logo_dark_small_new.png)
 A customisable pincode view.
 
 ## Overview
 
 The CITPincode package provides a customisable pincode view. 
 It comes with an optional resend code button with a built-in cooldown and an optional divider to be placed anywhere between the cells.
+
+## Install
+
+### SwiftPM
+
+```Link to github```
 
 ## Usage
 
@@ -116,6 +122,13 @@ public var resendButtonStyle: CITPincodeResendButtonStyle
 /// - Use `.none` when no divider should be shown.
 public var dividerStyle: CITPincodeDividerStyle
 ```
+
+## Contact
+Coffee IT - contact@coffeeit.nl
+[Our website](https://coffeeit.nl/)
+Twitter: [@CoffeeIT](https://mobile.twitter.com/coffeeitnl)
+Facebook: [CoffeeITNL](https://nl-nl.facebook.com/CoffeeITNL/)
+Instagram: [CoffeeITNL](https://www.instagram.com/coffeeitnl/)
 
 ## Maintainer
 
