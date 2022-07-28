@@ -4,7 +4,7 @@ A customisable pincode view.
 
 ## Overview
 
-The CITPincode package provides a customisable pincode view. 
+The [Coffee IT](https://coffeeit.nl/) Pincode package provides a customisable pincode view. 
 It comes with an optional resend code button with a built-in cooldown and an optional divider to be placed anywhere between the cells.  
 <br>
 Mirror only. Official repository is private.
