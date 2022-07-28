@@ -1,5 +1,5 @@
-# CITPincode
 ![Coffee IT](https://coffeeit.nl/wp-content/uploads/2016/09/logo_dark_small_new.png)
+# CITPincode
 A customisable pincode view.
 
 ## Overview
