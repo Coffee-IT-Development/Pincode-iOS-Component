@@ -13,7 +13,7 @@ Mirror only. Official repository is private.
 
 ### SwiftPM
 
-```Link to github```
+```https://github.com/Coffee-IT-Development/Pincode-iOS-Component/```
 
 ## Usage
 
@@ -128,7 +128,7 @@ public var dividerStyle: CITPincodeDividerStyle
 ## Contact
 For questions, ideas or help you can reach us by email.  
 Coffee IT - contact@coffeeit.nl - [website](https://coffeeit.nl/)  
-Twitter: [@CoffeeIT](https://mobile.twitter.com/coffeeitnl)  
+Linkedin: [@CoffeeIT](https://nl.linkedin.com/company/coffee-it)  
 Facebook: [CoffeeITNL](https://nl-nl.facebook.com/CoffeeITNL/)  
 Instagram: [CoffeeITNL](https://www.instagram.com/coffeeitnl/)  
 
