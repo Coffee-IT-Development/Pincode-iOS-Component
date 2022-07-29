@@ -1,4 +1,4 @@
-![Coffee IT](https://coffeeit.nl/wp-content/uploads/2016/09/logo_dark_small_new.png)
+![Coffee IT](https://coffeeit.nl/wp-content/uploads/2022/07/Aroma_Pincode_iOS.png)
 # CITPincode
 A customisable pincode view.
 
@@ -12,6 +12,9 @@ Mirror only. Official repository is private.
 ## Install
 
 ### SwiftPM
+
+To install the Swift Package, go to:
+- Project -> Package Dependencies -> + -> Search or Enter Package URL, and fill in the following url:
 
 ```
 https://github.com/Coffee-IT-Development/Pincode-iOS-Component/
@@ -156,4 +159,4 @@ Actively maintained by Lex Brouwers.
 
 ## License
 
-Distributed under the MIT License. See ```LICENSE.txt``` for more information.
+Distributed under the MIT License. [See LICENSE](LICENSE.txt) for more information.
