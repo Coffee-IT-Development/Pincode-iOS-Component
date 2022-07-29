@@ -1,10 +1,6 @@
-![Coffee IT](https://coffeeit.nl/wp-content/uploads/2022/07/Aroma_Pincode_iOS.png)
-# CITPincode
-A customisable pincode view.
+[![Coffee IT - Aroma CITPincode Component](https://coffeeit.nl/wp-content/uploads/2022/07/Aroma_Pincode_iOS.png)](https://coffeeit.nl/)
 
-## Overview
-
-The [Coffee IT](https://coffeeit.nl/) Pincode package provides a customisable pincode view. 
+The CITPincode package provides a customisable pincode view. 
 It comes with an optional resend code button with a built-in cooldown and an optional divider to be placed anywhere between the cells.  
 <br>
 Mirror only. Official repository is private.
