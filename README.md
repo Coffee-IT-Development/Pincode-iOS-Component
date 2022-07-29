@@ -8,10 +8,10 @@
 [![Facebook](https://img.shields.io/badge/Facebook-CoffeeITNL-blue.svg?style=flat-square)](https://www.facebook.com/CoffeeITNL/)
 [![Instagram](https://img.shields.io/badge/Instagram-CoffeeITNL-blue.svg?style=flat-square)](https://www.instagram.com/coffeeitnl/)
 
-The CITPincode package provides a customisable pincode view.
+The CITPincode package provides a customizable pincode view.
 It includes an optional resend code button with a built-in cooldown and an optional divider to be placed anywhere between the cells.
 
-## Install
+## Installation
 
 ### SwiftPM
 
@@ -110,7 +110,7 @@ public var cellCornerRadius: CGFloat
 /// The type of pincode, you can choose any UIKeyboardType, but the most common types are ".default" for a text keyboard and .numberPad for a numbers only keyboard.
 public var codeType: UIKeyboardType
 
-/// Optional config used to show a single divider somewhere between the pincode cells. Does not impact user input, and can be customised slightly.
+/// Optional config used to show a single divider somewhere between the pincode cells. Does not impact user input, and can be customized slightly.
 public var divider: CITPincodeDividerConfig
 
 /// Optional config used to show a resendButton, meant to resend an One Time Passcode on press and is automatically disabled for a given cooldown duration to limit usage.
