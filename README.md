@@ -1,9 +1,9 @@
 [![Coffee IT - Aroma CITPincode Component](https://coffeeit.nl/wp-content/uploads/2022/07/Aroma_Pincode_iOS.png)](https://coffeeit.nl/)
 
-![Swift](https://img.shields.io/badge/Swift-5.6-orange?style=flat-square)
+![Swift](https://img.shields.io/badge/Swift-5.6-red?style=flat-square)
 ![iOS 13+](https://img.shields.io/badge/iOS-v13+-pink?style=flat-square)
-![Mirror Repository](https://img.shields.io/badge/Repository_Type-Mirror-pink?style=flat-square)
-![Swift Package Manager](https://img.shields.io/badge/Swift_Package_Manager-Compatible-orange?style=flat-square)
+![Mirror Repository](https://img.shields.io/badge/Mirror-Repository-pink?style=flat-square)
+![Swift Package Manager](https://img.shields.io/badge/Swift_Package_Manager-Compatible-red?style=flat-square)
 [![Linkedin](https://img.shields.io/badge/Linkedin-@CoffeeIT-blue.svg?style=flat-square)](https://linkedin.com/company/coffee-it)
 [![Facebook](https://img.shields.io/badge/Facebook-CoffeeITNL-blue.svg?style=flat-square)](https://www.facebook.com/CoffeeITNL/)
 [![Instagram](https://img.shields.io/badge/Instagram-CoffeeITNL-blue.svg?style=flat-square)](https://www.instagram.com/coffeeitnl/)
