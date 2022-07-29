@@ -131,15 +131,11 @@ public var dividerStyle: CITPincodeDividerStyle
 ```
 
 ## Contact
-For questions, ideas or help you can reach us by email.  
-Coffee IT - contact@coffeeit.nl - [website](https://coffeeit.nl/)  
-Linkedin: [@CoffeeIT](https://nl.linkedin.com/company/coffee-it)  
-Facebook: [CoffeeITNL](https://nl-nl.facebook.com/CoffeeITNL/)  
-Instagram: [CoffeeITNL](https://www.instagram.com/coffeeitnl/)  
+If you have any questions, ideas or if you need help you can reach us at contact@coffeeit.nl.
 
 ## Maintainer
 
-Owned by Coffee IT.  
+Owned by Coffee IT.
 Actively maintained by Lex Brouwers.
 
 ## Changelog
