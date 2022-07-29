@@ -131,7 +131,7 @@ public var dividerStyle: CITPincodeDividerStyle
 ```
 
 ## Contact
-If you have any questions, ideas or if you need help you can reach us at contact@coffeeit.nl.
+For questions, ideas or help you can reach us by email at contact@coffeeit.nl.
 
 ## Maintainer
 
