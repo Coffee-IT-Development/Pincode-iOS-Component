@@ -1,11 +1,24 @@
-# CITPincode
+[![Coffee IT - Aroma CITPincode Component](https://coffeeit.nl/wp-content/uploads/2022/07/Aroma_Pincode_iOS.png)](https://coffeeit.nl/)
 
-A customisable pincode view.
+[![Swift](https://img.shields.io/badge/Swift-5.6-red?style=flat-square)](https://img.shields.io/badge/Swift-5.6-red?style=flat-square)
+[![iOS 13+](https://img.shields.io/badge/iOS-v13+-pink?style=flat-square)](https://img.shields.io/badge/iOS-v13+-pink?style=flat-square)
+[![Mirror Repository](https://img.shields.io/badge/Mirror-Repository-pink?style=flat-square)](https://img.shields.io/badge/Mirror-Repository-pink?style=flat-square)
+[![Swift Package Manager](https://img.shields.io/badge/Swift_Package_Manager-Compatible-red?style=flat-square)](https://img.shields.io/badge/Swift_Package_Manager-Compatible-red?style=flat-square)
+[![Linkedin](https://img.shields.io/badge/Linkedin-@CoffeeIT-blue.svg?style=flat-square)](https://linkedin.com/company/coffee-it)
+[![Facebook](https://img.shields.io/badge/Facebook-CoffeeITNL-blue.svg?style=flat-square)](https://www.facebook.com/CoffeeITNL/)
+[![Instagram](https://img.shields.io/badge/Instagram-CoffeeITNL-blue.svg?style=flat-square)](https://www.instagram.com/coffeeitnl/)
 
-## Overview
+The CITPincode package provides a customizable pincode view.
+It includes an optional resend code button with a built-in cooldown and an optional divider to be placed anywhere between the cells.
 
-The CITPincode package provides a customisable pincode view. 
-It comes with an optional resend code button with a built-in cooldown and an optional divider to be placed anywhere between the cells.
+## Installation
+
+### SwiftPM
+
+To install the Swift Package, go to Project > Package Dependencies > + > Search or Enter Package URL > Fill in:
+```
+https://github.com/Coffee-IT-Development/Pincode-iOS-Component/
+```
 
 ## Usage
 
@@ -97,7 +110,7 @@ public var cellCornerRadius: CGFloat
 /// The type of pincode, you can choose any UIKeyboardType, but the most common types are ".default" for a text keyboard and .numberPad for a numbers only keyboard.
 public var codeType: UIKeyboardType
 
-/// Optional config used to show a single divider somewhere between the pincode cells. Does not impact user input, and can be customised slightly.
+/// Optional config used to show a single divider somewhere between the pincode cells. Does not impact user input, and can be customized slightly.
 public var divider: CITPincodeDividerConfig
 
 /// Optional config used to show a resendButton, meant to resend an One Time Passcode on press and is automatically disabled for a given cooldown duration to limit usage.
@@ -117,8 +130,12 @@ public var resendButtonStyle: CITPincodeResendButtonStyle
 public var dividerStyle: CITPincodeDividerStyle
 ```
 
+## Contact
+For questions, ideas or help you can reach us by email at contact@coffeeit.nl.
+
 ## Maintainer
 
+Owned by Coffee IT.
 Actively maintained by Lex Brouwers.
 
 ## Changelog
@@ -135,3 +152,7 @@ Actively maintained by Lex Brouwers.
 #### 1.0.0
 
 - Setup CITPincodeView, add customization & documentation.
+
+## License
+
+Distributed under the MIT License. [See LICENSE](LICENSE.txt) for more information.
