@@ -10,7 +10,7 @@
 		8171244828941754003DDD8A /* CITPincodeExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8171244728941754003DDD8A /* CITPincodeExampleApp.swift */; };
 		8171244A28941754003DDD8A /* CITPincodeExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8171244928941754003DDD8A /* CITPincodeExampleView.swift */; };
 		8171244C28941755003DDD8A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8171244B28941755003DDD8A /* Assets.xcassets */; };
-		81712459289417D1003DDD8A /* CITPincode in Frameworks */ = {isa = PBXBuildFile; productRef = 81712458289417D1003DDD8A /* CITPincode */; };
+		817124632897D041003DDD8A /* CITPincode in Frameworks */ = {isa = PBXBuildFile; productRef = 817124622897D041003DDD8A /* CITPincode */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -18,7 +18,7 @@
 		8171244728941754003DDD8A /* CITPincodeExampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CITPincodeExampleApp.swift; sourceTree = "<group>"; };
 		8171244928941754003DDD8A /* CITPincodeExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CITPincodeExampleView.swift; sourceTree = "<group>"; };
 		8171244B28941755003DDD8A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		8171245628941795003DDD8A /* CITPincode */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = CITPincode; path = ..; sourceTree = "<group>"; };
+		8171245B2897CEA2003DDD8A /* CITPincode */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = CITPincode; path = ..; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -26,7 +26,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				81712459289417D1003DDD8A /* CITPincode in Frameworks */,
+				817124632897D041003DDD8A /* CITPincode in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -36,7 +36,7 @@
 		8171243B28941754003DDD8A = {
 			isa = PBXGroup;
 			children = (
-				8171245628941795003DDD8A /* CITPincode */,
+				8171245B2897CEA2003DDD8A /* CITPincode */,
 				8171244628941754003DDD8A /* CITPincodeExample */,
 				8171244528941754003DDD8A /* Products */,
 				81712457289417D1003DDD8A /* Frameworks */,
@@ -85,7 +85,7 @@
 			);
 			name = CITPincodeExample;
 			packageProductDependencies = (
-				81712458289417D1003DDD8A /* CITPincode */,
+				817124622897D041003DDD8A /* CITPincode */,
 			);
 			productName = CITPincodeExample;
 			productReference = 8171244428941754003DDD8A /* CITPincodeExample.app */;
@@ -345,7 +345,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		81712458289417D1003DDD8A /* CITPincode */ = {
+		817124622897D041003DDD8A /* CITPincode */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = CITPincode;
 		};
