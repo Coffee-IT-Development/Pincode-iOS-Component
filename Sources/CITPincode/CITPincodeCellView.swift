@@ -63,7 +63,7 @@ struct CITPincodeCellView: View {
         Text(text)
             .font(font)
             .foregroundColor(foregroundColor)
-            .frame(width: size.width, height: size.height)
+            .frame(idealWidth: size.width, maxWidth: size.width, idealHeight: size.height, maxHeight: size.height)
             .background(backgroundColor)
             .cornerRadius(cornerRadius)
             .overlay(
