@@ -12,6 +12,7 @@ public struct CITPincodeResendButton: View {
     private let config: CITPincodeConfig
     private let onResendCode: () -> Void
     
+    @State private var hasSentCodeOnInitBefore = false
     @StateObject private var cooldownTimer = CITPincodeCooldownTimer()
     
     private var style: CITPincodeResendButtonStyle {
@@ -34,6 +35,18 @@ public struct CITPincodeResendButton: View {
                 .opacity(isOnCooldown ? 0.5 : 1.0)
         }
         .disabled(isOnCooldown)
+        .onAppear {
+            resendCodeOnInit()
+        }
+    }
+    
+    private func resendCodeOnInit() {
+        guard !hasSentCodeOnInitBefore && config.triggerResendCodeOnInit else {
+            return
+        }
+        
+        hasSentCodeOnInitBefore = true
+        resendCode()
     }
     
     private func resendCode() {

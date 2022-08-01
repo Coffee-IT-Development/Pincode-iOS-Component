@@ -71,6 +71,10 @@ public struct CITPincodeConfig: Equatable {
     /// Optional config used to show a resendButton, meant to resend an One Time Passcode on press and is automatically disabled for a given cooldown duration to limit usage.
     public var resendButton: CITPincodeResendButtonConfig
     
+    /// If true, when the CITPincodeView appears for the first time, the resendButton will be put on cooldown and the onResendCode method will be called once. Defaults to false.
+    /// This can be used to send a code as soon as the user enters the page that contains the CITPincodeView as well as prevent the user from immediately requesting a new code.
+    public var triggerResendCodeOnInit: Bool
+    
     public init(
         codeLength: Int = 6,
         font: Font = .system(size: 16),
@@ -90,7 +94,8 @@ public struct CITPincodeConfig: Equatable {
         cellCornerRadius: CGFloat = 8,
         codeType: UIKeyboardType = .default,
         divider: CITPincodeDividerConfig = .none,
-        resendButton: CITPincodeResendButtonConfig = .none
+        resendButton: CITPincodeResendButtonConfig = .none,
+        triggerResendCodeOnInit: Bool = false
     ) {
         self.codeLength = codeLength
         self.font = font
@@ -111,6 +116,7 @@ public struct CITPincodeConfig: Equatable {
         self.codeType = codeType
         self.divider = divider
         self.resendButton = resendButton
+        self.triggerResendCodeOnInit = triggerResendCodeOnInit
     }
 }
 
