@@ -13,6 +13,9 @@
 		81A66572289966EA00E619A1 /* CITPincode in Frameworks */ = {isa = PBXBuildFile; productRef = 81A66571289966EA00E619A1 /* CITPincode */; };
 		81C3E6B728990F09001791E6 /* CITPincodeCustomizeOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C3E6B628990F09001791E6 /* CITPincodeCustomizeOptions.swift */; };
 		81C3E6B928991223001791E6 /* CITPincodeLabeledSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C3E6B828991223001791E6 /* CITPincodeLabeledSlider.swift */; };
+		81C8566328997CA3007E229B /* CITPincodeLabeledIntPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C8566228997CA3007E229B /* CITPincodeLabeledIntPicker.swift */; };
+		81C8566528997CC2007E229B /* CITPincodeLabeledTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C8566428997CC2007E229B /* CITPincodeLabeledTextField.swift */; };
+		81C8566728997D98007E229B /* CITPincodeLabeledView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C8566628997D98007E229B /* CITPincodeLabeledView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +26,9 @@
 		81A66570289963DC00E619A1 /* CITPincode */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = CITPincode; path = ..; sourceTree = "<group>"; };
 		81C3E6B628990F09001791E6 /* CITPincodeCustomizeOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CITPincodeCustomizeOptions.swift; sourceTree = "<group>"; };
 		81C3E6B828991223001791E6 /* CITPincodeLabeledSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CITPincodeLabeledSlider.swift; sourceTree = "<group>"; };
+		81C8566228997CA3007E229B /* CITPincodeLabeledIntPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CITPincodeLabeledIntPicker.swift; sourceTree = "<group>"; };
+		81C8566428997CC2007E229B /* CITPincodeLabeledTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CITPincodeLabeledTextField.swift; sourceTree = "<group>"; };
+		81C8566628997D98007E229B /* CITPincodeLabeledView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CITPincodeLabeledView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,8 +64,7 @@
 		8171244628941754003DDD8A /* CITPincodeExample */ = {
 			isa = PBXGroup;
 			children = (
-				81C3E6B828991223001791E6 /* CITPincodeLabeledSlider.swift */,
-				81C3E6B628990F09001791E6 /* CITPincodeCustomizeOptions.swift */,
+				81C8565F28997C70007E229B /* Customize */,
 				8171244728941754003DDD8A /* CITPincodeExampleApp.swift */,
 				8171244928941754003DDD8A /* CITPincodeExampleView.swift */,
 				8171244B28941755003DDD8A /* Assets.xcassets */,
@@ -72,6 +77,18 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		81C8565F28997C70007E229B /* Customize */ = {
+			isa = PBXGroup;
+			children = (
+				81C3E6B628990F09001791E6 /* CITPincodeCustomizeOptions.swift */,
+				81C8566228997CA3007E229B /* CITPincodeLabeledIntPicker.swift */,
+				81C3E6B828991223001791E6 /* CITPincodeLabeledSlider.swift */,
+				81C8566428997CC2007E229B /* CITPincodeLabeledTextField.swift */,
+				81C8566628997D98007E229B /* CITPincodeLabeledView.swift */,
+			);
+			path = Customize;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -148,10 +165,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81C8566528997CC2007E229B /* CITPincodeLabeledTextField.swift in Sources */,
 				8171244A28941754003DDD8A /* CITPincodeExampleView.swift in Sources */,
 				81C3E6B728990F09001791E6 /* CITPincodeCustomizeOptions.swift in Sources */,
 				81C3E6B928991223001791E6 /* CITPincodeLabeledSlider.swift in Sources */,
+				81C8566328997CA3007E229B /* CITPincodeLabeledIntPicker.swift in Sources */,
 				8171244828941754003DDD8A /* CITPincodeExampleApp.swift in Sources */,
+				81C8566728997D98007E229B /* CITPincodeLabeledView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

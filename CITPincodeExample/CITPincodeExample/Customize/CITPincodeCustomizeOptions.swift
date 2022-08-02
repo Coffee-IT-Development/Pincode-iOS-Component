@@ -52,8 +52,8 @@ struct CITPincodeCustomizeOptions: View {
     
     var codeFormat: some View {
         VStack {
-            labeledIntPicker(label: "Code length:", range: 1...6, value: $config.codeLength)
-            labeledIntPicker(label: "Divider after index:", range: 0...5, value: $dividerIndex)
+            CITPincodeLabeledIntPicker(label: "Code length:", range: 1...6, value: $config.codeLength)
+            CITPincodeLabeledIntPicker(label: "Divider after index:", range: 0...5, value: $dividerIndex)
         }
         .onChange(of: dividerIndex) { newValue in
             config.divider = dividerIndex > 0 ? .plain(afterIndex: dividerIndex - 1) : .none
@@ -69,14 +69,14 @@ struct CITPincodeCustomizeOptions: View {
     }
     
     var placeholder: some View {
-        labeledTextField(label: "Placeholder:", placeholder: "Enter placeholder here..", value: $config.placeholder, keyboardType: config.codeType)
+        CITPincodeLabeledTextField(label: "Placeholder:", placeholder: "Enter placeholder here..", value: $config.placeholder, keyboardType: config.codeType)
             .onChange(of: config.placeholder) { newValue in
                 config.placeholder = String(newValue.prefix(config.codeLength))
             }
     }
     
     var errorTextfield: some View {
-        labeledTextField(label: "Error:", placeholder: "Enter error here..", value: $errorValue)
+        CITPincodeLabeledTextField(label: "Error:", placeholder: "Enter error here..", value: $errorValue)
             .onChange(of: config.placeholder) { newValue in
                 config.placeholder = String(newValue.prefix(config.codeLength))
             }
@@ -102,7 +102,7 @@ struct CITPincodeCustomizeOptions: View {
             Text("Always show selected border:")
         }
         
-        labeledView(label: "Code type:") {
+        CITPincodeLabeledView(label: "Code type:") {
             Picker("Select code type", selection: $config.codeType) {
                 Text("Number").tag(UIKeyboardType.numberPad)
                 Text("Text").tag(UIKeyboardType.default)
@@ -113,7 +113,7 @@ struct CITPincodeCustomizeOptions: View {
     
     var resendButton: some View {
         VStack {
-            labeledView(label: "Resend button:") {
+            CITPincodeLabeledView(label: "Resend button:") {
                 Picker("Resend button:", selection: $showResendButton) {
                     Text("Yes").tag(true)
                     Text("No").tag(false)
@@ -130,9 +130,9 @@ struct CITPincodeCustomizeOptions: View {
             
             if showResendButton {
                 VStack {
-                    labeledTextField(label: "Text:", placeholder: "Enter text here..", value: $resendText)
+                    CITPincodeLabeledTextField(label: "Text:", placeholder: "Enter text here..", value: $resendText)
                     CITPincodeLabeledSlider(label: "Cooldown:", range: 0...100, value: $resendCooldown)
-                    labeledView(label: "Alignment:") {
+                    CITPincodeLabeledView(label: "Alignment:") {
                         Picker("Resend button alignment:", selection: $resendAlignLeading) {
                             Text("Leading").tag(true)
                             Text("Trailing").tag(false)
@@ -170,34 +170,5 @@ struct CITPincodeCustomizeOptions: View {
         let cooldown: CITPincodeResendCodeCooldown = resendCooldown > 0 ? .duration(value: resendCooldown) : .none
         let alignment: HorizontalAlignment = resendAlignLeading ? .leading : .trailing
         config.resendButton = .plain(text: resendText, cooldown: cooldown, alignment: alignment)
-    }
-    
-    private func labeledView<TrailingView: View>(label: String, @ViewBuilder build: @escaping () -> TrailingView) -> some View {
-        HStack {
-            Text(label)
-            Spacer()
-            build()
-        }
-    }
-    
-    private func labeledTextField(label: String, placeholder: String, value: Binding<String>, keyboardType: UIKeyboardType = .default) -> some View {
-        HStack {
-            Text(label)
-            Spacer()
-            TextField(placeholder, text: value)
-                .keyboardType(keyboardType)
-        }
-    }
-    
-    private func labeledIntPicker(label: String, range: ClosedRange<Int>, value: Binding<Int>) -> some View {
-        HStack {
-            Text(label)
-            Spacer()
-            Picker(label, selection: value) {
-                ForEach(range, id: \.self) {
-                    Text(String($0)).tag($0)
-                }
-            }
-        }
     }
 }
