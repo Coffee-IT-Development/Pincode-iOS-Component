@@ -1,8 +1,9 @@
 //
-//  File.swift
+//  CITPincodeDividerStyle.swift
 //  
 //
 //  Created by Lex Brouwers on 24/06/2022.
+//  Copyright © 2022 Coffee IT. All rights reserved.
 //
 
 import Foundation
