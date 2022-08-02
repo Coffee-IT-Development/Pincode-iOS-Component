@@ -8,7 +8,6 @@
 
 import SwiftUI
 import CITPincode
-import Introspect
 
 struct CITPincodeCustomizeOptions: View {
     @Binding var config: CITPincodeConfig
@@ -187,9 +186,6 @@ struct CITPincodeCustomizeOptions: View {
             Spacer()
             TextField(placeholder, text: value)
                 .keyboardType(keyboardType)
-                .introspectTextField { textField in
-                    textField.addDoneButton(config.keyboardDoneButtonText)
-                }
         }
     }
     
