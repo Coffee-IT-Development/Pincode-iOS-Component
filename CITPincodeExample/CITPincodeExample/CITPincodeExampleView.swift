@@ -42,11 +42,13 @@ struct CITPincodeExampleView: View {
     }
     
     private func onEnteredCode(_ code: String) {
-        
+        // Called when a full-size code has been entered, e.g. 6 out of 6 characters.
     }
     
     private func onResendCode() {
-        
+        // Called on init if triggerResendCodeOnInit is true and when the Resend Code button is pressed.
+        // Add code here to (re)send an OTP to the user's phone.
+        // Make sure to include "code" somewhere in the message for auto-fill OTP to work.
     }
 }
 
