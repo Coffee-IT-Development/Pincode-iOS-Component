@@ -3,10 +3,10 @@
 //  
 //
 //  Created by Lex Brouwers on 03/06/2022.
+//  Copyright © 2022 Coffee IT. All rights reserved.
 //
 
 import SwiftUI
-import SwiftUIX // Can be removed when we only support iOS 14+
 
 /// The CITPincodeView provides a simple One Time Passcode interface with deep customization through its config.
 /// It includes an optional resend code button with built-in cooldown logic, an error label that's dynamically shown and error color tints, callbacks for when a code has been entered and when the resend code button is pressed and long press to paste logic that filters hyphens and denies codes of the wrong type, e.g. pasting letters into a numeric code.

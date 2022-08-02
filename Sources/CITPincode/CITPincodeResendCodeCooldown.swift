@@ -3,6 +3,7 @@
 //  
 //
 //  Created by Lex Brouwers on 10/06/2022.
+//  Copyright © 2022 Coffee IT. All rights reserved.
 //
 
 import UIKit
