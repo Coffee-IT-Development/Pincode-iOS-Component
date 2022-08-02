@@ -37,8 +37,9 @@ struct CITPincodeExampleView: View {
                 error: $error
             )
         }
-        .ignoresSafeArea(.container, edges: .bottom)
+        .padding(.top, 40)
         .background(customBackgroundColor)
+        .ignoresSafeArea(.container, edges: [.bottom, .top])
     }
     
     private func onEnteredCode(_ code: String) {

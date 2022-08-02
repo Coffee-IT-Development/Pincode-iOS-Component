@@ -54,12 +54,13 @@ struct CITPincodeCustomizeOptions: View {
         }
     }
     
-    @ViewBuilder
     var cellVisuals: some View {
-        CITPincodeLabeledSlider(label: "Cell width:", range: 20...100, value: $config.cellSize.width)
-        CITPincodeLabeledSlider(label: "Cell height:", range: 20...100, value: $config.cellSize.height)
-        CITPincodeLabeledSlider(label: "Cell corner radius:", range: 0...max(config.cellSize.width, config.cellSize.height), value: $config.cellCornerRadius)
-        CITPincodeLabeledSlider(label: "Cell border width:", range: 1...10, value: $config.selectedBorderWidth)
+        Group {
+            CITPincodeLabeledSlider(label: "Cell width:", range: 20...100, value: $config.cellSize.width)
+            CITPincodeLabeledSlider(label: "Cell height:", range: 20...100, value: $config.cellSize.height)
+            CITPincodeLabeledSlider(label: "Cell corner radius:", range: 0...max(config.cellSize.width, config.cellSize.height), value: $config.cellCornerRadius)
+            CITPincodeLabeledSlider(label: "Cell border width:", range: 1...10, value: $config.selectedBorderWidth)
+        }
     }
     
     var placeholder: some View {
@@ -79,29 +80,31 @@ struct CITPincodeCustomizeOptions: View {
             }
     }
     
-    @ViewBuilder
     var colors: some View {
-        ColorPicker("Full view background color:", selection: $customBackgroundColor)
-        ColorPicker("Text color:", selection: $config.textColor)
-        ColorPicker("Error color:", selection: $config.errorColor)
-        ColorPicker("Placeholder color:", selection: $config.placeholderColor)
-        ColorPicker("Cell background color:", selection: $config.backgroundColor)
-        ColorPicker("Selected cell background color:", selection: $config.selectedBackgroundColor)
-        ColorPicker("Selected cell border color:", selection: $config.selectedBorderColor)
+        Group {
+            ColorPicker("Full view background color:", selection: $customBackgroundColor)
+            ColorPicker("Text color:", selection: $config.textColor)
+            ColorPicker("Error color:", selection: $config.errorColor)
+            ColorPicker("Placeholder color:", selection: $config.placeholderColor)
+            ColorPicker("Cell background color:", selection: $config.backgroundColor)
+            ColorPicker("Selected cell background color:", selection: $config.selectedBackgroundColor)
+            ColorPicker("Selected cell border color:", selection: $config.selectedBorderColor)
+        }
     }
     
-    @ViewBuilder
     var extras: some View {
-        Toggle(isOn: $config.alwaysShowSelectedBorder) {
-            Text("Always show selected border:")
-        }
-        
-        CITPincodeLabeledView(label: "Code type:") {
-            Picker("Select code type", selection: $config.codeType) {
-                Text("Number").tag(UIKeyboardType.numberPad)
-                Text("Text").tag(UIKeyboardType.default)
+        Group {
+            Toggle(isOn: $config.alwaysShowSelectedBorder) {
+                Text("Always show selected border:")
             }
-            .pickerStyle(.segmented)
+            
+            CITPincodeLabeledView(label: "Code type:") {
+                Picker("Select code type", selection: $config.codeType) {
+                    Text("Number").tag(UIKeyboardType.numberPad)
+                    Text("Text").tag(UIKeyboardType.default)
+                }
+                .pickerStyle(.segmented)
+            }
         }
     }
     
