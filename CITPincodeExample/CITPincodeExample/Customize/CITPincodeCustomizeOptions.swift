@@ -100,8 +100,11 @@ struct CITPincodeCustomizeOptions: View {
             
             CITPincodeLabeledView(label: "Code type:") {
                 Picker("Select code type", selection: $config.codeType) {
-                    Text("Number").tag(UIKeyboardType.numberPad)
-                    Text("Text").tag(UIKeyboardType.default)
+                    Text("Number")
+                        .tag(UIKeyboardType.numberPad)
+                    
+                    Text("Text")
+                        .tag(UIKeyboardType.default)
                 }
                 .pickerStyle(.segmented)
             }
@@ -112,8 +115,11 @@ struct CITPincodeCustomizeOptions: View {
         VStack {
             CITPincodeLabeledView(label: "Resend button:") {
                 Picker("Resend button:", selection: $showResendButton) {
-                    Text("Yes").tag(true)
-                    Text("No").tag(false)
+                    Text("Yes")
+                        .tag(true)
+                    
+                    Text("No")
+                        .tag(false)
                 }
                 .pickerStyle(.segmented)
             }
@@ -131,8 +137,11 @@ struct CITPincodeCustomizeOptions: View {
                     CITPincodeLabeledSlider(label: "Cooldown:", range: 0...100, value: $resendCooldown)
                     CITPincodeLabeledView(label: "Alignment:") {
                         Picker("Resend button alignment:", selection: $resendAlignLeading) {
-                            Text("Leading").tag(true)
-                            Text("Trailing").tag(false)
+                            Text("Leading")
+                                .tag(true)
+                            
+                            Text("Trailing")
+                                .tag(false)
                         }
                         .pickerStyle(.segmented)
                     }
