@@ -17,7 +17,7 @@ It includes an optional resend code button with a built-in cooldown and an optio
 
 To install the Swift Package, go to Project > Package Dependencies > + > Search or Enter Package URL > Fill in:
 ```
-https://github.com/Coffee-IT-Development/Pincode-iOS-Component/
+https://github.com/Coffee-IT-Development/Aroma-iOS-CITPincode-Component
 ```
 
 ## Usage

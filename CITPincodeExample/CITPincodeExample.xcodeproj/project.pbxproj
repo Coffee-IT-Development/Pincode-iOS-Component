@@ -10,10 +10,9 @@
 		8171244828941754003DDD8A /* CITPincodeExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8171244728941754003DDD8A /* CITPincodeExampleApp.swift */; };
 		8171244A28941754003DDD8A /* CITPincodeExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8171244928941754003DDD8A /* CITPincodeExampleView.swift */; };
 		8171244C28941755003DDD8A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8171244B28941755003DDD8A /* Assets.xcassets */; };
-		817124632897D041003DDD8A /* CITPincode in Frameworks */ = {isa = PBXBuildFile; productRef = 817124622897D041003DDD8A /* CITPincode */; };
+		81A66572289966EA00E619A1 /* CITPincode in Frameworks */ = {isa = PBXBuildFile; productRef = 81A66571289966EA00E619A1 /* CITPincode */; };
 		81C3E6B728990F09001791E6 /* CITPincodeCustomizeOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C3E6B628990F09001791E6 /* CITPincodeCustomizeOptions.swift */; };
 		81C3E6B928991223001791E6 /* CITPincodeLabeledSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C3E6B828991223001791E6 /* CITPincodeLabeledSlider.swift */; };
-		81C3E6BC28991368001791E6 /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = 81C3E6BB28991368001791E6 /* Introspect */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,7 +20,7 @@
 		8171244728941754003DDD8A /* CITPincodeExampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CITPincodeExampleApp.swift; sourceTree = "<group>"; };
 		8171244928941754003DDD8A /* CITPincodeExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CITPincodeExampleView.swift; sourceTree = "<group>"; };
 		8171244B28941755003DDD8A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		8171245B2897CEA2003DDD8A /* CITPincode */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = CITPincode; path = ..; sourceTree = "<group>"; };
+		81A66570289963DC00E619A1 /* CITPincode */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = CITPincode; path = ..; sourceTree = "<group>"; };
 		81C3E6B628990F09001791E6 /* CITPincodeCustomizeOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CITPincodeCustomizeOptions.swift; sourceTree = "<group>"; };
 		81C3E6B828991223001791E6 /* CITPincodeLabeledSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CITPincodeLabeledSlider.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -31,8 +30,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				817124632897D041003DDD8A /* CITPincode in Frameworks */,
-				81C3E6BC28991368001791E6 /* Introspect in Frameworks */,
+				81A66572289966EA00E619A1 /* CITPincode in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,7 +40,7 @@
 		8171243B28941754003DDD8A = {
 			isa = PBXGroup;
 			children = (
-				8171245B2897CEA2003DDD8A /* CITPincode */,
+				81A66570289963DC00E619A1 /* CITPincode */,
 				8171244628941754003DDD8A /* CITPincodeExample */,
 				8171244528941754003DDD8A /* Products */,
 				81712457289417D1003DDD8A /* Frameworks */,
@@ -93,8 +91,7 @@
 			);
 			name = CITPincodeExample;
 			packageProductDependencies = (
-				817124622897D041003DDD8A /* CITPincode */,
-				81C3E6BB28991368001791E6 /* Introspect */,
+				81A66571289966EA00E619A1 /* CITPincode */,
 			);
 			productName = CITPincodeExample;
 			productReference = 8171244428941754003DDD8A /* CITPincodeExample.app */;
@@ -125,7 +122,6 @@
 			);
 			mainGroup = 8171243B28941754003DDD8A;
 			packageReferences = (
-				81C3E6BA28991368001791E6 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
 			);
 			productRefGroup = 8171244528941754003DDD8A /* Products */;
 			projectDirPath = "";
@@ -282,7 +278,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = CITPincode;
+				INFOPLIST_KEY_CFBundleDisplayName = CITPincodeExample;
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -315,7 +311,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = CITPincode;
+				INFOPLIST_KEY_CFBundleDisplayName = CITPincodeExample;
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -360,26 +356,10 @@
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCRemoteSwiftPackageReference section */
-		81C3E6BA28991368001791E6 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/siteline/SwiftUI-Introspect";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
 /* Begin XCSwiftPackageProductDependency section */
-		817124622897D041003DDD8A /* CITPincode */ = {
+		81A66571289966EA00E619A1 /* CITPincode */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = CITPincode;
-		};
-		81C3E6BB28991368001791E6 /* Introspect */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 81C3E6BA28991368001791E6 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
-			productName = Introspect;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
