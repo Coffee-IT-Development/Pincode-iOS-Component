@@ -22,9 +22,6 @@ struct CITPincodeCustomizeOptions: View {
     @State private var resendAlignLeading = true
     @State private var errorValue = ""
     
-    private let optionsBackground: UIColor = #colorLiteral(red: 0.9735663533, green: 0.9979868531, blue: 0.9770494103, alpha: 1)
-    private let coffeeItColor: UIColor = #colorLiteral(red: 0.3045416772, green: 0.4229111373, blue: 0.8595631719, alpha: 1)
-    
     var body: some View {
         ScrollView {
             VStack {
@@ -39,15 +36,12 @@ struct CITPincodeCustomizeOptions: View {
             .padding(.horizontal)
             .padding(.bottom)
         }
-        .foregroundColor(Color(coffeeItColor))
+        .foregroundColor(.coffeeItColor)
         .padding(20)
         .padding(.bottom, 20)
         .background(Color.white)
         .cornerRadius(20)
         .padding(.bottom, -20)
-        .onAppear {
-            setPreferredControlColors()
-        }
     }
     
     var codeFormat: some View {
@@ -152,18 +146,6 @@ struct CITPincodeCustomizeOptions: View {
                 }
             }
         }
-    }
-    
-    private func setPreferredControlColors() {
-        UISegmentedControl.appearance().selectedSegmentTintColor = coffeeItColor
-        UISegmentedControl.appearance().backgroundColor = .systemBackground
-        UISegmentedControl.appearance().setTitleTextAttributes([
-            .foregroundColor: coffeeItColor
-        ], for: .normal)
-        
-        UISegmentedControl.appearance().setTitleTextAttributes([
-            .foregroundColor: UIColor.white
-        ], for: .selected)
     }
     
     private func updateResendButton() {
