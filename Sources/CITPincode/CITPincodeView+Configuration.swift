@@ -73,12 +73,8 @@ extension CITPincodeView {
         
         /// Optional config used to show a resendButton, meant to resend an One Time Passcode on press and is automatically disabled for a given cooldown duration to limit usage.
         public var resendButton: CITPincodeResendButtonConfig = .none
-        
-        /// Returns the style that configures an optional resendButton that is meant to resend an One Time Passcode on press.
-        /// This button will be disabled for the given cooldown if any and automatically re-enable itself once the cooldown duration has passed.
-        /// - Use `.custom` to set `text, font, textColor, backgroundColor, contentInsets, cornerRadius, cooldown, alignment`.
-        /// - Use `.plain` to set `text, font, cooldown, alignment` and use default values for the other fields.
-        /// - Use `.none` when no resend button should be shown.
+
+        /// Returns the configured resendButtonStyle, used to display the resendButton if present.
         public var resendButtonStyle: CITPincodeResendButtonStyle {
             switch resendButton {
             case let .custom(style):
@@ -97,10 +93,7 @@ extension CITPincodeView {
             }
         }
         
-        /// The style of a shown divider if any.
-        /// - Use `.custom` to set `afterIndex, color, size & cornerRadius`.
-        /// - Use `.plain` to set `afterIndex` and use default values for the other fields.
-        /// - Use `.none` when no divider should be shown.
+        /// Returns the configured dividerStyle, used to display the divider if present.
         public var dividerStyle: CITPincodeDividerStyle {
             switch divider {
             case let .custom(style):
