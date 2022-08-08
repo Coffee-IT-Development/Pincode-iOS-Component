@@ -18,7 +18,10 @@ public class CITPincodeCooldownTimer: ObservableObject {
     
     public func restartTimer() {
         cancelTimer()
-        timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+        timer = Timer
+            .publish(every: 1, on: .main, in: .common)
+            .autoconnect()
+        
         timer?.sink { [self] _ in
             if secondsRemaining > 0 {
                 secondsRemaining -= 1
