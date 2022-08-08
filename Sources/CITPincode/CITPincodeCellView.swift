@@ -35,18 +35,18 @@ struct CITPincodeCellView: View {
         if hasCharacter {
             return hasError ? config.errorColor : config.textColor
         } else if hasPlaceholder {
-            return config.placeholderColor
+            return config.placeholderColor ?? config.selectedBorderColor ?? config.textColor
         } else {
             return config.textColor
         }
     }
     
     private var backgroundColor: Color {
-        isSelected ? config.selectedBackgroundColor : config.backgroundColor
+        isSelected ? config.selectedBackgroundColor ?? config.backgroundColor : config.backgroundColor
     }
     
     private var selectedBorderColor: Color {
-        hasError ? config.errorColor : config.selectedBorderColor
+        hasError ? config.errorColor : config.selectedBorderColor ?? config.backgroundColor
     }
     
     private var cornerRadius: CGFloat {
