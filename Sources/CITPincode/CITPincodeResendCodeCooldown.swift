@@ -13,7 +13,7 @@ public enum CITPincodeResendCodeCooldown: Equatable {
     case none
     case duration(value: TimeInterval)
     
-    var time: CGFloat {
+    var duration: CGFloat {
         switch self {
         case let .duration(value):
             return abs(value)

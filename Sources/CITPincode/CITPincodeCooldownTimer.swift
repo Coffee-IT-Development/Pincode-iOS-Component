@@ -10,7 +10,7 @@ import Combine
 import SwiftUI
 
 public class CITPincodeCooldownTimer: ObservableObject {
-    @Published var current: CGFloat = 0
+    @Published var secondsRemaining: TimeInterval = 0
     @Published var timer: Publishers.Autoconnect<Timer.TimerPublisher>?
     private var subscriptions: [AnyCancellable] = []
     
@@ -20,8 +20,8 @@ public class CITPincodeCooldownTimer: ObservableObject {
         cancelTimer()
         timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
         timer?.sink { [self] _ in
-            if current > 0 {
-                current -= 1
+            if secondsRemaining > 0 {
+                secondsRemaining -= 1
             } else {
                 cancelTimer()
             }
