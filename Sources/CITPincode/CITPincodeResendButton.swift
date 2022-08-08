@@ -19,6 +19,28 @@ public struct CITPincodeResendButton: View {
         config.resendButtonStyle
     }
     
+    private var resendButtonText: String {
+        switch style.cooldown {
+        case .duration(_):
+            if isOnCooldown {
+                return "\(style.text) \(timeString)"
+            } else {
+                return style.text
+            }
+        default:
+            return style.text
+        }
+    }
+    
+    private var timeString: String {
+        let value = min(cooldownTimer.secondsRemaining, style.cooldown.duration)
+        return String(format: "(%.0f)", value)
+    }
+    
+    private var isOnCooldown: Bool {
+        cooldownTimer.secondsRemaining > 0
+    }
+    
     public init(config: CITPincodeView.Configuration, onResendCode: @escaping () -> Void) {
         self.config = config
         self.onResendCode = onResendCode
@@ -41,30 +63,6 @@ public struct CITPincodeResendButton: View {
         cooldownTimer.secondsRemaining = style.cooldown.duration
         cooldownTimer.restartTimer()
         onResendCode()
-    }
-}
-
-extension CITPincodeResendButton {
-    var resendButtonText: String {
-        switch style.cooldown {
-        case .duration(_):
-            if isOnCooldown {
-                return "\(style.text) \(timeString)"
-            } else {
-                return style.text
-            }
-        default:
-            return style.text
-        }
-    }
-    
-    var timeString: String {
-        let value = min(cooldownTimer.secondsRemaining, style.cooldown.duration)
-        return String(format: "(%.0f)", value)
-    }
-    
-    var isOnCooldown: Bool {
-        cooldownTimer.secondsRemaining > 0
     }
 }
 
