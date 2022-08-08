@@ -10,7 +10,7 @@ import Combine
 import SwiftUI
 
 public struct CITPincodeResendButton: View {
-    private let config: CITPincodeConfig
+    private let config: CITPincodeView.Configuration
     private let onResendCode: () -> Void
     
     @StateObject private var cooldownTimer = CITPincodeCooldownTimer()
@@ -19,7 +19,7 @@ public struct CITPincodeResendButton: View {
         config.resendButtonStyle
     }
     
-    public init(config: CITPincodeConfig, onResendCode: @escaping () -> Void) {
+    public init(config: CITPincodeView.Configuration, onResendCode: @escaping () -> Void) {
         self.config = config
         self.onResendCode = onResendCode
     }

@@ -9,9 +9,9 @@
 import SwiftUI
 
 public struct CITPincodeDivider: View {
-    private let config: CITPincodeConfig
+    private let config: CITPincodeView.Configuration
     
-    public init(config: CITPincodeConfig) {
+    public init(config: CITPincodeView.Configuration) {
         self.config = config
     }
     

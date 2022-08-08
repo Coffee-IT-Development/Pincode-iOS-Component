@@ -12,7 +12,7 @@ import CITPincode
 struct CITPincodeExampleView: View {
     @State private var code = ""
     @State private var error: String?
-    @State private var customConfig: CITPincodeConfig = .example
+    @State private var customConfig: CITPincodeView.Configuration = .example
     @State private var customBackgroundColor = Color(CITPincodeExampleView.defaultBackgroundColor)
     private static let defaultBackgroundColor = #colorLiteral(red: 0.1906174421, green: 0.1514734626, blue: 0.2413256764, alpha: 1)
     

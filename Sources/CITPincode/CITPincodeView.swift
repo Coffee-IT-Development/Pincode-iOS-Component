@@ -14,7 +14,7 @@ public struct CITPincodeView: View {
     @Binding var code: String
     @Binding var error: String?
     
-    private let config: CITPincodeConfig
+    private let config: CITPincodeView.Configuration
     private let onEnteredCode: (String) -> Void
     private let onResendCode: () -> Void
     
@@ -36,7 +36,7 @@ public struct CITPincodeView: View {
     public init(
         code: Binding<String>,
         error: Binding<String?> = .constant(nil),
-        config: CITPincodeConfig,
+        config: CITPincodeView.Configuration,
         onEnteredCode: @escaping (String) -> Void,
         onResendCode: @escaping () -> Void
     ) {

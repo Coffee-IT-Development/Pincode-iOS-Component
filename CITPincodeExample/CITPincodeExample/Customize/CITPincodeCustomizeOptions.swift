@@ -10,7 +10,7 @@ import SwiftUI
 import CITPincode
 
 struct CITPincodeCustomizeOptions: View {
-    @Binding var config: CITPincodeConfig
+    @Binding var config: CITPincodeView.Configuration
     @Binding var customBackgroundColor: Color
     @Binding var error: String?
     

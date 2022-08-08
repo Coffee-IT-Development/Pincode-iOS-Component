@@ -10,10 +10,10 @@ import SwiftUI
 
 public struct CITPincodeTextField: UIViewRepresentable {
     @Binding var text: String
-    var config: CITPincodeConfig
+    var config: CITPincodeView.Configuration
     var setup: (CITPincodePasteOnlyTextField) -> Void
     
-    public init(text: Binding<String>, config: CITPincodeConfig, setup: @escaping (CITPincodePasteOnlyTextField) -> Void) {
+    public init(text: Binding<String>, config: CITPincodeView.Configuration, setup: @escaping (CITPincodePasteOnlyTextField) -> Void) {
         self._text = text
         self.config = config
         self.setup = setup

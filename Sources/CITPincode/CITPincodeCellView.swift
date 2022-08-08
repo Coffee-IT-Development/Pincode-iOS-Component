@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct CITPincodeCellView: View {
-    let config: CITPincodeConfig
+    let config: CITPincodeView.Configuration
     let character: Character?
     let placeholder: Character?
     let isSelected: Bool
