@@ -9,9 +9,13 @@
 import UIKit
 
 extension UITextField {
-    public func addDoneButton(_ doneText: String) {
+    
+    /// Adds a done button to the UITextField so the user may close it at any time.
+    /// A text-based textfield has a built-in return button, however a numberpad keyboard does not.
+    /// - Parameter doneText: Button text to be displayed, e.g. "Done".
+    func addDoneButton(_ doneText: String) {
         let doneToolbar: UIToolbar = UIToolbar(
-            frame: CGRect.init(
+            frame: CGRect(
                 x: 0,
                 y: 0,
                 width: UIScreen.main.bounds.width,
@@ -27,11 +31,11 @@ extension UITextField {
         doneToolbar.items = items
         doneToolbar.sizeToFit()
         
-        self.inputAccessoryView = doneToolbar
+        inputAccessoryView = doneToolbar
     }
     
     @objc
     private func onDonePressed() {
-        self.resignFirstResponder()
+        resignFirstResponder()
     }
 }
