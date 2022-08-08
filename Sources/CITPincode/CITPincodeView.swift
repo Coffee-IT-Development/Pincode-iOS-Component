@@ -115,14 +115,7 @@ public struct CITPincodeView: View {
         DispatchQueue.main.async {
             codeInputField = textField
             textField.addDoneButton(config.keyboardDoneButtonText)
-            setupEditMenu(for: textField)
             showKeyboardInitially()
-        }
-    }
-    
-    private func setupEditMenu(for textField: UITextField) {
-        if #available(iOS 16.0, *) {
-            CITEditMenuHelper.shared.setupPasteEditMenu(for: textField)
         }
     }
     
@@ -150,11 +143,7 @@ public struct CITPincodeView: View {
         }
         
         codeInputField.becomeFirstResponder()
-        if #available(iOS 16.0, *) {
-            CITEditMenuHelper.shared.showEditMenu(in: codeInputField.frame)
-        } else {
-            UIMenuController.shared.showMenu(from: codeInputField, rect: codeInputField.frame)
-        }
+        UIMenuController.shared.showMenu(from: codeInputField, rect: codeInputField.frame)
     }
     
     private func handleEnteredCode() {
