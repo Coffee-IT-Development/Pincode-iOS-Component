@@ -64,7 +64,7 @@ public struct CITPincodeView: View {
                     }
                 }
             }
-            .overlay(
+            .background(
                 GeometryReader { proxy in
                     CITPincodeTextField(
                         text: $code,
