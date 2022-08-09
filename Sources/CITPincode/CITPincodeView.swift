@@ -94,7 +94,7 @@ public struct CITPincodeView: View {
             if let error = error {
                 Text(error)
                     .foregroundColor(config.errorColor)
-                    .font(config.errorFont ?? config.font)
+                    .font(config.errorFont)
                     .padding(.vertical, 8)
                     .accessibility(label: Text(error))
             }

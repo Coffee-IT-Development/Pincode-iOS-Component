@@ -122,7 +122,7 @@ struct CITPincodeCustomizeOptions: View {
             
             ColorPicker(
                 "Placeholder color:",
-                selection: $config.placeholderColor.withFallback(fallback: .white)
+                selection: $config.placeholderColor
             )
             
             ColorPicker(
@@ -132,12 +132,12 @@ struct CITPincodeCustomizeOptions: View {
             
             ColorPicker(
                 "Selected cell background color:",
-                selection: $config.selectedBackgroundColor.withFallback(fallback: .white)
+                selection: $config.selectedBackgroundColor
             )
             
             ColorPicker(
                 "Selected cell border color:",
-                selection: $config.selectedBorderColor.withFallback(fallback: .white)
+                selection: $config.selectedBorderColor
             )
         }
     }
@@ -214,15 +214,5 @@ struct CITPincodeCustomizeOptions: View {
         let cooldown: CITPincodeResendCodeCooldown = resendCooldown > 0 ? .duration(value: resendCooldown) : .none
         let alignment: HorizontalAlignment = resendAlignLeading ? .leading : .trailing
         config.resendButton = .plain(text: resendText, cooldown: cooldown, alignment: alignment)
-    }
-}
-
-extension Binding where Value == Color? {
-    func withFallback(fallback: Color) -> Binding<Color> {
-        Binding<Color> {
-            self.wrappedValue ?? fallback
-        } set: { newColor in
-            self.wrappedValue = newColor
-        }
     }
 }
