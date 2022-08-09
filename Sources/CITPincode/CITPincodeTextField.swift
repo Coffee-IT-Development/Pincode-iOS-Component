@@ -9,6 +9,20 @@
 import SwiftUI
 
 public struct CITPincodeTextField: UIViewRepresentable {
+    public class Coordinator: NSObject, UITextFieldDelegate {
+        private let pincodeTextField: CITPincodeTextField
+
+        public init(_ pincodeTextField: CITPincodeTextField) {
+            self.pincodeTextField = pincodeTextField
+        }
+
+        public func textFieldDidChangeSelection(_ textField: UITextField) {
+            DispatchQueue.main.async {
+                self.pincodeTextField.text = textField.text ?? ""
+            }
+        }
+    }
+    
     @Binding var text: String
     var config: CITPincodeView.Configuration
     var setup: (CITPincodePasteOnlyTextField) -> Void
@@ -35,19 +49,5 @@ public struct CITPincodeTextField: UIViewRepresentable {
     
     public func makeCoordinator() -> Coordinator {
         Coordinator(self)
-    }
-    
-    public class Coordinator: NSObject, UITextFieldDelegate {
-        private let pincodeTextField: CITPincodeTextField
-
-        public init(_ pincodeTextField: CITPincodeTextField) {
-            self.pincodeTextField = pincodeTextField
-        }
-
-        public func textFieldDidChangeSelection(_ textField: UITextField) {
-            DispatchQueue.main.async {
-                self.pincodeTextField.text = textField.text ?? ""
-            }
-        }
     }
 }
