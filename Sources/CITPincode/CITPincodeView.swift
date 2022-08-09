@@ -50,16 +50,16 @@ public struct CITPincodeView: View {
     public var body: some View {
         VStack(alignment: config.resendButtonStyle.alignment) {
             HStack {
-                ForEach((0 ..< config.codeLength), id: \.self) { i in
+                ForEach(0 ..< config.codeLength, id: \.self) { index in
                     CITPincodeCellView(
                         config: config,
-                        character: character(for: i),
-                        placeholder: placeholder(for: i),
-                        isSelected: i == code.count,
+                        character: character(for: index),
+                        placeholder: placeholder(for: index),
+                        isSelected: index == code.count,
                         hasError: hasError
                     )
                     
-                    if config.dividerStyle.afterIndex == i {
+                    if config.dividerStyle.afterIndex == index {
                         CITPincodeDivider(config: config)
                     }
                 }
