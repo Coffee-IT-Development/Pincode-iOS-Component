@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct CITPincodeLabeledSlider<Value>: View where Value : BinaryFloatingPoint, Value.Stride : BinaryFloatingPoint {
+struct CITPincodeLabeledSlider<Value>: View where Value: BinaryFloatingPoint, Value.Stride: BinaryFloatingPoint {
     let label: String
     let range: ClosedRange<Value>
     let value: Binding<Value>
