@@ -21,12 +21,8 @@ public struct CITPincodeResendButton: View {
     
     private var resendButtonText: String {
         switch style.cooldown {
-        case .duration(_):
-            if isOnCooldown {
-                return "\(style.text) \(timeString)"
-            } else {
-                return style.text
-            }
+        case .duration:
+            return isOnCooldown ? "\(style.text) \(timeString)" : style.text
         default:
             return style.text
         }
