@@ -116,10 +116,6 @@ public var divider: CITPincodeDividerConfig
 /// Optional config used to show a resendButton, meant to resend an One Time Passcode on press and is automatically disabled for a given cooldown duration to limit usage.
 public var resendButton: CITPincodeResendButtonConfig
 
-/// If true, when the CITPincodeView appears for the first time, the resendButton will be put on cooldown and the onResendCode method will be called once. Defaults to false.
-/// This can be used to send a code as soon as the user enters the page that contains the CITPincodeView as well as prevent the user from immediately requesting a new code.
-public var triggerResendCodeOnInit: Bool
-
 /// Returns the style that configures an optional resendButton that is meant to resend an One Time Passcode on press.
 /// This button will be disabled for the given cooldown if any and automatically re-enable itself once the cooldown duration has passed.
 /// - Use `.custom` to set `text, font, textColor, backgroundColor, contentInsets, cornerRadius, cooldown, alignment`.
