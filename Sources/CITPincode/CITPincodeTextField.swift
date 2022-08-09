@@ -22,14 +22,14 @@ public struct CITPincodeTextField: UIViewRepresentable {
     public func makeUIView(context: Context) -> UITextField {
         let textField = CITPincodePasteOnlyTextField()
         setup(textField)
-        textField.keyboardType = config.codeType
+        textField.keyboardType = config.keyboardType
         textField.textContentType = .oneTimeCode
         textField.delegate = context.coordinator
         return textField
     }
 
     public func updateUIView(_ uiView: UITextField, context: Context) {
-        uiView.keyboardType = config.codeType
+        uiView.keyboardType = config.keyboardType
         uiView.text = text
     }
     

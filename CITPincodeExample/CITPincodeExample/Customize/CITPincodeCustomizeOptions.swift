@@ -86,7 +86,7 @@ struct CITPincodeCustomizeOptions: View {
             label: "Placeholder:",
             placeholder: "Enter placeholder here..",
             value: $config.placeholder,
-            keyboardType: config.codeType
+            keyboardType: config.keyboardType
         )
         .onChange(of: config.placeholder) { newValue in
             config.placeholder = String(newValue.prefix(config.codeLength))
@@ -149,7 +149,7 @@ struct CITPincodeCustomizeOptions: View {
             }
             
             CITPincodeLabeledView(label: "Code type:") {
-                Picker("Select code type", selection: $config.codeType) {
+                Picker("Select code type", selection: $config.keyboardType) {
                     Text("Number")
                         .tag(UIKeyboardType.numberPad)
                     

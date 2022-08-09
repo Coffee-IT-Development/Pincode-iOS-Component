@@ -66,7 +66,7 @@ extension CITPincodeView {
         public var cellCornerRadius: CGFloat = 8
         
         /// The type of pincode, you can choose any UIKeyboardType, but the most common types are ".default" for a text keyboard and .numberPad for a numbers only keyboard.
-        public var codeType: UIKeyboardType = .default
+        public var keyboardType: UIKeyboardType = .default
         
         /// Optional config used to show a single divider somewhere between the pincode cells. Does not impact user input, and can be customized slightly.
         public var divider: CITPincodeDividerConfig = .none
@@ -117,7 +117,7 @@ extension CITPincodeView {
             selectedBorderColor: Color(#colorLiteral(red: 0.5294117647, green: 0.5333333333, blue: 0.5411764706, alpha: 1)),
             cellSize: CGSize(width: 40, height: 56),
             cellCornerRadius: 8,
-            codeType: .numberPad,
+            keyboardType: .numberPad,
             divider: .none,
             resendButton: .plain(font: .system(size: 16, weight: .bold), cooldown: .duration(value: 60))
         )

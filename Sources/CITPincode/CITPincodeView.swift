@@ -136,7 +136,7 @@ public struct CITPincodeView: View {
         
         clipboardText = clipboardText.replacingOccurrences(of: "-", with: "")
         guard config.codeLength == clipboardText.count,
-              config.codeType != .numberPad || clipboardText.isNumber else {
+              config.keyboardType != .numberPad || clipboardText.isNumber else {
             let generator = UINotificationFeedbackGenerator()
             generator.notificationOccurred(.warning)
             return
