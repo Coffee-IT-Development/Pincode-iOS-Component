@@ -33,8 +33,7 @@ public struct CITPincodeResendButton: View {
     }
     
     private var timeString: String {
-        let value = min(cooldownTimer.secondsRemaining, style.cooldown.duration)
-        return String(format: "(%.0f)", value)
+        String(format: "(%.0f)", cooldownTimer.secondsRemaining)
     }
     
     private var isOnCooldown: Bool {
