@@ -10,17 +10,22 @@ import Combine
 import SwiftUI
 
 public struct CITPincodeResendButton: View {
-    private let config: CITPincodeConfig
-    private let onResendCode: () -> Void
+    @Binding private var forceCooldownOnce: Bool
+    private var config: CITPincodeConfig
+    private var onResendCode: () -> Void
     
-    @State private var hasSentCodeOnInitBefore = false
     @StateObject private var cooldownTimer = CITPincodeCooldownTimer()
     
     private var style: CITPincodeResendButtonStyle {
         config.resendButtonStyle
     }
     
-    public init(config: CITPincodeConfig, onResendCode: @escaping () -> Void) {
+    public init(
+        forceCooldownOnce: Binding<Bool>,
+        config: CITPincodeConfig,
+        onResendCode: @escaping () -> Void
+    ) {
+        _forceCooldownOnce = forceCooldownOnce
         self.config = config
         self.onResendCode = onResendCode
     }
@@ -36,24 +41,22 @@ public struct CITPincodeResendButton: View {
                 .opacity(isOnCooldown ? 0.5 : 1.0)
         }
         .disabled(isOnCooldown)
-        .onAppear {
-            resendCodeOnInit()
+        .onChange(of: forceCooldownOnce) { forced in
+            if forced {
+                forceCooldownOnce = false
+                activateCooldown()
+            }
         }
-    }
-    
-    private func resendCodeOnInit() {
-        guard !hasSentCodeOnInitBefore && config.triggerResendCodeOnInit else {
-            return
-        }
-        
-        hasSentCodeOnInitBefore = true
-        resendCode()
     }
     
     private func resendCode() {
+        activateCooldown()
+        onResendCode()
+    }
+    
+    private func activateCooldown() {
         cooldownTimer.current = style.cooldown.time
         cooldownTimer.restartTimer()
-        onResendCode()
     }
 }
 
@@ -83,6 +86,6 @@ extension CITPincodeResendButton {
 
 struct CITPincodeResendButton_Previews: PreviewProvider {
     static var previews: some View {
-        CITPincodeResendButton(config: .example, onResendCode: {})
+        CITPincodeResendButton(forceCooldownOnce: .constant(false), config: .example, onResendCode: {})
     }
 }

@@ -13,9 +13,10 @@ import SwiftUI
 public struct CITPincodeView: View {
     @Binding var code: String
     @Binding var error: String?
+    @Binding var forceCooldownOnce: Bool
     
     private let config: CITPincodeConfig
-    private let onEnteredCode: (String) -> Void
+    private let onEnteredCode: () -> Void
     private let onResendCode: () -> Void
     
     @State private var enteredCode = ""
@@ -30,18 +31,21 @@ public struct CITPincodeView: View {
     /// - Parameters:
     ///   - code: Text binding for code input.
     ///   - error: Optional error binding for displaying error messages below the pincode view and showing error tint colors.
+    ///   - forceCooldownOnce: Used to trigger resendButton cooldown once whenever set to true. This may be useful if you'd like to manually send a code onAppear or any other moment, so that the resendButton goes on cooldown when appropriate.
     ///   - config: Used to configure various visual and functional aspects of the pincode view.
     ///   - onEnteredCode: Called when a code has been entered, i.e. "code.count" equals "config.codeLength".
     ///   - onResendCode: Called when the resend code button is pressed, the button is disabled on press for the given cooldown duration.
     public init(
         code: Binding<String>,
         error: Binding<String?> = .constant(nil),
+        forceCooldownOnce: Binding<Bool>,
         config: CITPincodeConfig,
-        onEnteredCode: @escaping (String) -> Void,
+        onEnteredCode: @escaping () -> Void,
         onResendCode: @escaping () -> Void
     ) {
-        self._code = code
-        self._error = error
+        _code = code
+        _error = error
+        _forceCooldownOnce = forceCooldownOnce
         self.config = config
         self.onEnteredCode = onEnteredCode
         self.onResendCode = onResendCode
@@ -85,6 +89,7 @@ public struct CITPincodeView: View {
             
             if config.resendButton.showButton {
                 CITPincodeResendButton(
+                    forceCooldownOnce: $forceCooldownOnce,
                     config: config,
                     onResendCode: handleResendCode
                 )
@@ -159,7 +164,7 @@ public struct CITPincodeView: View {
     
     private func handleEnteredCode() {
         enteredCode = code
-        onEnteredCode(code)
+        onEnteredCode()
     }
     
     private func handleResendCode() {
@@ -181,8 +186,9 @@ struct CITPincodeView_Previews: PreviewProvider {
     static var previews: some View {
         CITPincodeView(
             code: .constant(""),
+            forceCooldownOnce: .constant(false),
             config: .example,
-            onEnteredCode: { _ in },
+            onEnteredCode: {},
             onResendCode: {}
         )
     }
