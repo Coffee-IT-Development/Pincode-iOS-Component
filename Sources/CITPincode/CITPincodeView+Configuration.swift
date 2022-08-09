@@ -73,6 +73,9 @@ extension CITPincodeView {
         
         /// Optional config used to show a resendButton, meant to resend an One Time Passcode on press and is automatically disabled for a given cooldown duration to limit usage.
         public var resendButton: CITPincodeResendButtonConfig = .none
+        
+        /// These characters will be filtered out if a code is pasted via clipboard on long press. It replaces occurences with an empty string.
+        public var charactersToFilterOutOnPaste: [String] = ["-"]
 
         /// Returns the configured resendButtonStyle, used to display the resendButton if present.
         public var resendButtonStyle: CITPincodeResendButtonStyle {

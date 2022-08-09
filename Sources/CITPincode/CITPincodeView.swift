@@ -134,7 +134,10 @@ public struct CITPincodeView: View {
             return
         }
         
-        clipboardText = clipboardText.replacingOccurrences(of: "-", with: "")
+        for character in config.charactersToFilterOutOnPaste {
+            clipboardText = clipboardText.replacingOccurrences(of: character, with: "")
+        }
+        
         guard config.codeLength == clipboardText.count,
               config.keyboardType != .numberPad || clipboardText.isNumber else {
             let generator = UINotificationFeedbackGenerator()
