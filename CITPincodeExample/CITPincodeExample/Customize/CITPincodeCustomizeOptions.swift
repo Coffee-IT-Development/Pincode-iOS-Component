@@ -148,8 +148,8 @@ struct CITPincodeCustomizeOptions: View {
                 Text("Always show selected border:")
             }
             
-            CITPincodeLabeledView(label: "Code type:") {
-                Picker("Select code type", selection: $config.keyboardType) {
+            CITPincodeLabeledView(label: "Keyboard type:") {
+                Picker("Select keyboard type", selection: $config.keyboardType) {
                     Text("Number")
                         .tag(UIKeyboardType.numberPad)
                     
