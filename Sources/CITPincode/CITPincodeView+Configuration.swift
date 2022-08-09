@@ -76,7 +76,7 @@ extension CITPincodeView {
         
         /// Optional config used to show a resendButton, meant to resend an One Time Passcode on press and is automatically disabled for a given cooldown duration to limit usage.
         public var resendButton: CITPincodeResendButtonConfig
-
+        
         /// Returns the configured resendButtonStyle, used to display the resendButton if present.
         public var resendButtonStyle: CITPincodeResendButtonStyle {
             switch resendButton {
@@ -112,26 +112,26 @@ extension CITPincodeView {
         }
         
         public init(
-            codeLength: Int = 6,
-            font: Font = .system(size: 16),
-            errorFont: Font? = nil,
-            textColor: Color = .black,
-            errorColor: Color = .red,
-            placeholder: String = "",
-            placeholderColor: Color? = nil,
-            backgroundColor: Color = .init(white: 0.2),
-            selectedBackgroundColor: Color? = nil,
-            selectedBorderColor: Color? = nil,
-            selectedBorderWidth: CGFloat = 1,
-            alwaysShowSelectedBorder: Bool = false,
-            showKeyboardOnAppear: Bool = true,
-            keyboardDoneButtonText: String = "citpincode_keyboard_done_button_text".localized,
-            cellSize: CGSize = .init(width: 40, height: 56),
-            cellCornerRadius: CGFloat = 8,
-            keyboardType: UIKeyboardType = .default,
-            charactersToFilterOutOnPaste: [String] = ["-"],
-            divider: CITPincodeDividerConfig = .none,
-            resendButton: CITPincodeResendButtonConfig = .none
+            codeLength: Int                             = 6,
+            font: Font                                  = .system(size: 16),
+            errorFont: Font?                            = nil,
+            textColor: Color                            = .black,
+            errorColor: Color                           = .red,
+            placeholder: String                         = "",
+            placeholderColor: Color?                    = nil,
+            backgroundColor: Color                      = .init(white: 0.2),
+            selectedBackgroundColor: Color?             = nil,
+            selectedBorderColor: Color?                 = nil,
+            selectedBorderWidth: CGFloat                = 1,
+            alwaysShowSelectedBorder: Bool              = false,
+            showKeyboardOnAppear: Bool                  = true,
+            keyboardDoneButtonText: String              = "citpincode_keyboard_done_button_text".localized,
+            cellSize: CGSize                            = .init(width: 40, height: 56),
+            cellCornerRadius: CGFloat                   = 8,
+            keyboardType: UIKeyboardType                = .default,
+            charactersToFilterOutOnPaste: [String]      = ["-"],
+            divider: CITPincodeDividerConfig            = .none,
+            resendButton: CITPincodeResendButtonConfig  = .none
         ) {
             self.codeLength = codeLength
             self.font = font
