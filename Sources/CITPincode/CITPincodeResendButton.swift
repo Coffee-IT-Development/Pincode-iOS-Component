@@ -11,7 +11,7 @@ import SwiftUI
 
 public struct CITPincodeResendButton: View {
     private let config: CITPincodeView.Configuration
-    private let onResendCode: () -> Void
+    private let action: () -> Void
     
     @StateObject private var cooldownTimer = CITPincodeCooldownTimer()
     
@@ -41,9 +41,9 @@ public struct CITPincodeResendButton: View {
         cooldownTimer.secondsRemaining > 0
     }
     
-    public init(config: CITPincodeView.Configuration, onResendCode: @escaping () -> Void) {
+    public init(config: CITPincodeView.Configuration, action: @escaping () -> Void) {
         self.config = config
-        self.onResendCode = onResendCode
+        self.action = action
     }
     
     public var body: some View {
@@ -62,12 +62,12 @@ public struct CITPincodeResendButton: View {
     private func resendCode() {
         cooldownTimer.secondsRemaining = style.cooldown.duration
         cooldownTimer.restartTimer()
-        onResendCode()
+        action()
     }
 }
 
 struct CITPincodeResendButton_Previews: PreviewProvider {
     static var previews: some View {
-        CITPincodeResendButton(config: .example, onResendCode: {})
+        CITPincodeResendButton(config: .example, action: {})
     }
 }

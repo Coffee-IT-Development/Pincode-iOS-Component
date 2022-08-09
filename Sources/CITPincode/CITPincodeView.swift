@@ -86,7 +86,7 @@ public struct CITPincodeView: View {
             if config.resendButton.showButton {
                 CITPincodeResendButton(
                     config: config,
-                    onResendCode: handleResendCode
+                    action: handleResendCode
                 )
                 .accessibility(label: Text(config.resendButtonStyle.text))
             }
