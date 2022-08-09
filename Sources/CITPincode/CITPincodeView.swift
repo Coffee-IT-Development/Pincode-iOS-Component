@@ -40,8 +40,8 @@ public struct CITPincodeView: View {
         onEnteredCode: @escaping (String) -> Void,
         onResendCode: @escaping () -> Void
     ) {
-        self._code = code
-        self._error = error
+        _code = code
+        _error = error
         self.config = config
         self.onEnteredCode = onEnteredCode
         self.onResendCode = onResendCode
