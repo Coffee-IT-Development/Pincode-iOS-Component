@@ -8,14 +8,14 @@
 
 import SwiftUI
 
-/// The CITPincodeView provides a simple One Time Passcode interface with deep customization through its config.
+/// The CITPincodeView provides a simple One Time Passcode interface with deep customization through its configuration.
 /// It includes an optional resend code button with built-in cooldown logic, an error label that's dynamically shown and error color tints, callbacks for when a code has been entered and when the resend code button is pressed and long press to paste logic that filters hyphens and denies codes of the wrong type, e.g. pasting letters into a numeric code.
 public struct CITPincodeView: View {
     @Binding var code: String
     @Binding var error: String?
     @Binding var forceCooldownOnce: Bool
     
-    private let config: CITPincodeView.Configuration
+    private let configuration: CITPincodeView.Configuration
     private let onEnteredCode: () -> Void
     private let onResendCode: () -> Void
     
@@ -27,44 +27,44 @@ public struct CITPincodeView: View {
         error != nil
     }
     
-    /// Intialise the pincode view with bindings, a config and callbacks.
+    /// Intialise the pincode view with bindings, a configuration and callbacks.
     /// - Parameters:
     ///   - code: Text binding for code input.
     ///   - error: Optional error binding for displaying error messages below the pincode view and showing error tint colors.
     ///   - forceCooldownOnce: Used to trigger resendButton cooldown once whenever set to true. This may be useful if you'd like to manually send a code onAppear or any other moment, so that the resendButton goes on cooldown when appropriate.
-    ///   - config: Used to configure various visual and functional aspects of the pincode view.
-    ///   - onEnteredCode: Called when a code has been entered, i.e. "code.count" equals "config.codeLength".
+    ///   - configuration: Used to configure various visual and functional aspects of the pincode view.
+    ///   - onEnteredCode: Called when a code has been entered, i.e. "code.count" equals "configuration.codeLength".
     ///   - onResendCode: Called when the resend code button is pressed, the button is disabled on press for the given cooldown duration.
     public init(
         code: Binding<String>,
         error: Binding<String?> = .constant(nil),
         forceCooldownOnce: Binding<Bool>,
-        config: CITPincodeView.Configuration,
+        configuration: CITPincodeView.Configuration,
         onEnteredCode: @escaping () -> Void,
         onResendCode: @escaping () -> Void
     ) {
         _code = code
         _error = error
         _forceCooldownOnce = forceCooldownOnce
-        self.config = config
+        self.configuration = configuration
         self.onEnteredCode = onEnteredCode
         self.onResendCode = onResendCode
     }
     
     public var body: some View {
-        VStack(alignment: config.resendButtonStyle.alignment) {
+        VStack(alignment: configuration.resendButtonStyle.alignment) {
             HStack {
-                ForEach(0 ..< config.codeLength, id: \.self) { index in
+                ForEach(0 ..< configuration.codeLength, id: \.self) { index in
                     CITPincodeCellView(
-                        config: config,
+                        configuration: configuration,
                         character: character(for: index),
                         placeholder: placeholder(for: index),
                         isSelected: index == code.count,
                         hasError: hasError
                     )
                     
-                    if config.dividerStyle.afterIndex == index {
-                        CITPincodeDivider(config: config)
+                    if configuration.dividerStyle.afterIndex == index {
+                        CITPincodeDivider(configuration: configuration)
                     }
                 }
             }
@@ -72,7 +72,7 @@ public struct CITPincodeView: View {
                 GeometryReader { proxy in
                     CITPincodeTextField(
                         text: $code,
-                        config: config,
+                        configuration: configuration,
                         setup: setupPasteOnlyTextField
                     )
                     .frame(width: proxy.size.width, height: proxy.size.height)
@@ -87,29 +87,29 @@ public struct CITPincodeView: View {
                 showPasteMenu()
             }
             
-            if config.resendButton.showButton {
+            if configuration.resendButton.showButton {
                 CITPincodeResendButton(
                     forceCooldownOnce: $forceCooldownOnce,
-                    config: config,
+                    configuration: configuration,
                     action: handleResendCode
                 )
-                .accessibility(label: Text(config.resendButtonStyle.text))
+                .accessibility(label: Text(configuration.resendButtonStyle.text))
             }
             
             if let error = error {
                 Text(error)
-                    .foregroundColor(config.errorColor)
-                    .font(config.errorFont)
+                    .foregroundColor(configuration.errorColor)
+                    .font(configuration.errorFont)
                     .padding(.vertical, 8)
                     .accessibility(label: Text(error))
             }
         }
         .onChange(of: code) { newValue in
-            if newValue.count == config.codeLength && newValue != enteredCode {
+            if newValue.count == configuration.codeLength && newValue != enteredCode {
                 handleEnteredCode()
-            } else if newValue.count > config.codeLength {
-                code = String(newValue.prefix(config.codeLength))
-            } else if newValue.count < config.codeLength {
+            } else if newValue.count > configuration.codeLength {
+                code = String(newValue.prefix(configuration.codeLength))
+            } else if newValue.count < configuration.codeLength {
                 enteredCode = ""
                 error = nil
             }
@@ -119,13 +119,13 @@ public struct CITPincodeView: View {
     private func setupPasteOnlyTextField(_ textField: UITextField) {
         DispatchQueue.main.async {
             codeInputField = textField
-            textField.addDoneButton(config.keyboardDoneButtonText)
+            textField.addDoneButton(configuration.keyboardDoneButtonText)
             showKeyboardInitially()
         }
     }
     
     private func showKeyboardInitially() {
-        guard !shownKeyboardOnceInitially && config.showKeyboardOnAppear else {
+        guard !shownKeyboardOnceInitially && configuration.showKeyboardOnAppear else {
             return
         }
         
@@ -139,12 +139,12 @@ public struct CITPincodeView: View {
             return
         }
         
-        for character in config.charactersToFilterOutOnPaste {
+        for character in configuration.charactersToFilterOutOnPaste {
             clipboardText = clipboardText.replacingOccurrences(of: character, with: "")
         }
         
-        guard config.codeLength == clipboardText.count,
-              config.keyboardType != .numberPad || clipboardText.isNumber else {
+        guard configuration.codeLength == clipboardText.count,
+              configuration.keyboardType != .numberPad || clipboardText.isNumber else {
             let generator = UINotificationFeedbackGenerator()
             generator.notificationOccurred(.warning)
             return
@@ -169,7 +169,7 @@ public struct CITPincodeView: View {
     }
     
     private func placeholder(for index: Int) -> Character? {
-        let text = config.placeholder
+        let text = configuration.placeholder
         return text.count > index ? text[text.index(text.startIndex, offsetBy: index)] : nil
     }
 }
@@ -179,7 +179,7 @@ struct CITPincodeView_Previews: PreviewProvider {
         CITPincodeView(
             code: .constant(""),
             forceCooldownOnce: .constant(false),
-            config: .example,
+            configuration: .example,
             onEnteredCode: {},
             onResendCode: {}
         )

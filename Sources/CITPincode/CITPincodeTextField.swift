@@ -24,26 +24,26 @@ struct CITPincodeTextField: UIViewRepresentable {
     }
     
     @Binding var text: String
-    var config: CITPincodeView.Configuration
+    var configuration: CITPincodeView.Configuration
     var setup: (CITPincodePasteOnlyTextField) -> Void
     
-    init(text: Binding<String>, config: CITPincodeView.Configuration, setup: @escaping (CITPincodePasteOnlyTextField) -> Void) {
+    init(text: Binding<String>, configuration: CITPincodeView.Configuration, setup: @escaping (CITPincodePasteOnlyTextField) -> Void) {
         self._text = text
-        self.config = config
+        self.configuration = configuration
         self.setup = setup
     }
 
     func makeUIView(context: Context) -> UITextField {
         let textField = CITPincodePasteOnlyTextField()
         setup(textField)
-        textField.keyboardType = config.keyboardType
+        textField.keyboardType = configuration.keyboardType
         textField.textContentType = .oneTimeCode
         textField.delegate = context.coordinator
         return textField
     }
 
     func updateUIView(_ uiView: UITextField, context: Context) {
-        uiView.keyboardType = config.keyboardType
+        uiView.keyboardType = configuration.keyboardType
         uiView.text = text
     }
     

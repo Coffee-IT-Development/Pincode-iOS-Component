@@ -71,11 +71,11 @@ extension CITPincodeView {
         /// These characters will be filtered out if a code is pasted via clipboard on long press. It replaces occurences with an empty string.
         public var charactersToFilterOutOnPaste: [String]
         
-        /// Optional config used to show a single divider somewhere between the pincode cells. Does not impact user input, and can be customized slightly.
-        public var divider: CITPincodeDividerConfig
+        /// Optional configuration used to show a single divider somewhere between the pincode cells. Does not impact user input, and can be customized slightly.
+        public var divider: CITPincodeDividerConfiguration
         
-        /// Optional config used to show a resendButton, meant to resend an One Time Passcode on press and is automatically disabled for a given cooldown duration to limit usage.
-        public var resendButton: CITPincodeResendButtonConfig
+        /// Optional configuration used to show a resendButton, meant to resend an One Time Passcode on press and is automatically disabled for a given cooldown duration to limit usage.
+        public var resendButton: CITPincodeResendButtonConfiguration
         
         /// Returns the configured resendButtonStyle, used to display the resendButton if present.
         public var resendButtonStyle: CITPincodeResendButtonStyle {
@@ -130,8 +130,8 @@ extension CITPincodeView {
             cellCornerRadius: CGFloat                   = 8,
             keyboardType: UIKeyboardType                = .default,
             charactersToFilterOutOnPaste: [String]      = ["-"],
-            divider: CITPincodeDividerConfig            = .none,
-            resendButton: CITPincodeResendButtonConfig  = .none
+            divider: CITPincodeDividerConfiguration            = .none,
+            resendButton: CITPincodeResendButtonConfiguration  = .none
         ) {
             self.codeLength = codeLength
             self.font = font
