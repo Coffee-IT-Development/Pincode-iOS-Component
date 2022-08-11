@@ -9,10 +9,6 @@
 import Foundation
 import SwiftUI
 
-/// The style of a shown divider if any.
-/// - Use `.custom` to set `afterIndex, color, size & cornerRadius`.
-/// - Use `.plain` to set `afterIndex` and use default values for the other fields.
-/// - Use `.none` when no divider should be shown.
 public struct CITPincodeDividerStyle: Equatable {
     public static let defaultSize = CGSize(width: 8, height: 2)
     public static let defaultCornerRadius = CGFloat.infinity

@@ -16,7 +16,7 @@ struct CITPincodeCustomizeOptions: View {
     
     @State private var dividerIndex: Int = 0
     @State private var showResendButton = true
-    @State private var customResendButton = CITPincodeResendButtonConfig.plain
+    @State private var customResendButton = CITPincodeResendButtonConfiguration.plain
     @State private var resendText = "Send code again"
     @State private var resendCooldown: CGFloat = 60
     @State private var resendAlignLeading = true

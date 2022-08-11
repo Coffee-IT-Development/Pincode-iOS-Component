@@ -101,6 +101,9 @@ public var alwaysShowSelectedBorder: Bool
 /// If set to true, the keyboard will show once the pincode view appears.
 public var showKeyboardOnAppear: Bool
 
+/// Text shown for the button that can close the keyboard from a toolbar.
+public var keyboardDoneButtonText: String
+
 /// The size of each pincode cell.
 public var cellSize: CGSize
 
@@ -108,7 +111,10 @@ public var cellSize: CGSize
 public var cellCornerRadius: CGFloat
 
 /// The type of pincode, you can choose any UIKeyboardType, but the most common types are ".default" for a text keyboard and .numberPad for a numbers only keyboard.
-public var codeType: UIKeyboardType
+public var keyboardType: UIKeyboardType
+
+/// These characters will be filtered out if a code is pasted via clipboard on long press. It replaces occurences with an empty string.
+public var charactersToFilterOutOnPaste: [String]
 
 /// Optional config used to show a single divider somewhere between the pincode cells. Does not impact user input, and can be customized slightly.
 public var divider: CITPincodeDividerConfig
@@ -116,18 +122,28 @@ public var divider: CITPincodeDividerConfig
 /// Optional config used to show a resendButton, meant to resend an One Time Passcode on press and is automatically disabled for a given cooldown duration to limit usage.
 public var resendButton: CITPincodeResendButtonConfig
 
-/// Returns the style that configures an optional resendButton that is meant to resend an One Time Passcode on press.
-/// This button will be disabled for the given cooldown if any and automatically re-enable itself once the cooldown duration has passed.
+/// Returns the configured resendButtonStyle, used to display the resendButton if present.
+public var resendButtonStyle: CITPincodeResendButtonStyle
+
+/// Returns the configured dividerStyle, used to display the divider if present.
+public var dividerStyle: CITPincodeDividerStyle
+
+
+/// Defines the style that configures an optional resendButton that is meant to resend an One Time Passcode on press.
+/// This resend button will be disabled for the given cooldown if any and automatically re-enable itself once the cooldown duration has passed.
 /// - Use `.custom` to set `text, font, textColor, backgroundColor, contentInsets, cornerRadius, cooldown, alignment`.
 /// - Use `.plain` to set `text, font, cooldown, alignment` and use default values for the other fields.
 /// - Use `.none` when no resend button should be shown.
-public var resendButtonStyle: CITPincodeResendButtonStyle
+/// 
+public enum CITPincodeResendButtonConfiguration: Equatable
+
 
 /// The style of a shown divider if any.
 /// - Use `.custom` to set `afterIndex, color, size & cornerRadius`.
 /// - Use `.plain` to set `afterIndex` and use default values for the other fields.
 /// - Use `.none` when no divider should be shown.
-public var dividerStyle: CITPincodeDividerStyle
+/// 
+public enum CITPincodeDividerConfiguration: Equatable
 ```
 
 ## Contact
