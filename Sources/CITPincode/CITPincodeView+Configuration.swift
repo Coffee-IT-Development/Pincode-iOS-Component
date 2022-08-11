@@ -165,7 +165,7 @@ extension CITPincodeView {
             cellCornerRadius: 8,
             keyboardType: .numberPad,
             divider: .none,
-            resendButton: .plain(font: .system(size: 16, weight: .bold), cooldown: .duration(value: 60))
+            resendButton: .plain(font: .system(size: 16, weight: .bold), cooldown: .duration(value: 60), alignment: .leading)
         )
     }
 }
