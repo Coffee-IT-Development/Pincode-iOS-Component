@@ -14,6 +14,15 @@ import SwiftUI
 /// - Use `.plain` to set `afterIndex` and use default values for the other fields.
 /// - Use `.none` when no divider should be shown.
 public struct CITPincodeDividerStyle: Equatable {
+    public static let defaultSize = CGSize(width: 8, height: 2)
+    public static let defaultCornerRadius = CGFloat.infinity
+    public static let none = CITPincodeDividerStyle(
+        afterIndex: -1,
+        color: .clear,
+        size: .zero,
+        cornerRadius: 0
+    )
+    
     public var afterIndex: Int
     public var color: Color
     public var size: CGSize
@@ -30,13 +39,4 @@ public struct CITPincodeDividerStyle: Equatable {
         self.size = size
         self.cornerRadius = cornerRadius
     }
-    
-    public static let defaultSize = CGSize(width: 8, height: 2)
-    public static let defaultCornerRadius = CGFloat.infinity
-    public static let none = CITPincodeDividerStyle(
-        afterIndex: -1,
-        color: .clear,
-        size: .zero,
-        cornerRadius: 0
-    )
 }
