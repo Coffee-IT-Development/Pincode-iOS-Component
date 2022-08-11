@@ -9,10 +9,10 @@
 import Combine
 import SwiftUI
 
-public struct CITPincodeResendButton: View {
+struct CITPincodeResendButton: View {
     @Binding private var forceCooldownOnce: Bool
-    private var config: CITPincodeConfig
-    private var onResendCode: () -> Void
+    private let config: CITPincodeView.Configuration
+    private let action: () -> Void
     
     @StateObject private var cooldownTimer = CITPincodeCooldownTimer()
     
@@ -20,17 +20,34 @@ public struct CITPincodeResendButton: View {
         config.resendButtonStyle
     }
     
-    public init(
+    private var resendButtonText: String {
+        switch style.cooldown {
+        case .duration:
+            return isOnCooldown ? "\(style.text) \(timeString)" : style.text
+        default:
+            return style.text
+        }
+    }
+    
+    private var timeString: String {
+        String(format: "(%.0f)", cooldownTimer.secondsRemaining)
+    }
+    
+    private var isOnCooldown: Bool {
+        cooldownTimer.secondsRemaining > 0
+    }
+    
+    init(
         forceCooldownOnce: Binding<Bool>,
-        config: CITPincodeConfig,
-        onResendCode: @escaping () -> Void
+        config: CITPincodeView.Configuration,
+        action: @escaping () -> Void
     ) {
         _forceCooldownOnce = forceCooldownOnce
         self.config = config
-        self.onResendCode = onResendCode
+        self.action = action
     }
     
-    public var body: some View {
+    var body: some View {
         Button(action: resendCode) {
             Text(resendButtonText)
                 .font(style.font)
@@ -51,41 +68,17 @@ public struct CITPincodeResendButton: View {
     
     private func resendCode() {
         activateCooldown()
-        onResendCode()
+        action()
     }
     
     private func activateCooldown() {
-        cooldownTimer.current = style.cooldown.time
+        cooldownTimer.secondsRemaining = style.cooldown.duration
         cooldownTimer.restartTimer()
-    }
-}
-
-extension CITPincodeResendButton {
-    var resendButtonText: String {
-        switch style.cooldown {
-        case .duration(_):
-            if isOnCooldown {
-                return "\(style.text) \(timeString)"
-            } else {
-                return style.text
-            }
-        default:
-            return style.text
-        }
-    }
-    
-    var timeString: String {
-        let value = min(cooldownTimer.current, style.cooldown.time)
-        return String(format: "(%.0f)", value)
-    }
-    
-    var isOnCooldown: Bool {
-        cooldownTimer.current > 0
     }
 }
 
 struct CITPincodeResendButton_Previews: PreviewProvider {
     static var previews: some View {
-        CITPincodeResendButton(forceCooldownOnce: .constant(false), config: .example, onResendCode: {})
+        CITPincodeResendButton(forceCooldownOnce: .constant(false), config: .example, action: {})
     }
 }

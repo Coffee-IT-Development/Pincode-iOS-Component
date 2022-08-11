@@ -15,7 +15,7 @@ public struct CITPincodeView: View {
     @Binding var error: String?
     @Binding var forceCooldownOnce: Bool
     
-    private let config: CITPincodeConfig
+    private let config: CITPincodeView.Configuration
     private let onEnteredCode: () -> Void
     private let onResendCode: () -> Void
     
@@ -39,7 +39,7 @@ public struct CITPincodeView: View {
         code: Binding<String>,
         error: Binding<String?> = .constant(nil),
         forceCooldownOnce: Binding<Bool>,
-        config: CITPincodeConfig,
+        config: CITPincodeView.Configuration,
         onEnteredCode: @escaping () -> Void,
         onResendCode: @escaping () -> Void
     ) {
@@ -54,21 +54,21 @@ public struct CITPincodeView: View {
     public var body: some View {
         VStack(alignment: config.resendButtonStyle.alignment) {
             HStack {
-                ForEach((0 ..< config.codeLength), id: \.self) { i in
+                ForEach(0 ..< config.codeLength, id: \.self) { index in
                     CITPincodeCellView(
                         config: config,
-                        character: character(for: i),
-                        placeholder: placeholder(for: i),
-                        isSelected: i == code.count,
+                        character: character(for: index),
+                        placeholder: placeholder(for: index),
+                        isSelected: index == code.count,
                         hasError: hasError
                     )
                     
-                    if config.dividerStyle.afterIndex == i {
+                    if config.dividerStyle.afterIndex == index {
                         CITPincodeDivider(config: config)
                     }
                 }
             }
-            .overlay(
+            .background(
                 GeometryReader { proxy in
                     CITPincodeTextField(
                         text: $code,
@@ -91,7 +91,7 @@ public struct CITPincodeView: View {
                 CITPincodeResendButton(
                     forceCooldownOnce: $forceCooldownOnce,
                     config: config,
-                    onResendCode: handleResendCode
+                    action: handleResendCode
                 )
                 .accessibility(label: Text(config.resendButtonStyle.text))
             }
@@ -120,14 +120,7 @@ public struct CITPincodeView: View {
         DispatchQueue.main.async {
             codeInputField = textField
             textField.addDoneButton(config.keyboardDoneButtonText)
-            setupEditMenu(for: textField)
             showKeyboardInitially()
-        }
-    }
-    
-    private func setupEditMenu(for textField: UITextField) {
-        if #available(iOS 16.0, *) {
-            CITEditMenuHelper.shared.setupPasteEditMenu(for: textField)
         }
     }
     
@@ -146,20 +139,19 @@ public struct CITPincodeView: View {
             return
         }
         
-        clipboardText = clipboardText.replacingOccurrences(of: "-", with: "")
+        for character in config.charactersToFilterOutOnPaste {
+            clipboardText = clipboardText.replacingOccurrences(of: character, with: "")
+        }
+        
         guard config.codeLength == clipboardText.count,
-              config.codeType != .numberPad || clipboardText.isNumber else {
+              config.keyboardType != .numberPad || clipboardText.isNumber else {
             let generator = UINotificationFeedbackGenerator()
             generator.notificationOccurred(.warning)
             return
         }
         
         codeInputField.becomeFirstResponder()
-        if #available(iOS 16.0, *) {
-            CITEditMenuHelper.shared.showEditMenu(in: codeInputField.frame)
-        } else {
-            UIMenuController.shared.showMenu(from: codeInputField, rect: codeInputField.frame)
-        }
+        UIMenuController.shared.showMenu(from: codeInputField, rect: codeInputField.frame)
     }
     
     private func handleEnteredCode() {

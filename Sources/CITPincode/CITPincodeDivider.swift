@@ -8,14 +8,14 @@
 
 import SwiftUI
 
-public struct CITPincodeDivider: View {
-    private let config: CITPincodeConfig
+struct CITPincodeDivider: View {
+    private let config: CITPincodeView.Configuration
     
-    public init(config: CITPincodeConfig) {
+    init(config: CITPincodeView.Configuration) {
         self.config = config
     }
     
-    public var body: some View {
+    var body: some View {
         RoundedRectangle(cornerRadius: config.dividerStyle.cornerRadius)
             .foregroundColor(config.dividerStyle.color)
             .frame(width: config.dividerStyle.size.width, height: config.dividerStyle.size.height)

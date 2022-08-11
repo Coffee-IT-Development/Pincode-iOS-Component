@@ -10,12 +10,13 @@ import SwiftUI
 import CITPincode
 
 struct CITPincodeExampleView: View {
+    private static let defaultBackgroundColor = #colorLiteral(red: 0.1906174421, green: 0.1514734626, blue: 0.2413256764, alpha: 1)
+    
     @State private var code = ""
     @State private var error: String?
     @State private var forceCooldownOnce = false
-    @State private var customConfig: CITPincodeConfig = .example
+    @State private var customConfig: CITPincodeView.Configuration = .example
     @State private var customBackgroundColor = Color(CITPincodeExampleView.defaultBackgroundColor)
-    private static let defaultBackgroundColor = #colorLiteral(red: 0.1906174421, green: 0.1514734626, blue: 0.2413256764, alpha: 1)
     
     var body: some View {
         VStack {
@@ -49,8 +50,10 @@ struct CITPincodeExampleView: View {
     }
     
     /// Called when a code has been entered (e.g. 6 out of 6 characters) and when the resendCode button is pressed.
-    /// Should contain logic to send a OTP code to the user, make sure to include the text "code" somewhere in the message for auto-fill OTP to work.
-    /// May be called manually on appear to send a code. In that case, set forceCooldownOnce to true so the user temporarily can't trigger sendCode again using the resendCode button.
+    /// Should contain logic to send a OTP code to the user:
+    /// - Make sure to include the text "code" somewhere in the message for auto-fill OTP to work.
+    /// - May be called manually to send a code. In that case, set forceCooldownOnce to true so the user
+    /// temporarily can't trigger sendCode again using the resendCode button.
     private func sendCode() {
         
     }

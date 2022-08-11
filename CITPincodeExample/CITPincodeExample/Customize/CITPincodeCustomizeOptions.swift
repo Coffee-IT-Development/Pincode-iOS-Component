@@ -10,13 +10,13 @@ import SwiftUI
 import CITPincode
 
 struct CITPincodeCustomizeOptions: View {
-    @Binding var config: CITPincodeConfig
+    @Binding var config: CITPincodeView.Configuration
     @Binding var customBackgroundColor: Color
     @Binding var error: String?
     
     @State private var dividerIndex: Int = 0
     @State private var showResendButton = true
-    @State private var customResendButton = CITPincodeResendButtonConfig.plain
+    @State private var customResendButton = CITPincodeResendButtonConfiguration.plain
     @State private var resendText = "Send code again"
     @State private var resendCooldown: CGFloat = 60
     @State private var resendAlignLeading = true
@@ -49,25 +49,48 @@ struct CITPincodeCustomizeOptions: View {
             CITPincodeLabeledIntPicker(label: "Code length:", range: 1...6, value: $config.codeLength)
             CITPincodeLabeledIntPicker(label: "Divider after index:", range: 0...5, value: $dividerIndex)
         }
-        .onChange(of: dividerIndex) { newValue in
+        .onChange(of: dividerIndex) { _ in
             config.divider = dividerIndex > 0 ? .plain(afterIndex: dividerIndex - 1) : .none
         }
     }
     
     var cellVisuals: some View {
         Group {
-            CITPincodeLabeledSlider(label: "Cell width:", range: 20...100, value: $config.cellSize.width)
-            CITPincodeLabeledSlider(label: "Cell height:", range: 20...100, value: $config.cellSize.height)
-            CITPincodeLabeledSlider(label: "Cell corner radius:", range: 0...max(config.cellSize.width, config.cellSize.height), value: $config.cellCornerRadius)
-            CITPincodeLabeledSlider(label: "Cell border width:", range: 1...10, value: $config.selectedBorderWidth)
+            CITPincodeLabeledSlider(
+                label: "Cell width:",
+                range: 20...100,
+                value: $config.cellSize.width
+            )
+            
+            CITPincodeLabeledSlider(
+                label: "Cell height:",
+                range: 20...100,
+                value: $config.cellSize.height
+            )
+            
+            CITPincodeLabeledSlider(
+                label: "Cell corner radius:",
+                range: 0...max(config.cellSize.width, config.cellSize.height),
+                value: $config.cellCornerRadius
+            )
+            
+            CITPincodeLabeledSlider(
+                label: "Cell border width:",
+                range: 1...10, value: $config.selectedBorderWidth
+            )
         }
     }
     
     var placeholder: some View {
-        CITPincodeLabeledTextField(label: "Placeholder:", placeholder: "Enter placeholder here..", value: $config.placeholder, keyboardType: config.codeType)
-            .onChange(of: config.placeholder) { newValue in
-                config.placeholder = String(newValue.prefix(config.codeLength))
-            }
+        CITPincodeLabeledTextField(
+            label: "Placeholder:",
+            placeholder: "Enter placeholder here..",
+            value: $config.placeholder,
+            keyboardType: config.keyboardType
+        )
+        .onChange(of: config.placeholder) { newValue in
+            config.placeholder = String(newValue.prefix(config.codeLength))
+        }
     }
     
     var errorTextfield: some View {
@@ -82,13 +105,40 @@ struct CITPincodeCustomizeOptions: View {
     
     var colors: some View {
         Group {
-            ColorPicker("Full view background color:", selection: $customBackgroundColor)
-            ColorPicker("Text color:", selection: $config.textColor)
-            ColorPicker("Error color:", selection: $config.errorColor)
-            ColorPicker("Placeholder color:", selection: $config.placeholderColor)
-            ColorPicker("Cell background color:", selection: $config.backgroundColor)
-            ColorPicker("Selected cell background color:", selection: $config.selectedBackgroundColor)
-            ColorPicker("Selected cell border color:", selection: $config.selectedBorderColor)
+            ColorPicker(
+                "Full view background color:",
+                selection: $customBackgroundColor
+            )
+            
+            ColorPicker(
+                "Text color:",
+                selection: $config.textColor
+            )
+            
+            ColorPicker(
+                "Error color:",
+                selection: $config.errorColor
+            )
+            
+            ColorPicker(
+                "Placeholder color:",
+                selection: $config.placeholderColor
+            )
+            
+            ColorPicker(
+                "Cell background color:",
+                selection: $config.backgroundColor
+            )
+            
+            ColorPicker(
+                "Selected cell background color:",
+                selection: $config.selectedBackgroundColor
+            )
+            
+            ColorPicker(
+                "Selected cell border color:",
+                selection: $config.selectedBorderColor
+            )
         }
     }
     
@@ -98,8 +148,8 @@ struct CITPincodeCustomizeOptions: View {
                 Text("Always show selected border:")
             }
             
-            CITPincodeLabeledView(label: "Code type:") {
-                Picker("Select code type", selection: $config.codeType) {
+            CITPincodeLabeledView(label: "Keyboard type:") {
+                Picker("Select keyboard type", selection: $config.keyboardType) {
                     Text("Number")
                         .tag(UIKeyboardType.numberPad)
                     
