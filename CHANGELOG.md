@@ -9,7 +9,7 @@ All notable changes to this project will be documented in this file.
 
 #### 1.2.1
 
-- Make project Xcode 13 stable release compatible.
+- Make the example project Xcode 13 stable release compatible.
 
 #### 1.2.0
 
