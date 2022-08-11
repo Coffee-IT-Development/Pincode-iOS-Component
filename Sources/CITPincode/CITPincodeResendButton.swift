@@ -10,6 +10,7 @@ import Combine
 import SwiftUI
 
 public struct CITPincodeResendButton: View {
+    @Binding private var forceCooldownOnce: Bool
     private let config: CITPincodeView.Configuration
     private let action: () -> Void
     
@@ -36,7 +37,12 @@ public struct CITPincodeResendButton: View {
         cooldownTimer.secondsRemaining > 0
     }
     
-    public init(config: CITPincodeView.Configuration, action: @escaping () -> Void) {
+    public init(
+        forceCooldownOnce: Binding<Bool>,
+        config: CITPincodeView.Configuration,
+        action: @escaping () -> Void
+    ) {
+        _forceCooldownOnce = forceCooldownOnce
         self.config = config
         self.action = action
     }
@@ -52,17 +58,27 @@ public struct CITPincodeResendButton: View {
                 .opacity(isOnCooldown ? 0.5 : 1.0)
         }
         .disabled(isOnCooldown)
+        .onChange(of: forceCooldownOnce) { forced in
+            if forced {
+                forceCooldownOnce = false
+                activateCooldown()
+            }
+        }
     }
     
     private func resendCode() {
+        activateCooldown()
+        action()
+    }
+    
+    private func activateCooldown() {
         cooldownTimer.secondsRemaining = style.cooldown.duration
         cooldownTimer.restartTimer()
-        action()
     }
 }
 
 struct CITPincodeResendButton_Previews: PreviewProvider {
     static var previews: some View {
-        CITPincodeResendButton(config: .example, action: {})
+        CITPincodeResendButton(forceCooldownOnce: .constant(false), config: .example, action: {})
     }
 }

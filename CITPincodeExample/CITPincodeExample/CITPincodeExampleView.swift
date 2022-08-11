@@ -12,6 +12,7 @@ import CITPincode
 struct CITPincodeExampleView: View {
     @State private var code = ""
     @State private var error: String?
+    @State private var forceCooldownOnce = false
     @State private var customConfig: CITPincodeView.Configuration = .example
     @State private var customBackgroundColor = Color(CITPincodeExampleView.defaultBackgroundColor)
     private static let defaultBackgroundColor = #colorLiteral(red: 0.1906174421, green: 0.1514734626, blue: 0.2413256764, alpha: 1)
@@ -23,9 +24,10 @@ struct CITPincodeExampleView: View {
             CITPincodeView(
                 code: $code,
                 error: $error,
+                forceCooldownOnce: $forceCooldownOnce,
                 config: customConfig,
-                onEnteredCode: onEnteredCode,
-                onResendCode: onResendCode
+                onEnteredCode: sendCode,
+                onResendCode: sendCode
             )
             .padding(.vertical, 80)
             
@@ -40,16 +42,17 @@ struct CITPincodeExampleView: View {
         .padding(.top, 40)
         .background(customBackgroundColor)
         .ignoresSafeArea(.container, edges: [.bottom, .top])
+        .onAppear {
+            forceCooldownOnce = true
+            sendCode()
+        }
     }
     
-    private func onEnteredCode(_ code: String) {
-        // Called when a full-size code has been entered, e.g. 6 out of 6 characters.
-    }
-    
-    private func onResendCode() {
-        // Called on init if triggerResendCodeOnInit is true and when the Resend Code button is pressed.
-        // Add code here to (re)send an OTP to the user's phone.
-        // Make sure to include "code" somewhere in the message for auto-fill OTP to work.
+    /// Called when a code has been entered (e.g. 6 out of 6 characters) and when the resendCode button is pressed.
+    /// Should contain logic to send a OTP code to the user, make sure to include the text "code" somewhere in the message for auto-fill OTP to work.
+    /// May be called manually on appear to send a code. In that case, set forceCooldownOnce to true so the user temporarily can't trigger sendCode again using the resendCode button.
+    private func sendCode() {
+        
     }
 }
 
