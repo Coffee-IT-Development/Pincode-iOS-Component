@@ -8,7 +8,7 @@
 
 import UIKit
 
-/// When the resendCode button is pressed, it is disabled for the given cooldown duration, can be none or any non-nil absolute value.
+/// When the resendCode button is pressed, it is disabled for the given cooldown duration, can be set to none or any positive duration value.
 public enum CITPincodeResendCodeCooldown: Equatable {
     case none
     case duration(value: TimeInterval)
