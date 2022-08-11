@@ -3,12 +3,13 @@
 //  
 //
 //  Created by Lex Brouwers on 03/06/2022.
+//  Copyright © 2022 Coffee IT. All rights reserved.
 //
 
 import SwiftUI
 
 struct CITPincodeCellView: View {
-    let config: CITPincodeConfig
+    let config: CITPincodeView.Configuration
     let character: Character?
     let placeholder: Character?
     let isSelected: Bool
@@ -63,7 +64,8 @@ struct CITPincodeCellView: View {
         Text(text)
             .font(font)
             .foregroundColor(foregroundColor)
-            .frame(width: size.width, height: size.height)
+            .frame(idealWidth: size.width, maxWidth: size.width)
+            .frame(height: size.height)
             .background(backgroundColor)
             .cornerRadius(cornerRadius)
             .overlay(
@@ -73,8 +75,22 @@ struct CITPincodeCellView: View {
     }
 }
 
-extension CITPincodeCellView {
-    static func exampleCell(character: Character? = nil, placeholder: Character? = nil, isSelected: Bool, hasError: Bool = false) -> CITPincodeCellView {
+struct CITPincodeCellView_Previews: PreviewProvider {
+    static var previews: some View {
+        HStack {
+            exampleCell(character: "A", isSelected: false)
+            exampleCell(character: "B", isSelected: false)
+            exampleCell(character: "C", isSelected: false)
+            exampleCell(isSelected: true)
+        }
+    }
+    
+    private static func exampleCell(
+        character: Character? = nil,
+        placeholder: Character? = nil,
+        isSelected: Bool,
+        hasError: Bool = false
+    ) -> CITPincodeCellView {
         CITPincodeCellView(
             config: .example,
             character: character,
@@ -82,16 +98,5 @@ extension CITPincodeCellView {
             isSelected: isSelected,
             hasError: hasError
         )
-    }
-}
-
-struct CITPincodeCellView_Previews: PreviewProvider {
-    static var previews: some View {
-        HStack {
-            CITPincodeCellView.exampleCell(character: "A", isSelected: false)
-            CITPincodeCellView.exampleCell(character: "B", isSelected: false)
-            CITPincodeCellView.exampleCell(character: "C", isSelected: false)
-            CITPincodeCellView.exampleCell(isSelected: true)
-        }
     }
 }

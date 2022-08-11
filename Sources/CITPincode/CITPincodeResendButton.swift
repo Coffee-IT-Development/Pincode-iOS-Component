@@ -3,14 +3,16 @@
 //  
 //
 //  Created by Lex Brouwers on 10/06/2022.
+//  Copyright © 2022 Coffee IT. All rights reserved.
 //
 
 import Combine
 import SwiftUI
 
-public struct CITPincodeResendButton: View {
-    private let config: CITPincodeConfig
-    private let onResendCode: () -> Void
+struct CITPincodeResendButton: View {
+    @Binding private var forceCooldownOnce: Bool
+    private let config: CITPincodeView.Configuration
+    private let action: () -> Void
     
     @StateObject private var cooldownTimer = CITPincodeCooldownTimer()
     
@@ -18,12 +20,34 @@ public struct CITPincodeResendButton: View {
         config.resendButtonStyle
     }
     
-    public init(config: CITPincodeConfig, onResendCode: @escaping () -> Void) {
-        self.config = config
-        self.onResendCode = onResendCode
+    private var resendButtonText: String {
+        switch style.cooldown {
+        case .duration:
+            return isOnCooldown ? "\(style.text) \(timeString)" : style.text
+        default:
+            return style.text
+        }
     }
     
-    public var body: some View {
+    private var timeString: String {
+        String(format: "(%.0f)", cooldownTimer.secondsRemaining)
+    }
+    
+    private var isOnCooldown: Bool {
+        cooldownTimer.secondsRemaining > 0
+    }
+    
+    init(
+        forceCooldownOnce: Binding<Bool>,
+        config: CITPincodeView.Configuration,
+        action: @escaping () -> Void
+    ) {
+        _forceCooldownOnce = forceCooldownOnce
+        self.config = config
+        self.action = action
+    }
+    
+    var body: some View {
         Button(action: resendCode) {
             Text(resendButtonText)
                 .font(style.font)
@@ -34,41 +58,27 @@ public struct CITPincodeResendButton: View {
                 .opacity(isOnCooldown ? 0.5 : 1.0)
         }
         .disabled(isOnCooldown)
-    }
-    
-    private func resendCode() {
-        cooldownTimer.current = style.cooldown.time
-        cooldownTimer.restartTimer()
-        onResendCode()
-    }
-}
-
-extension CITPincodeResendButton {
-    var resendButtonText: String {
-        switch style.cooldown {
-        case .duration(_):
-            if isOnCooldown {
-                return "\(style.text) \(timeString)"
-            } else {
-                return style.text
+        .onChange(of: forceCooldownOnce) { forced in
+            if forced {
+                forceCooldownOnce = false
+                activateCooldown()
             }
-        default:
-            return style.text
         }
     }
     
-    var timeString: String {
-        let value = min(cooldownTimer.current, style.cooldown.time)
-        return String(format: "(%.0f)", value)
+    private func resendCode() {
+        activateCooldown()
+        action()
     }
     
-    var isOnCooldown: Bool {
-        cooldownTimer.current > 0
+    private func activateCooldown() {
+        cooldownTimer.secondsRemaining = style.cooldown.duration
+        cooldownTimer.restartTimer()
     }
 }
 
 struct CITPincodeResendButton_Previews: PreviewProvider {
     static var previews: some View {
-        CITPincodeResendButton(config: .example, onResendCode: {})
+        CITPincodeResendButton(forceCooldownOnce: .constant(false), config: .example, action: {})
     }
 }

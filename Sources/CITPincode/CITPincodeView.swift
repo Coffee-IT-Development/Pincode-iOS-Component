@@ -3,19 +3,20 @@
 //  
 //
 //  Created by Lex Brouwers on 03/06/2022.
+//  Copyright © 2022 Coffee IT. All rights reserved.
 //
 
 import SwiftUI
-import SwiftUIX // Can be removed when we only support iOS 14+
 
 /// The CITPincodeView provides a simple One Time Passcode interface with deep customization through its config.
 /// It includes an optional resend code button with built-in cooldown logic, an error label that's dynamically shown and error color tints, callbacks for when a code has been entered and when the resend code button is pressed and long press to paste logic that filters hyphens and denies codes of the wrong type, e.g. pasting letters into a numeric code.
 public struct CITPincodeView: View {
     @Binding var code: String
     @Binding var error: String?
+    @Binding var forceCooldownOnce: Bool
     
-    private let config: CITPincodeConfig
-    private let onEnteredCode: (String) -> Void
+    private let config: CITPincodeView.Configuration
+    private let onEnteredCode: () -> Void
     private let onResendCode: () -> Void
     
     @State private var enteredCode = ""
@@ -30,18 +31,21 @@ public struct CITPincodeView: View {
     /// - Parameters:
     ///   - code: Text binding for code input.
     ///   - error: Optional error binding for displaying error messages below the pincode view and showing error tint colors.
+    ///   - forceCooldownOnce: Used to trigger resendButton cooldown once whenever set to true. This may be useful if you'd like to manually send a code onAppear or any other moment, so that the resendButton goes on cooldown when appropriate.
     ///   - config: Used to configure various visual and functional aspects of the pincode view.
     ///   - onEnteredCode: Called when a code has been entered, i.e. "code.count" equals "config.codeLength".
     ///   - onResendCode: Called when the resend code button is pressed, the button is disabled on press for the given cooldown duration.
     public init(
         code: Binding<String>,
         error: Binding<String?> = .constant(nil),
-        config: CITPincodeConfig,
-        onEnteredCode: @escaping (String) -> Void,
+        forceCooldownOnce: Binding<Bool>,
+        config: CITPincodeView.Configuration,
+        onEnteredCode: @escaping () -> Void,
         onResendCode: @escaping () -> Void
     ) {
-        self._code = code
-        self._error = error
+        _code = code
+        _error = error
+        _forceCooldownOnce = forceCooldownOnce
         self.config = config
         self.onEnteredCode = onEnteredCode
         self.onResendCode = onResendCode
@@ -50,21 +54,21 @@ public struct CITPincodeView: View {
     public var body: some View {
         VStack(alignment: config.resendButtonStyle.alignment) {
             HStack {
-                ForEach((0 ..< config.codeLength), id: \.self) { i in
+                ForEach(0 ..< config.codeLength, id: \.self) { index in
                     CITPincodeCellView(
                         config: config,
-                        character: character(for: i),
-                        placeholder: placeholder(for: i),
-                        isSelected: i == code.count,
+                        character: character(for: index),
+                        placeholder: placeholder(for: index),
+                        isSelected: index == code.count,
                         hasError: hasError
                     )
                     
-                    if config.dividerStyle.afterIndex == i {
+                    if config.dividerStyle.afterIndex == index {
                         CITPincodeDivider(config: config)
                     }
                 }
             }
-            .overlay(
+            .background(
                 GeometryReader { proxy in
                     CITPincodeTextField(
                         text: $code,
@@ -85,8 +89,9 @@ public struct CITPincodeView: View {
             
             if config.resendButton.showButton {
                 CITPincodeResendButton(
+                    forceCooldownOnce: $forceCooldownOnce,
                     config: config,
-                    onResendCode: handleResendCode
+                    action: handleResendCode
                 )
                 .accessibility(label: Text(config.resendButtonStyle.text))
             }
@@ -115,14 +120,7 @@ public struct CITPincodeView: View {
         DispatchQueue.main.async {
             codeInputField = textField
             textField.addDoneButton(config.keyboardDoneButtonText)
-            setupEditMenu(for: textField)
             showKeyboardInitially()
-        }
-    }
-    
-    private func setupEditMenu(for textField: UITextField) {
-        if #available(iOS 16.0, *) {
-            CITEditMenuHelper.shared.setupPasteEditMenu(for: textField)
         }
     }
     
@@ -141,25 +139,24 @@ public struct CITPincodeView: View {
             return
         }
         
-        clipboardText = clipboardText.replacingOccurrences(of: "-", with: "")
+        for character in config.charactersToFilterOutOnPaste {
+            clipboardText = clipboardText.replacingOccurrences(of: character, with: "")
+        }
+        
         guard config.codeLength == clipboardText.count,
-              config.codeType != .numberPad || clipboardText.isNumber else {
+              config.keyboardType != .numberPad || clipboardText.isNumber else {
             let generator = UINotificationFeedbackGenerator()
             generator.notificationOccurred(.warning)
             return
         }
         
         codeInputField.becomeFirstResponder()
-        if #available(iOS 16.0, *) {
-            CITEditMenuHelper.shared.showEditMenu(in: codeInputField.frame)
-        } else {
-            UIMenuController.shared.showMenu(from: codeInputField, rect: codeInputField.frame)
-        }
+        UIMenuController.shared.showMenu(from: codeInputField, rect: codeInputField.frame)
     }
     
     private func handleEnteredCode() {
         enteredCode = code
-        onEnteredCode(code)
+        onEnteredCode()
     }
     
     private func handleResendCode() {
@@ -181,8 +178,9 @@ struct CITPincodeView_Previews: PreviewProvider {
     static var previews: some View {
         CITPincodeView(
             code: .constant(""),
+            forceCooldownOnce: .constant(false),
             config: .example,
-            onEnteredCode: { _ in },
+            onEnteredCode: {},
             onResendCode: {}
         )
     }
