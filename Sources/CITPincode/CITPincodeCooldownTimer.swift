@@ -9,14 +9,12 @@
 import Combine
 import SwiftUI
 
-public class CITPincodeCooldownTimer: ObservableObject {
+class CITPincodeCooldownTimer: ObservableObject {
     @Published var secondsRemaining: TimeInterval = 0
     @Published var timer: Publishers.Autoconnect<Timer.TimerPublisher>?
     private var subscriptions: [AnyCancellable] = []
     
-    public init() {}
-    
-    public func restartTimer() {
+    func restartTimer() {
         cancelTimer()
         timer = Timer
             .publish(every: 1, on: .main, in: .common)

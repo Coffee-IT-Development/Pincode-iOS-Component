@@ -9,7 +9,7 @@
 import Combine
 import SwiftUI
 
-public struct CITPincodeResendButton: View {
+struct CITPincodeResendButton: View {
     @Binding private var forceCooldownOnce: Bool
     private let config: CITPincodeView.Configuration
     private let action: () -> Void
@@ -37,7 +37,7 @@ public struct CITPincodeResendButton: View {
         cooldownTimer.secondsRemaining > 0
     }
     
-    public init(
+    init(
         forceCooldownOnce: Binding<Bool>,
         config: CITPincodeView.Configuration,
         action: @escaping () -> Void
@@ -47,7 +47,7 @@ public struct CITPincodeResendButton: View {
         self.action = action
     }
     
-    public var body: some View {
+    var body: some View {
         Button(action: resendCode) {
             Text(resendButtonText)
                 .font(style.font)
