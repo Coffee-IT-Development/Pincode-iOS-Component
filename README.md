@@ -154,27 +154,6 @@ For questions, ideas or help you can reach us by email at contact@coffeeit.nl.
 Owned by Coffee IT.
 Actively maintained by Lex Brouwers.
 
-## Changelog
-
-#### 1.2.0
-
-- Add an example app built-in to the CITPincode package.
-- Code improvements by the Aroma team.
-- Limit the width of pincode cells so the PincodeView does not exceed screen width.
-
-#### 1.1.0
-
-- Limit codeInputField interaction to paste only.
-- Refactor away Introspect dependency.
-- Remove unused documentation catalog and tests.
-- Restructure folders.
-- Localize and expose texts.
-- Clean up code.
-
-#### 1.0.0
-
-- Setup CITPincodeView, add customization & documentation.
-
 ## License
 
 Distributed under the MIT License. [See LICENSE](LICENSE.txt) for more information.
