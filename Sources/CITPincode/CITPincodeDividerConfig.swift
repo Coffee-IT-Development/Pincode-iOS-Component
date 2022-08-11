@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-public enum CITPincodeDividerConfiguration: Equatable {
+public enum CITPincodeDividerConfig: Equatable {
     case none
     case plain(afterIndex: Int)
     case custom(style: CITPincodeDividerStyle)

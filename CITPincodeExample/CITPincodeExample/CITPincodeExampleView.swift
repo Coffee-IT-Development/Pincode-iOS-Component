@@ -15,7 +15,7 @@ struct CITPincodeExampleView: View {
     @State private var code = ""
     @State private var error: String?
     @State private var forceCooldownOnce = false
-    @State private var configuration: CITPincodeView.Configuration = .example
+    @State private var customConfig: CITPincodeView.Configuration = .example
     @State private var customBackgroundColor = Color(CITPincodeExampleView.defaultBackgroundColor)
     
     var body: some View {
@@ -26,7 +26,7 @@ struct CITPincodeExampleView: View {
                 code: $code,
                 error: $error,
                 forceCooldownOnce: $forceCooldownOnce,
-                configuration: configuration,
+                config: customConfig,
                 onEnteredCode: sendCode,
                 onResendCode: sendCode
             )
@@ -35,7 +35,7 @@ struct CITPincodeExampleView: View {
             Spacer()
             
             CITPincodeCustomizeOptions(
-                configuration: $configuration,
+                config: $customConfig,
                 customBackgroundColor: $customBackgroundColor,
                 error: $error
             )

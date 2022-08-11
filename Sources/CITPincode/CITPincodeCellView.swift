@@ -9,18 +9,18 @@
 import SwiftUI
 
 struct CITPincodeCellView: View {
-    let configuration: CITPincodeView.Configuration
+    let config: CITPincodeView.Configuration
     let character: Character?
     let placeholder: Character?
     let isSelected: Bool
     let hasError: Bool
     
     private var font: Font {
-        configuration.font
+        config.font
     }
     
     private var size: CGSize {
-        configuration.cellSize
+        config.cellSize
     }
     
     private var hasCharacter: Bool {
@@ -33,24 +33,24 @@ struct CITPincodeCellView: View {
     
     private var foregroundColor: Color {
         if hasCharacter {
-            return hasError ? configuration.errorColor : configuration.textColor
+            return hasError ? config.errorColor : config.textColor
         } else if hasPlaceholder {
-            return configuration.placeholderColor
+            return config.placeholderColor
         } else {
-            return configuration.textColor
+            return config.textColor
         }
     }
     
     private var backgroundColor: Color {
-        isSelected ? configuration.selectedBackgroundColor : configuration.backgroundColor
+        isSelected ? config.selectedBackgroundColor : config.backgroundColor
     }
     
     private var selectedBorderColor: Color {
-        hasError ? configuration.errorColor : configuration.selectedBorderColor
+        hasError ? config.errorColor : config.selectedBorderColor
     }
     
     private var cornerRadius: CGFloat {
-        configuration.cellCornerRadius
+        config.cellCornerRadius
     }
     
     private var text: String {
@@ -70,7 +70,7 @@ struct CITPincodeCellView: View {
             .cornerRadius(cornerRadius)
             .overlay(
                 RoundedRectangle(cornerRadius: cornerRadius)
-                    .stroke(selectedBorderColor, lineWidth: isSelected || configuration.alwaysShowSelectedBorder ? configuration.selectedBorderWidth : 0)
+                    .stroke(selectedBorderColor, lineWidth: isSelected || config.alwaysShowSelectedBorder ? config.selectedBorderWidth : 0)
             )
     }
 }
@@ -92,7 +92,7 @@ struct CITPincodeCellView_Previews: PreviewProvider {
         hasError: Bool = false
     ) -> CITPincodeCellView {
         CITPincodeCellView(
-            configuration: .example,
+            config: .example,
             character: character,
             placeholder: placeholder,
             isSelected: isSelected,

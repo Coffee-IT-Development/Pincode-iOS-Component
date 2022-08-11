@@ -10,13 +10,13 @@ import SwiftUI
 import CITPincode
 
 struct CITPincodeCustomizeOptions: View {
-    @Binding var configuration: CITPincodeView.Configuration
+    @Binding var config: CITPincodeView.Configuration
     @Binding var customBackgroundColor: Color
     @Binding var error: String?
     
     @State private var dividerIndex: Int = 0
     @State private var showResendButton = true
-    @State private var customResendButton = CITPincodeResendButtonConfiguration.plain
+    @State private var customResendButton = CITPincodeResendButtonConfig.plain
     @State private var resendText = "Send code again"
     @State private var resendCooldown: CGFloat = 60
     @State private var resendAlignLeading = true
@@ -46,11 +46,11 @@ struct CITPincodeCustomizeOptions: View {
     
     var codeFormat: some View {
         VStack {
-            CITPincodeLabeledIntPicker(label: "Code length:", range: 1...6, value: $configuration.codeLength)
+            CITPincodeLabeledIntPicker(label: "Code length:", range: 1...6, value: $config.codeLength)
             CITPincodeLabeledIntPicker(label: "Divider after index:", range: 0...5, value: $dividerIndex)
         }
         .onChange(of: dividerIndex) { _ in
-            configuration.divider = dividerIndex > 0 ? .plain(afterIndex: dividerIndex - 1) : .none
+            config.divider = dividerIndex > 0 ? .plain(afterIndex: dividerIndex - 1) : .none
         }
     }
     
@@ -59,24 +59,24 @@ struct CITPincodeCustomizeOptions: View {
             CITPincodeLabeledSlider(
                 label: "Cell width:",
                 range: 20...100,
-                value: $configuration.cellSize.width
+                value: $config.cellSize.width
             )
             
             CITPincodeLabeledSlider(
                 label: "Cell height:",
                 range: 20...100,
-                value: $configuration.cellSize.height
+                value: $config.cellSize.height
             )
             
             CITPincodeLabeledSlider(
                 label: "Cell corner radius:",
-                range: 0...max(configuration.cellSize.width, configuration.cellSize.height),
-                value: $configuration.cellCornerRadius
+                range: 0...max(config.cellSize.width, config.cellSize.height),
+                value: $config.cellCornerRadius
             )
             
             CITPincodeLabeledSlider(
                 label: "Cell border width:",
-                range: 1...10, value: $configuration.selectedBorderWidth
+                range: 1...10, value: $config.selectedBorderWidth
             )
         }
     }
@@ -85,18 +85,18 @@ struct CITPincodeCustomizeOptions: View {
         CITPincodeLabeledTextField(
             label: "Placeholder:",
             placeholder: "Enter placeholder here..",
-            value: $configuration.placeholder,
-            keyboardType: configuration.keyboardType
+            value: $config.placeholder,
+            keyboardType: config.keyboardType
         )
-        .onChange(of: configuration.placeholder) { newValue in
-            configuration.placeholder = String(newValue.prefix(configuration.codeLength))
+        .onChange(of: config.placeholder) { newValue in
+            config.placeholder = String(newValue.prefix(config.codeLength))
         }
     }
     
     var errorTextfield: some View {
         CITPincodeLabeledTextField(label: "Error:", placeholder: "Enter error here..", value: $errorValue)
-            .onChange(of: configuration.placeholder) { newValue in
-                configuration.placeholder = String(newValue.prefix(configuration.codeLength))
+            .onChange(of: config.placeholder) { newValue in
+                config.placeholder = String(newValue.prefix(config.codeLength))
             }
             .onChange(of: errorValue) { newValue in
                 error = newValue.isEmpty ? nil : newValue
@@ -112,44 +112,44 @@ struct CITPincodeCustomizeOptions: View {
             
             ColorPicker(
                 "Text color:",
-                selection: $configuration.textColor
+                selection: $config.textColor
             )
             
             ColorPicker(
                 "Error color:",
-                selection: $configuration.errorColor
+                selection: $config.errorColor
             )
             
             ColorPicker(
                 "Placeholder color:",
-                selection: $configuration.placeholderColor
+                selection: $config.placeholderColor
             )
             
             ColorPicker(
                 "Cell background color:",
-                selection: $configuration.backgroundColor
+                selection: $config.backgroundColor
             )
             
             ColorPicker(
                 "Selected cell background color:",
-                selection: $configuration.selectedBackgroundColor
+                selection: $config.selectedBackgroundColor
             )
             
             ColorPicker(
                 "Selected cell border color:",
-                selection: $configuration.selectedBorderColor
+                selection: $config.selectedBorderColor
             )
         }
     }
     
     var extras: some View {
         Group {
-            Toggle(isOn: $configuration.alwaysShowSelectedBorder) {
+            Toggle(isOn: $config.alwaysShowSelectedBorder) {
                 Text("Always show selected border:")
             }
             
             CITPincodeLabeledView(label: "Keyboard type:") {
-                Picker("Select keyboard type", selection: $configuration.keyboardType) {
+                Picker("Select keyboard type", selection: $config.keyboardType) {
                     Text("Number")
                         .tag(UIKeyboardType.numberPad)
                     
@@ -177,7 +177,7 @@ struct CITPincodeCustomizeOptions: View {
                 if show {
                     updateResendButton()
                 } else {
-                    configuration.resendButton = .none
+                    config.resendButton = .none
                 }
             }
             
@@ -213,6 +213,6 @@ struct CITPincodeCustomizeOptions: View {
     private func updateResendButton() {
         let cooldown: CITPincodeResendCodeCooldown = resendCooldown > 0 ? .duration(value: resendCooldown) : .none
         let alignment: HorizontalAlignment = resendAlignLeading ? .leading : .trailing
-        configuration.resendButton = .plain(text: resendText, cooldown: cooldown, alignment: alignment)
+        config.resendButton = .plain(text: resendText, cooldown: cooldown, alignment: alignment)
     }
 }

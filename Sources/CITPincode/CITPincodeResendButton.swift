@@ -11,13 +11,13 @@ import SwiftUI
 
 public struct CITPincodeResendButton: View {
     @Binding private var forceCooldownOnce: Bool
-    private let configuration: CITPincodeView.Configuration
+    private let config: CITPincodeView.Configuration
     private let action: () -> Void
     
     @StateObject private var cooldownTimer = CITPincodeCooldownTimer()
     
     private var style: CITPincodeResendButtonStyle {
-        configuration.resendButtonStyle
+        config.resendButtonStyle
     }
     
     private var resendButtonText: String {
@@ -39,11 +39,11 @@ public struct CITPincodeResendButton: View {
     
     public init(
         forceCooldownOnce: Binding<Bool>,
-        configuration: CITPincodeView.Configuration,
+        config: CITPincodeView.Configuration,
         action: @escaping () -> Void
     ) {
         _forceCooldownOnce = forceCooldownOnce
-        self.configuration = configuration
+        self.config = config
         self.action = action
     }
     
@@ -79,6 +79,6 @@ public struct CITPincodeResendButton: View {
 
 struct CITPincodeResendButton_Previews: PreviewProvider {
     static var previews: some View {
-        CITPincodeResendButton(forceCooldownOnce: .constant(false), configuration: .example, action: {})
+        CITPincodeResendButton(forceCooldownOnce: .constant(false), config: .example, action: {})
     }
 }
