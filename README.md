@@ -144,6 +144,7 @@ public enum CITPincodeResendButtonConfiguration: Equatable
 /// - Use `.none` when no divider should be shown.
 /// 
 public enum CITPincodeDividerConfiguration: Equatable
+
 ```
 
 ## Contact
