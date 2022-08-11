@@ -156,6 +156,12 @@ Actively maintained by Lex Brouwers.
 
 ## Changelog
 
+#### 1.2.0
+
+- Add an example app built-in to the CITPincode package.
+- Code improvements by the Aroma team.
+- Limit the width of pincode cells so the PincodeView does not exceed screen width.
+
 #### 1.1.0
 
 - Limit codeInputField interaction to paste only.
