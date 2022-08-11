@@ -147,12 +147,17 @@ public enum CITPincodeDividerConfiguration: Equatable
 ```
 
 ## Contact
+
 For questions, ideas or help you can reach us by email at contact@coffeeit.nl.
 
 ## Maintainer
 
-Owned by Coffee IT.
+Owned by [Coffee IT](https://coffeeit.nl/).
 Actively maintained by Lex Brouwers.
+
+## More
+
+Look at our other repositories on our [GitHub account](https://github.com/orgs/Coffee-IT-Development/repositories).
 
 ## License
 
