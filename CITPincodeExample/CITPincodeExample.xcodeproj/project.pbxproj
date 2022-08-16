@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8159382028AB8FF80027D04A /* CITPincodeResendButtonAlignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8159381F28AB8FF80027D04A /* CITPincodeResendButtonAlignment.swift */; };
 		8171244828941754003DDD8A /* CITPincodeExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8171244728941754003DDD8A /* CITPincodeExampleApp.swift */; };
 		8171244A28941754003DDD8A /* CITPincodeExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8171244928941754003DDD8A /* CITPincodeExampleView.swift */; };
 		8171244C28941755003DDD8A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8171244B28941755003DDD8A /* Assets.xcassets */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8159381F28AB8FF80027D04A /* CITPincodeResendButtonAlignment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CITPincodeResendButtonAlignment.swift; sourceTree = "<group>"; };
 		8171244428941754003DDD8A /* CITPincodeExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CITPincodeExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8171244728941754003DDD8A /* CITPincodeExampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CITPincodeExampleApp.swift; sourceTree = "<group>"; };
 		8171244928941754003DDD8A /* CITPincodeExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CITPincodeExampleView.swift; sourceTree = "<group>"; };
@@ -98,6 +100,7 @@
 				81C3E6B828991223001791E6 /* CITPincodeLabeledSlider.swift */,
 				81C8566428997CC2007E229B /* CITPincodeLabeledTextField.swift */,
 				81C8566628997D98007E229B /* CITPincodeLabeledView.swift */,
+				8159381F28AB8FF80027D04A /* CITPincodeResendButtonAlignment.swift */,
 			);
 			path = Customize;
 			sourceTree = "<group>";
@@ -180,6 +183,7 @@
 			files = (
 				81C8566528997CC2007E229B /* CITPincodeLabeledTextField.swift in Sources */,
 				8183060128AB84E600ABCA6D /* CITPincodeCustomizeColors.swift in Sources */,
+				8159382028AB8FF80027D04A /* CITPincodeResendButtonAlignment.swift in Sources */,
 				8171244A28941754003DDD8A /* CITPincodeExampleView.swift in Sources */,
 				81C3E6B728990F09001791E6 /* CITPincodeCustomizeOptions.swift in Sources */,
 				81C3E6B928991223001791E6 /* CITPincodeLabeledSlider.swift in Sources */,

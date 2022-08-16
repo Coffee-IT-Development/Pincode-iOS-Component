@@ -19,7 +19,7 @@ struct CITPincodeCustomizeOptions: View {
     @State private var customResendButton = CITPincodeResendButtonConfiguration.plain
     @State private var resendText = "Send code again"
     @State private var resendCooldown: CGFloat = 60
-    @State private var resendAlignLeading = true
+    @State private var resendButtonAlignment: CITPincodeResendButtonAlignment = .leading
     @State private var errorValue = ""
     
     var body: some View {
@@ -210,12 +210,12 @@ struct CITPincodeCustomizeOptions: View {
                     )
                     
                     CITPincodeLabeledView(label: "Alignment:") {
-                        Picker("Resend button alignment:", selection: $resendAlignLeading) {
+                        Picker("Resend button alignment:", selection: $resendButtonAlignment) {
                             Text("Leading")
-                                .tag(true)
+                                .tag(CITPincodeResendButtonAlignment.leading)
                             
                             Text("Trailing")
-                                .tag(false)
+                                .tag(CITPincodeResendButtonAlignment.trailing)
                         }
                         .pickerStyle(.segmented)
                     }
@@ -227,7 +227,7 @@ struct CITPincodeCustomizeOptions: View {
                 .onChange(of: resendCooldown) { _ in
                     updateResendButton()
                 }
-                .onChange(of: resendAlignLeading) { _ in
+                .onChange(of: resendButtonAlignment) { _ in
                     updateResendButton()
                 }
             }
@@ -236,7 +236,6 @@ struct CITPincodeCustomizeOptions: View {
     
     private func updateResendButton() {
         let cooldown: CITPincodeResendCodeCooldown = resendCooldown > 0 ? .duration(value: resendCooldown) : .none
-        let alignment: HorizontalAlignment = resendAlignLeading ? .leading : .trailing
-        config.resendButton = .plain(text: resendText, cooldown: cooldown, alignment: alignment)
+        config.resendButton = .plain(text: resendText, cooldown: cooldown, alignment: resendButtonAlignment.position)
     }
 }
