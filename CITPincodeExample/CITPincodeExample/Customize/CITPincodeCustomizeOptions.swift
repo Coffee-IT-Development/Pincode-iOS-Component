@@ -46,11 +46,20 @@ struct CITPincodeCustomizeOptions: View {
     
     var codeFormat: some View {
         VStack {
-            CITPincodeLabeledIntPicker(label: "Code length:", range: 1...6, value: $config.codeLength)
-            CITPincodeLabeledIntPicker(label: "Divider after index:", range: 0...5, value: $dividerIndex)
+            CITPincodeLabeledIntPicker(
+                label: "Code length:",
+                range: 1...6,
+                value: $config.codeLength
+            )
+            
+            CITPincodeLabeledIntPicker(
+                label: "Divider after index:",
+                range: 0...5,
+                value: $dividerIndex
+            )
         }
-        .onChange(of: dividerIndex) { _ in
-            config.divider = dividerIndex > 0 ? .plain(afterIndex: dividerIndex - 1) : .none
+        .onChange(of: dividerIndex) { newValue in
+            config.divider = newValue > 0 ? .plain(afterIndex: newValue - 1) : .none
         }
     }
     
@@ -76,7 +85,8 @@ struct CITPincodeCustomizeOptions: View {
             
             CITPincodeLabeledSlider(
                 label: "Cell border width:",
-                range: 1...10, value: $config.selectedBorderWidth
+                range: 1...10,
+                value: $config.selectedBorderWidth
             )
         }
     }
@@ -94,13 +104,17 @@ struct CITPincodeCustomizeOptions: View {
     }
     
     var errorTextfield: some View {
-        CITPincodeLabeledTextField(label: "Error:", placeholder: "Enter error here..", value: $errorValue)
-            .onChange(of: config.placeholder) { newValue in
-                config.placeholder = String(newValue.prefix(config.codeLength))
-            }
-            .onChange(of: errorValue) { newValue in
-                error = newValue.isEmpty ? nil : newValue
-            }
+        CITPincodeLabeledTextField(
+            label: "Error:",
+            placeholder: "Enter error here..",
+            value: $errorValue
+        )
+        .onChange(of: config.placeholder) { newValue in
+            config.placeholder = String(newValue.prefix(config.codeLength))
+        }
+        .onChange(of: errorValue) { newValue in
+            error = newValue.isEmpty ? nil : newValue
+        }
     }
     
     var colors: some View {
@@ -183,8 +197,18 @@ struct CITPincodeCustomizeOptions: View {
             
             if showResendButton {
                 VStack {
-                    CITPincodeLabeledTextField(label: "Text:", placeholder: "Enter text here..", value: $resendText)
-                    CITPincodeLabeledSlider(label: "Cooldown:", range: 0...100, value: $resendCooldown)
+                    CITPincodeLabeledTextField(
+                        label: "Text:",
+                        placeholder: "Enter text here..",
+                        value: $resendText
+                    )
+                    
+                    CITPincodeLabeledSlider(
+                        label: "Cooldown:",
+                        range: 0...100,
+                        value: $resendCooldown
+                    )
+                    
                     CITPincodeLabeledView(label: "Alignment:") {
                         Picker("Resend button alignment:", selection: $resendAlignLeading) {
                             Text("Leading")
