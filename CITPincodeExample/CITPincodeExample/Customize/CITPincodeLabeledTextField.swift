@@ -11,14 +11,14 @@ import SwiftUI
 struct CITPincodeLabeledTextField: View {
     let label: String
     let placeholder: String
-    let value: Binding<String>
+    @Binding var value: String
     var keyboardType: UIKeyboardType = .default
     
     var body: some View {
         HStack {
             Text(label)
             Spacer()
-            TextField(placeholder, text: value)
+            TextField(placeholder, text: $value)
                 .keyboardType(keyboardType)
         }
     }
