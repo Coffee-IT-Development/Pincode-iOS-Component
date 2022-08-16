@@ -19,7 +19,8 @@ struct CITPincodeLabeledIntPicker: View {
             Spacer()
             Picker(label, selection: value) {
                 ForEach(range, id: \.self) {
-                    Text(String($0)).tag($0)
+                    Text(String($0))
+                        .tag($0)
                 }
             }
         }
