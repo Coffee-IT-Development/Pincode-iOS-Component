@@ -11,7 +11,7 @@ import SwiftUI
 struct CITPincodeLabeledSlider<Value>: View where Value: BinaryFloatingPoint, Value.Stride: BinaryFloatingPoint {
     let label: String
     let range: ClosedRange<Value>
-    let value: Binding<Value>
+    @Binding var value: Value
 
     var body: some View {
         HStack {
@@ -19,13 +19,13 @@ struct CITPincodeLabeledSlider<Value>: View where Value: BinaryFloatingPoint, Va
             Spacer()
             
             Slider(
-                value: value,
+                value: $value,
                 in: range,
                 step: 1
             ) {
                 EmptyView()
             } minimumValueLabel: {
-                Text("\(Int(value.wrappedValue.rounded()))")
+                Text("\(Int(value.rounded()))")
             } maximumValueLabel: {
                 Text("\(Int(range.upperBound.rounded()))")
             }

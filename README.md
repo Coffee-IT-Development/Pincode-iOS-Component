@@ -28,25 +28,27 @@ Import CITPincode and add a CITPincodeView to your SwiftUI view.
 import SwiftUI
 import CITPincode
 
-struct CITPincodeExample: View {
+struct CITPincodeExampleView: View {
     @State private var code = ""
     @State private var error: String?
+    @State private var forceCooldownOnce = false
     
     var body: some View {
         CITPincodeView(
             code: $code,
             error: $error,
+            forceCooldownOnce: $forceCooldownOnce,
             config: .example,
-            onEnteredCode: onEnteredCode,
-            onResendCode: onResendCode
+            onEnteredCode: sendCode,
+            onResendCode: sendCode
         )
+        .onAppear {
+            forceCooldownOnce = true
+            sendCode()
+        }
     }
     
-    private func onEnteredCode(_ code: String) {
-        
-    }
-    
-    private func onResendCode() {
+    private func sendCode() {
         
     }
 }
