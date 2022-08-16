@@ -132,8 +132,10 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
+				CLASSPREFIX = CIT;
 				LastSwiftUpdateCheck = 1400;
 				LastUpgradeCheck = 1400;
+				ORGANIZATIONNAME = "Coffee IT";
 				TargetAttributes = {
 					8171244328941754003DDD8A = {
 						CreatedOnToolsVersion = 14.0;
