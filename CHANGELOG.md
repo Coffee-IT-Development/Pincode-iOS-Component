@@ -9,7 +9,7 @@ All notable changes to this project will be documented in this file.
 
 #### 1.2.3
 
-- Adjust readme to be more accurate
+- Adjust readme to be more accurate.
 
 #### 1.2.2
 
