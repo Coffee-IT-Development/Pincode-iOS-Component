@@ -1,9 +1,9 @@
 [![Coffee IT - Aroma CITPincode Component](https://coffeeit.nl/wp-content/uploads/2022/07/Aroma_Pincode_iOS.png)](https://coffeeit.nl/)
 
 [![Swift](https://img.shields.io/badge/Swift-5.6-red?style=flat-square)](https://img.shields.io/badge/Swift-5.6-red?style=flat-square)
-[![iOS 14+](https://img.shields.io/badge/iOS-v14+-pink?style=flat-square)](https://img.shields.io/badge/iOS-v13+-pink?style=flat-square)
+[![iOS 14+](https://img.shields.io/badge/iOS-v14+-pink?style=flat-square)](https://img.shields.io/badge/iOS-v14+-pink?style=flat-square)
 [![Mirror Repository](https://img.shields.io/badge/Mirror-Repository-pink?style=flat-square)](https://img.shields.io/badge/Mirror-Repository-pink?style=flat-square)
-[![License](https://img.shields.io/badge/License-MIT-pink.svg?style=flat-square)](LICENSE.txt)
+[![License](https://img.shields.io/badge/License-MIT-pink.svg?style=flat-square)](LICENSE.md)
 [![Swift Package Manager](https://img.shields.io/badge/Swift_Package_Manager-Compatible-red?style=flat-square)](https://img.shields.io/badge/Swift_Package_Manager-Compatible-red?style=flat-square)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-@CoffeeIT-blue.svg?style=flat-square)](https://linkedin.com/company/coffee-it)
 [![Facebook](https://img.shields.io/badge/Facebook-CoffeeITNL-blue.svg?style=flat-square)](https://www.facebook.com/CoffeeITNL/)
@@ -156,8 +156,7 @@ For questions, ideas or help you can reach us by email at contact@coffeeit.nl.
 
 ## Maintainer
 
-Owned by [Coffee IT](https://coffeeit.nl/).
-Actively maintained by Lex Brouwers.
+Owned and actively maintained by [Coffee IT](https://coffeeit.nl/).
 
 ## More
 
@@ -165,4 +164,4 @@ Look at our other repositories on our [GitHub account](https://github.com/orgs/C
 
 ## License
 
-Distributed under the MIT License. [See LICENSE](LICENSE.txt) for more information.
+Distributed under the MIT License. [See LICENSE](LICENSE.md) for more information.
