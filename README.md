@@ -13,6 +13,11 @@
 The CITPincode package provides a customizable pincode view.
 It includes an optional resend code button with a built-in cooldown and an optional divider to be placed anywhere between the cells.
 
+<p float="left">
+<img src="https://media.giphy.com/media/mXY2XWcwhoZykxRqMo/giphy.gif" width="200">
+</p>
+
+
 ## Installation
 
 ### SwiftPM
