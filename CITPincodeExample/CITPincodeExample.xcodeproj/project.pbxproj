@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		283473FC28C9E67300D6543A /* pincode-gif-4.gif in Resources */ = {isa = PBXBuildFile; fileRef = 283473F828C9E67300D6543A /* pincode-gif-4.gif */; };
+		283473FD28C9E67300D6543A /* pincode-gif-3.gif in Resources */ = {isa = PBXBuildFile; fileRef = 283473F928C9E67300D6543A /* pincode-gif-3.gif */; };
+		283473FE28C9E67300D6543A /* pincode-gif-1.gif in Resources */ = {isa = PBXBuildFile; fileRef = 283473FA28C9E67300D6543A /* pincode-gif-1.gif */; };
+		283473FF28C9E67300D6543A /* pincode-gif-2.gif in Resources */ = {isa = PBXBuildFile; fileRef = 283473FB28C9E67300D6543A /* pincode-gif-2.gif */; };
 		8159382028AB8FF80027D04A /* CITPincodeResendButtonAlignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8159381F28AB8FF80027D04A /* CITPincodeResendButtonAlignment.swift */; };
 		8171244828941754003DDD8A /* CITPincodeExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8171244728941754003DDD8A /* CITPincodeExampleApp.swift */; };
 		8171244A28941754003DDD8A /* CITPincodeExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8171244928941754003DDD8A /* CITPincodeExampleView.swift */; };
@@ -21,6 +25,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		283473F828C9E67300D6543A /* pincode-gif-4.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = "pincode-gif-4.gif"; path = "../../../../../../Desktop/pincode-gif-4.gif"; sourceTree = "<group>"; };
+		283473F928C9E67300D6543A /* pincode-gif-3.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = "pincode-gif-3.gif"; path = "../../../../../../Desktop/pincode-gif-3.gif"; sourceTree = "<group>"; };
+		283473FA28C9E67300D6543A /* pincode-gif-1.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = "pincode-gif-1.gif"; path = "../../../../../../Desktop/pincode-gif-1.gif"; sourceTree = "<group>"; };
+		283473FB28C9E67300D6543A /* pincode-gif-2.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = "pincode-gif-2.gif"; path = "../../../../../../Desktop/pincode-gif-2.gif"; sourceTree = "<group>"; };
 		8159381F28AB8FF80027D04A /* CITPincodeResendButtonAlignment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CITPincodeResendButtonAlignment.swift; sourceTree = "<group>"; };
 		8171244428941754003DDD8A /* CITPincodeExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CITPincodeExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8171244728941754003DDD8A /* CITPincodeExampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CITPincodeExampleApp.swift; sourceTree = "<group>"; };
@@ -47,6 +55,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		283473F628C9E64900D6543A /* Docs */ = {
+			isa = PBXGroup;
+			children = (
+				283473F728C9E66400D6543A /* Images */,
+			);
+			path = Docs;
+			sourceTree = "<group>";
+		};
+		283473F728C9E66400D6543A /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				283473FA28C9E67300D6543A /* pincode-gif-1.gif */,
+				283473FB28C9E67300D6543A /* pincode-gif-2.gif */,
+				283473F928C9E67300D6543A /* pincode-gif-3.gif */,
+				283473F828C9E67300D6543A /* pincode-gif-4.gif */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
 		8171243B28941754003DDD8A = {
 			isa = PBXGroup;
 			children = (
@@ -68,6 +95,7 @@
 		8171244628941754003DDD8A /* CITPincodeExample */ = {
 			isa = PBXGroup;
 			children = (
+				283473F628C9E64900D6543A /* Docs */,
 				81C8565F28997C70007E229B /* Customize */,
 				818305FF28AB84E600ABCA6D /* Extensions */,
 				8171244728941754003DDD8A /* CITPincodeExampleApp.swift */,
@@ -170,7 +198,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				283473FF28C9E67300D6543A /* pincode-gif-2.gif in Resources */,
+				283473FE28C9E67300D6543A /* pincode-gif-1.gif in Resources */,
 				8171244C28941755003DDD8A /* Assets.xcassets in Resources */,
+				283473FC28C9E67300D6543A /* pincode-gif-4.gif in Resources */,
+				283473FD28C9E67300D6543A /* pincode-gif-3.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
