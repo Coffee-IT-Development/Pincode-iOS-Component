@@ -14,10 +14,10 @@ The CITPincode package provides a customizable pincode view.
 It includes an optional resend code button with a built-in cooldown and an optional divider to be placed anywhere between the cells.
 
 <p>
-    <img src="Docs/Images/pincode-gif-1.gif" width="100%">
-    <img src="Docs/Images/pincode-gif-2.gif" width="100%">
-    <img src="Docs/Images/pincode-gif-3.gif" width="100%">
-    <img src="Docs/Images/pincode-gif-4.gif" width="100%">
+    <img src="Docs/Images/pincode-gif-1.gif" width="24%">
+    <img src="Docs/Images/pincode-gif-2.gif" width="24%">
+    <img src="Docs/Images/pincode-gif-3.gif" width="24%">
+    <img src="Docs/Images/pincode-gif-4.gif" width="24%">
 </p>
 
 
