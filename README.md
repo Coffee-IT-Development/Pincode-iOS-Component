@@ -21,17 +21,16 @@ It includes an optional resend code button with a built-in cooldown and an optio
 </p>
 
 
-## Installation
+## ⚡ Installation
+This component requires minimum __iOS 14__.
 
-### SwiftPM
-
+### 🔨 SwiftPM
 To install the Swift Package, go to Project > Package Dependencies > + > Search or Enter Package URL > Fill in:
 ```
 https://github.com/Coffee-IT-Development/Pincode-iOS-Component
 ```
 
-## Usage
-
+## 📖 Usage
 Import CITPincode and add a CITPincodeView to your SwiftUI view.
 
 ```swift
@@ -69,8 +68,7 @@ Extra details:
 - The code input can be used realtime via the code binding, but the code is also automatically passed to the onEnteredCode method once enough characters have been entered.
 - The CITPincodeView is set to receive One Time Passcode(s) and can alternatively be long pressed to let the user paste a code directly from their clipboard.
 
-## Customization
-
+## ⚙️ Customization
 ```swift
 /// The length of the pincode.
 /// Determines amount of shown pincode cells as well as how many characters have to be entered before the code is checked.
@@ -158,18 +156,24 @@ public enum CITPincodeResendButtonConfiguration: Equatable
 public enum CITPincodeDividerConfiguration: Equatable
 ```
 
-## Contact
-
-For questions, ideas or help you can reach us by email at contact@coffeeit.nl.
-
-## Maintainer
-
-Owned and actively maintained by [Coffee IT](https://coffeeit.nl/).
-
-## More
+## 🔗 Related publications
+- [Pincode component for Android](https://github.com/Coffee-IT-Development/Pincode-Android-Component)
 
 Look at our other repositories on our [GitHub account](https://github.com/orgs/Coffee-IT-Development/repositories).
 
-## License
+## ✏️ Changelog
+All notable changes to this project will be documented in the [Changelog](CHANGELOG.md).
+`CITPincode` adheres to [Semantic Versioning](https://semver.org/).
 
+## 📧 Contact
+Do you have questions, ideas or need help? Send us an email at contact@coffeeit.nl.
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://global-uploads.webflow.com/605a171ee93af49275331843/623b23cdea80a92703e61b42_Logo_black_1.svg" width="100">
+  <source media="(prefers-color-scheme: light)" srcset="https://coffeeit.nl/wp-content/uploads/2016/09/logo_dark_small_new.png" width="100">
+  <img alt="CoffeeIT logo" src="https://coffeeit.nl/wp-content/uploads/2016/09/logo_dark_small_new.png" width="100">
+</picture>
+
+## ⚠️ License
 Distributed under the MIT License. [See LICENSE](LICENSE.md) for more information.
+
