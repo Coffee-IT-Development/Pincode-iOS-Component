@@ -175,5 +175,5 @@ Do you have questions, ideas or need help? Send us an email at contact@coffeeit.
 </picture>
 
 ## ⚠️ License
-The {package_name} package is licensed under the terms of the [MIT Open Source license, combined with the Commons Clause licence](LICENSE.md).
+The Aroma Pincode package is licensed under the terms of the [MIT Open Source license, combined with the Commons Clause licence](LICENSE.md).
 
