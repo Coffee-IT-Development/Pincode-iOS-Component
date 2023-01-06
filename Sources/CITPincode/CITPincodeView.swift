@@ -40,6 +40,7 @@ public struct CITPincodeView: View {
     @State private var enteredCode = ""
     @State private var codeInputField: UITextField?
     @State private var shownKeyboardOnceInitially = false
+    @State private var pincodeFieldWidth: CGFloat?
     
     var hasError: Bool {
         error != nil
@@ -70,7 +71,7 @@ public struct CITPincodeView: View {
     }
     
     public var body: some View {
-        VStack(alignment: config.resendButtonStyle.alignment) {
+        VStack(alignment: config.overallAlignment) {
             HStack {
                 ForEach(0 ..< config.codeLength, id: \.self) { index in
                     CITPincodeCellView(
@@ -96,6 +97,12 @@ public struct CITPincodeView: View {
                     .frame(width: proxy.size.width, height: proxy.size.height)
                     .opacity(0)
                     .allowsHitTesting(false)
+                    .onAppear {
+                        pincodeFieldWidth = proxy.size.width
+                    }
+                    .onChange(of: proxy.size.width) { newValue in
+                        pincodeFieldWidth = newValue
+                    }
                 }
             )
             .onTapGesture {
@@ -105,21 +112,31 @@ public struct CITPincodeView: View {
                 showPasteMenu()
             }
             
-            if config.resendButton.showButton {
-                CITPincodeResendButton(
-                    forceCooldownOnce: $forceCooldownOnce,
-                    config: config,
-                    action: handleResendCode
-                )
-                .accessibility(label: Text(config.resendButtonStyle.text))
+            if config.errorLabelPosition == .aboveResendButton {
+                optionalErrorLabel
             }
             
-            if let error = error {
-                Text(error)
-                    .foregroundColor(config.errorColor)
-                    .font(config.errorFont)
-                    .padding(.vertical, 8)
-                    .accessibility(label: Text(error))
+            if config.resendButton.showButton {
+                HStack {
+                    CITPincodeResendButton(
+                        forceCooldownOnce: $forceCooldownOnce,
+                        config: config,
+                        action: handleResendCode
+                    )
+                    .accessibility(label: Text(config.resendButtonStyle.text))
+                    .fixedSize(horizontal: true, vertical: true)
+                    
+                    if config.errorLabelPosition == .inlineWithResendButton {
+                        Spacer()
+                        
+                        optionalErrorLabel
+                    }
+                }
+                .frame(width: config.errorLabelPosition == .inlineWithResendButton ? pincodeFieldWidth : nil)
+            }
+            
+            if config.errorLabelPosition == .belowResendButton {
+                optionalErrorLabel
             }
         }
         .onChange(of: code) { newValue in
@@ -131,6 +148,17 @@ public struct CITPincodeView: View {
                 enteredCode = ""
                 error = nil
             }
+        }
+    }
+    
+    @ViewBuilder
+    private var optionalErrorLabel: some View {
+        if let error = error {
+            Text(error)
+                .foregroundColor(config.errorColor)
+                .font(config.errorFont)
+                .padding(.vertical, 8)
+                .accessibility(label: Text(error))
         }
     }
     
