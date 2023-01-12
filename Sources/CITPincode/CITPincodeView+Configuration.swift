@@ -81,7 +81,10 @@ extension CITPincodeView {
         
         /// The cornerRadius of each pincode cell, used to set rounded corners, e.g. set to 0 for sharp corners, to 8 for small rounding or .infinity for maximum rounding.
         public var cellCornerRadius: CGFloat
-        
+
+        /// The spacing between pincode cells.
+        public var cellSpacing: CGFloat
+
         /// The type of pincode, you can choose any UIKeyboardType, but the most common types are ".default" for a text keyboard and .numberPad for a numbers only keyboard.
         public var keyboardType: UIKeyboardType
         
@@ -145,6 +148,7 @@ extension CITPincodeView {
             keyboardDoneButtonText: String                      = "citpincode_keyboard_done_button_text".localized,
             cellSize: CGSize                                    = .init(width: 40, height: 56),
             cellCornerRadius: CGFloat                           = 8,
+            cellSpacing: CGFloat                                = 8,
             keyboardType: UIKeyboardType                        = .default,
             charactersToFilterOutOnPaste: [String]              = ["-"],
             divider: CITPincodeDividerConfiguration             = .none,
@@ -166,6 +170,7 @@ extension CITPincodeView {
             self.keyboardDoneButtonText = keyboardDoneButtonText
             self.cellSize = cellSize
             self.cellCornerRadius = cellCornerRadius
+            self.cellSpacing = cellSpacing
             self.keyboardType = keyboardType
             self.charactersToFilterOutOnPaste = charactersToFilterOutOnPaste
             self.divider = divider
