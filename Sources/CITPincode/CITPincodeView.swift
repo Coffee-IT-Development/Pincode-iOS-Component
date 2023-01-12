@@ -71,7 +71,7 @@ public struct CITPincodeView: View {
     
     public var body: some View {
         VStack(alignment: config.resendButtonStyle.alignment) {
-            HStack {
+            HStack(spacing: config.cellSpacing) {
                 ForEach(0 ..< config.codeLength, id: \.self) { index in
                     CITPincodeCellView(
                         config: config,
