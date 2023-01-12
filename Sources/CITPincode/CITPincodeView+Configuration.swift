@@ -72,7 +72,10 @@ extension CITPincodeView {
         
         /// If set to true, the keyboard will show once the pincode view appears.
         public var showKeyboardOnAppear: Bool
-        
+
+        /// If set to true, the toolbar with a button that can close the keyboard will be shown.
+        public var showKeyboardDoneButton: Bool
+
         /// Text shown for the button that can close the keyboard from a toolbar.
         public var keyboardDoneButtonText: String
         
@@ -142,6 +145,7 @@ extension CITPincodeView {
             selectedBorderWidth: CGFloat                        = 1,
             alwaysShowSelectedBorder: Bool                      = false,
             showKeyboardOnAppear: Bool                          = true,
+            showKeyboardDoneButton: Bool                        = true,
             keyboardDoneButtonText: String                      = "citpincode_keyboard_done_button_text".localized,
             cellSize: CGSize                                    = .init(width: 40, height: 56),
             cellCornerRadius: CGFloat                           = 8,
@@ -163,6 +167,7 @@ extension CITPincodeView {
             self.selectedBorderWidth = selectedBorderWidth
             self.alwaysShowSelectedBorder = alwaysShowSelectedBorder
             self.showKeyboardOnAppear = showKeyboardOnAppear
+            self.showKeyboardDoneButton = showKeyboardDoneButton
             self.keyboardDoneButtonText = keyboardDoneButtonText
             self.cellSize = cellSize
             self.cellCornerRadius = cellCornerRadius

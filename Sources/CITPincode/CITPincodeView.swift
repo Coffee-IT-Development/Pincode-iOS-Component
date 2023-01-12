@@ -1,6 +1,6 @@
 //
 //  CITPincodeView.swift
-//  
+//
 //  MIT License
 //
 //  Copyright (c) 2022 Coffee IT
@@ -137,7 +137,9 @@ public struct CITPincodeView: View {
     private func setupPasteOnlyTextField(_ textField: UITextField) {
         DispatchQueue.main.async {
             codeInputField = textField
-            textField.addDoneButton(config.keyboardDoneButtonText)
+            if config.showKeyboardDoneButton {
+                textField.addDoneButton(config.keyboardDoneButtonText)
+            }
             showKeyboardInitially()
         }
     }
