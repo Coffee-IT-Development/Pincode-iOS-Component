@@ -40,7 +40,6 @@ public struct CITPincodeView: View {
     @State private var enteredCode = ""
     @State private var codeInputField: UITextField?
     @State private var shownKeyboardOnceInitially = false
-    @State private var pincodeFieldWidth: CGFloat?
     
     var hasError: Bool {
         error != nil
@@ -97,12 +96,6 @@ public struct CITPincodeView: View {
                     .frame(width: proxy.size.width, height: proxy.size.height)
                     .opacity(0)
                     .allowsHitTesting(false)
-                    .onAppear {
-                        pincodeFieldWidth = proxy.size.width
-                    }
-                    .onChange(of: proxy.size.width) { newValue in
-                        pincodeFieldWidth = newValue
-                    }
                 }
             )
             .onTapGesture {
@@ -119,7 +112,6 @@ public struct CITPincodeView: View {
                     action: handleResendCode
                 )
                 .accessibility(label: Text(config.resendButtonStyle.text))
-                .fixedSize(horizontal: true, vertical: true)
             }
             
             optionalErrorLabel
