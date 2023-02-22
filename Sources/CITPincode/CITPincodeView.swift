@@ -111,33 +111,18 @@ public struct CITPincodeView: View {
             .onLongPressGesture {
                 showPasteMenu()
             }
-            
-            if config.errorLabelPosition == .aboveResendButton {
-                optionalErrorLabel
-            }
-            
+
             if config.resendButton.showButton {
-                HStack {
-                    CITPincodeResendButton(
-                        forceCooldownOnce: $forceCooldownOnce,
-                        config: config,
-                        action: handleResendCode
-                    )
-                    .accessibility(label: Text(config.resendButtonStyle.text))
-                    .fixedSize(horizontal: true, vertical: true)
-                    
-                    if config.errorLabelPosition == .inlineWithResendButton {
-                        Spacer()
-                        
-                        optionalErrorLabel
-                    }
-                }
-                .frame(width: config.errorLabelPosition == .inlineWithResendButton ? pincodeFieldWidth : nil)
+                CITPincodeResendButton(
+                    forceCooldownOnce: $forceCooldownOnce,
+                    config: config,
+                    action: handleResendCode
+                )
+                .accessibility(label: Text(config.resendButtonStyle.text))
+                .fixedSize(horizontal: true, vertical: true)
             }
             
-            if config.errorLabelPosition == .belowResendButton {
-                optionalErrorLabel
-            }
+            optionalErrorLabel
         }
         .onChange(of: code) { newValue in
             if newValue.count == config.codeLength && newValue != enteredCode {

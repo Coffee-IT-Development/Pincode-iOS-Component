@@ -91,9 +91,6 @@ extension CITPincodeView {
         /// These characters will be filtered out if a code is pasted via clipboard on long press. It replaces occurences with an empty string.
         public var charactersToFilterOutOnPaste: [String]
         
-        /// This determines where the error label will be positioned. Defaults to `inlineWithResendButton`.
-        public var errorLabelPosition: CITPincodeErrorLabelPosition
-        
         /// The overall alignment affects how the resendButton and errorLabel will be aligned if visible.
         /// If the errorLabel is aligned `inlineWithResendButton`, the two items will fill up the witdth of the pincode ui.
         public var overallAlignment: HorizontalAlignment
@@ -157,7 +154,6 @@ extension CITPincodeView {
             cellCornerRadius: CGFloat                           = 8,
             keyboardType: UIKeyboardType                        = .default,
             charactersToFilterOutOnPaste: [String]              = ["-"],
-            errorLabelPosition: CITPincodeErrorLabelPosition    = .belowResendButton,
             overallAlignment: HorizontalAlignment               = .leading,
             divider: CITPincodeDividerConfiguration             = .none,
             resendButton: CITPincodeResendButtonConfiguration   = .none
@@ -181,7 +177,6 @@ extension CITPincodeView {
             self.cellCornerRadius = cellCornerRadius
             self.keyboardType = keyboardType
             self.charactersToFilterOutOnPaste = charactersToFilterOutOnPaste
-            self.errorLabelPosition = errorLabelPosition
             self.overallAlignment = overallAlignment
             self.divider = divider
             self.resendButton = resendButton
