@@ -95,6 +95,9 @@ extension CITPincodeView {
         /// If the errorLabel is aligned `inlineWithResendButton`, the two items will fill up the witdth of the pincode ui.
         public var overallAlignment: HorizontalAlignment
         
+        /// The padding between vertical elements, i.e. pincode cells, resendButton and the error label. Defaults to `16`.
+        public var verticalSpacing: CGFloat
+        
         /// Optional config used to show a single divider somewhere between the pincode cells. Does not impact user input, and can be customized slightly.
         public var divider: CITPincodeDividerConfiguration
         
@@ -137,7 +140,7 @@ extension CITPincodeView {
         public init(
             codeLength: Int                                     = 6,
             font: Font                                          = .system(size: 16),
-            errorFont: Font?                                    = nil,
+            errorFont: Font?                                    = .system(size: 14),
             textColor: Color                                    = .black,
             errorColor: Color                                   = .red,
             placeholder: String                                 = "",
@@ -155,6 +158,7 @@ extension CITPincodeView {
             keyboardType: UIKeyboardType                        = .default,
             charactersToFilterOutOnPaste: [String]              = ["-"],
             overallAlignment: HorizontalAlignment               = .leading,
+            verticalSpacing: CGFloat                            = 16,
             divider: CITPincodeDividerConfiguration             = .none,
             resendButton: CITPincodeResendButtonConfiguration   = .none
         ) {
@@ -178,6 +182,7 @@ extension CITPincodeView {
             self.keyboardType = keyboardType
             self.charactersToFilterOutOnPaste = charactersToFilterOutOnPaste
             self.overallAlignment = overallAlignment
+            self.verticalSpacing = verticalSpacing
             self.divider = divider
             self.resendButton = resendButton
         }

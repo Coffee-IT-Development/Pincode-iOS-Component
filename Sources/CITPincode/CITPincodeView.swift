@@ -70,7 +70,7 @@ public struct CITPincodeView: View {
     }
     
     public var body: some View {
-        VStack(alignment: config.overallAlignment) {
+        VStack(alignment: config.overallAlignment, spacing: config.verticalSpacing) {
             HStack {
                 ForEach(0 ..< config.codeLength, id: \.self) { index in
                     CITPincodeCellView(
@@ -134,7 +134,6 @@ public struct CITPincodeView: View {
             Text(error)
                 .foregroundColor(config.errorColor)
                 .font(config.errorFont)
-                .padding(.vertical, 8)
                 .accessibility(label: Text(error))
         }
     }
