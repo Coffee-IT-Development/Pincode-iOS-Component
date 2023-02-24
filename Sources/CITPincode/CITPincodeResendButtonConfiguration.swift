@@ -34,7 +34,7 @@ import SwiftUI
 /// 
 public enum CITPincodeResendButtonConfiguration: Equatable {
     case none
-    case plain(text: String = "citpincode_resend_code_button_text".localized, font: Font = .system(size: 16), cooldown: CITPincodeResendCodeCooldown = .none)
+    case plain(text: String = CITPincodeResendButtonStyle.defaultText, font: Font = .system(size: 16), cooldown: CITPincodeResendCodeCooldown = .none)
     case custom(style: CITPincodeResendButtonStyle)
 
     var showButton: Bool {

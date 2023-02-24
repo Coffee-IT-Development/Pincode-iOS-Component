@@ -152,7 +152,7 @@ extension CITPincodeView {
             showBorderIfHasError: Bool                          = true,
             alwaysShowSelectedBorder: Bool                      = false,
             showKeyboardOnAppear: Bool                          = true,
-            keyboardDoneButtonText: String                      = "citpincode_keyboard_done_button_text".localized,
+            keyboardDoneButtonText: String                      = Texts.defaultDoneButtonText,
             cellSize: CGSize                                    = .init(width: 40, height: 56),
             cellCornerRadius: CGFloat                           = 8,
             keyboardType: UIKeyboardType                        = .default,
@@ -200,5 +200,9 @@ extension CITPincodeView {
             divider: .none,
             resendButton: .plain(font: .system(size: 16, weight: .bold), cooldown: .duration(value: 60))
         )
+        
+        public enum Texts {
+            public static var defaultDoneButtonText: String = "citpincode_keyboard_done_button_text".localized
+        }
     }
 }
