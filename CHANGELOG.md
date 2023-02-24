@@ -3,9 +3,17 @@ All notable changes to this project will be documented in this file.
 `CITPincode` adheres to [Semantic Versioning](https://semver.org/).
 
 #### 1.x Releases
-- `1.2.x` Releases - [1.2.0](#120) | [1.2.1](#121) | [1.2.2](#122) | [1.2.3](#123) | [1.2.4](#124) | [1.2.5](#125) | [1.2.6](#126) | [1.2.7](#127)
+- `1.2.x` Releases - [1.2.0](#120) | [1.2.1](#121) | [1.2.2](#122) | [1.2.3](#123) | [1.2.4](#124) | [1.2.5](#125) | [1.2.6](#126) | [1.2.7](#127) | [1.2.8](#128)
 - `1.1.x` Releases - [1.1.0](#110)
 - `1.0.x` Releases - [1.0.0](#100)
+
+#### 1.2.8
+
+- Add ability to align all elements at once instead of just the resendButton.
+- Add ability to set vertical spacing between elements (pincode cells -> resendButton -> errorLabel)
+- Add option to make pincode cells all have red borders and keep numbers in input on error (this will become the default behavior in a future version)
+- Add smaller default font for error label.
+- Add Commons Clause to MIT license, read LICENSE file for specific details.
 
 #### 1.2.7
 

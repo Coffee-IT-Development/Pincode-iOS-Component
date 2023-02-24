@@ -67,6 +67,9 @@ extension CITPincodeView {
         /// The border width of any selected pincode cell.
         public var selectedBorderWidth: CGFloat
         
+        /// If set to true, all pincode cells will be shown as if they are selected with an error tinted border, while there's an error.
+        public var showBorderIfHasError: Bool
+        
         /// If set to true, all pincode cells will always be shown as if they are selected.
         public var alwaysShowSelectedBorder: Bool
         
@@ -88,6 +91,13 @@ extension CITPincodeView {
         /// These characters will be filtered out if a code is pasted via clipboard on long press. It replaces occurences with an empty string.
         public var charactersToFilterOutOnPaste: [String]
         
+        /// The overall alignment affects how the resendButton and errorLabel will be aligned if visible.
+        /// If the errorLabel is aligned `inlineWithResendButton`, the two items will fill up the witdth of the pincode ui.
+        public var overallAlignment: HorizontalAlignment
+        
+        /// The padding between vertical elements, i.e. pincode cells, resendButton and the error label. Defaults to `16`.
+        public var verticalSpacing: CGFloat
+        
         /// Optional config used to show a single divider somewhere between the pincode cells. Does not impact user input, and can be customized slightly.
         public var divider: CITPincodeDividerConfiguration
         
@@ -99,14 +109,13 @@ extension CITPincodeView {
             switch resendButton {
             case let .custom(style):
                 return style
-            case let .plain(text, font, cooldown, alignment):
+            case let .plain(text, font, cooldown):
                 return CITPincodeResendButtonStyle(
                     text: text,
                     font: font,
                     textColor: textColor,
                     backgroundColor: backgroundColor,
-                    cooldown: cooldown,
-                    alignment: alignment
+                    cooldown: cooldown
                 )
             case .none:
                 return .none
@@ -131,7 +140,7 @@ extension CITPincodeView {
         public init(
             codeLength: Int                                     = 6,
             font: Font                                          = .system(size: 16),
-            errorFont: Font?                                    = nil,
+            errorFont: Font?                                    = .system(size: 14),
             textColor: Color                                    = .black,
             errorColor: Color                                   = .red,
             placeholder: String                                 = "",
@@ -140,13 +149,16 @@ extension CITPincodeView {
             selectedBackgroundColor: Color?                     = nil,
             selectedBorderColor: Color?                         = nil,
             selectedBorderWidth: CGFloat                        = 1,
+            showBorderIfHasError: Bool                          = true,
             alwaysShowSelectedBorder: Bool                      = false,
             showKeyboardOnAppear: Bool                          = true,
-            keyboardDoneButtonText: String                      = "citpincode_keyboard_done_button_text".localized,
+            keyboardDoneButtonText: String                      = Texts.defaultDoneButtonText,
             cellSize: CGSize                                    = .init(width: 40, height: 56),
             cellCornerRadius: CGFloat                           = 8,
             keyboardType: UIKeyboardType                        = .default,
             charactersToFilterOutOnPaste: [String]              = ["-"],
+            overallAlignment: HorizontalAlignment               = .leading,
+            verticalSpacing: CGFloat                            = 16,
             divider: CITPincodeDividerConfiguration             = .none,
             resendButton: CITPincodeResendButtonConfiguration   = .none
         ) {
@@ -161,6 +173,7 @@ extension CITPincodeView {
             self.selectedBackgroundColor = selectedBackgroundColor ?? backgroundColor
             self.selectedBorderColor = selectedBorderColor ?? backgroundColor
             self.selectedBorderWidth = selectedBorderWidth
+            self.showBorderIfHasError = showBorderIfHasError
             self.alwaysShowSelectedBorder = alwaysShowSelectedBorder
             self.showKeyboardOnAppear = showKeyboardOnAppear
             self.keyboardDoneButtonText = keyboardDoneButtonText
@@ -168,6 +181,8 @@ extension CITPincodeView {
             self.cellCornerRadius = cellCornerRadius
             self.keyboardType = keyboardType
             self.charactersToFilterOutOnPaste = charactersToFilterOutOnPaste
+            self.overallAlignment = overallAlignment
+            self.verticalSpacing = verticalSpacing
             self.divider = divider
             self.resendButton = resendButton
         }
@@ -183,7 +198,11 @@ extension CITPincodeView {
             cellCornerRadius: 8,
             keyboardType: .numberPad,
             divider: .none,
-            resendButton: .plain(font: .system(size: 16, weight: .bold), cooldown: .duration(value: 60), alignment: .leading)
+            resendButton: .plain(font: .system(size: 16, weight: .bold), cooldown: .duration(value: 60))
         )
+        
+        public enum Texts {
+            public static var defaultDoneButtonText: String = "citpincode_keyboard_done_button_text".localized
+        }
     }
 }

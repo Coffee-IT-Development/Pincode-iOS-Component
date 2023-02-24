@@ -105,6 +105,9 @@ public var selectedBorderColor: Color
 /// The border width of any selected pincode cell.
 public var selectedBorderWidth: CGFloat
 
+/// If set to true, all pincode cells will be shown as if they are selected with an error tinted border, while there's an error.
+public var showBorderIfHasError: Bool
+
 /// If set to true, all pincode cells will always be shown as if they are selected.
 public var alwaysShowSelectedBorder: Bool
 
@@ -126,11 +129,18 @@ public var keyboardType: UIKeyboardType
 /// These characters will be filtered out if a code is pasted via clipboard on long press. It replaces occurences with an empty string.
 public var charactersToFilterOutOnPaste: [String]
 
+/// The overall alignment affects how the resendButton and errorLabel will be aligned if visible.
+/// If the errorLabel is aligned `inlineWithResendButton`, the two items will fill up the witdth of the pincode ui.
+public var overallAlignment: HorizontalAlignment
+
+/// The padding between vertical elements, i.e. pincode cells, resendButton and the error label. Defaults to `16`.
+public var verticalSpacing: CGFloat
+
 /// Optional config used to show a single divider somewhere between the pincode cells. Does not impact user input, and can be customized slightly.
-public var divider: CITPincodeDividerConfig
+public var divider: CITPincodeDividerConfiguration
 
 /// Optional config used to show a resendButton, meant to resend an One Time Passcode on press and is automatically disabled for a given cooldown duration to limit usage.
-public var resendButton: CITPincodeResendButtonConfig
+public var resendButton: CITPincodeResendButtonConfiguration
 
 /// Returns the configured resendButtonStyle, used to display the resendButton if present.
 public var resendButtonStyle: CITPincodeResendButtonStyle
@@ -141,8 +151,8 @@ public var dividerStyle: CITPincodeDividerStyle
 
 /// Defines the style that configures an optional resendButton that is meant to resend an One Time Passcode on press.
 /// This resend button will be disabled for the given cooldown if any and automatically re-enable itself once the cooldown duration has passed.
-/// - Use `.custom` to set `text, font, textColor, backgroundColor, contentInsets, cornerRadius, cooldown, alignment`.
-/// - Use `.plain` to set `text, font, cooldown, alignment` and use default values for the other fields.
+/// - Use `.custom` to set `text, font, textColor, backgroundColor, contentInsets, cornerRadius, cooldown`.
+/// - Use `.plain` to set `text, font, cooldown` and use default values for the other fields.
 /// - Use `.none` when no resend button should be shown.
 /// 
 public enum CITPincodeResendButtonConfiguration: Equatable
@@ -175,5 +185,5 @@ Do you have questions, ideas or need help? Send us an email at contact@coffeeit.
 </picture>
 
 ## ⚠️ License
-Distributed under the MIT License. [See LICENSE](LICENSE.md) for more information.
+The Aroma Pincode package is licensed under the terms of the [MIT Open Source license, combined with the Commons Clause licence](LICENSE.md).
 

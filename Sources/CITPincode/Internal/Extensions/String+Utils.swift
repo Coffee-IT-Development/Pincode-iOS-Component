@@ -27,11 +27,11 @@
 import Foundation
 
 extension String  {
-    public var localized: String {
+    var localized: String {
         NSLocalizedString(self, tableName: nil, bundle: .module, value: "", comment: "")
     }
     
-    public var isNumber: Bool {
+    var isNumber: Bool {
         !isEmpty && rangeOfCharacter(from: CharacterSet.decimalDigits.inverted) == nil
     }
 }
