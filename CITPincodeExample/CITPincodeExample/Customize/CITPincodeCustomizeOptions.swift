@@ -38,7 +38,7 @@ struct CITPincodeCustomizeOptions: View {
     @State private var customResendButton = CITPincodeResendButtonConfiguration.plain
     @State private var resendText = "Send code again"
     @State private var resendCooldown: CGFloat = 60
-    @State private var resendButtonAlignment: CITPincodeResendButtonAlignment = .leading
+    @State private var overallAlignment: CITPincodeResendButtonAlignment = .leading
     @State private var errorValue = ""
     
     var body: some View {
@@ -51,6 +51,7 @@ struct CITPincodeCustomizeOptions: View {
                 colors
                 extras
                 resendButton
+                alignment
             }
             .padding(.horizontal)
             .padding(.bottom)
@@ -227,17 +228,6 @@ struct CITPincodeCustomizeOptions: View {
                         range: 0...100,
                         value: $resendCooldown
                     )
-                    
-                    CITPincodeLabeledView(label: "Alignment:") {
-                        Picker("Resend button alignment:", selection: $resendButtonAlignment) {
-                            Text("Leading")
-                                .tag(CITPincodeResendButtonAlignment.leading)
-                            
-                            Text("Trailing")
-                                .tag(CITPincodeResendButtonAlignment.trailing)
-                        }
-                        .pickerStyle(.segmented)
-                    }
                 }
                 .padding(.leading)
                 .onChange(of: resendText) { _ in
@@ -246,15 +236,32 @@ struct CITPincodeCustomizeOptions: View {
                 .onChange(of: resendCooldown) { _ in
                     updateResendButton()
                 }
-                .onChange(of: resendButtonAlignment) { _ in
-                    updateResendButton()
-                }
             }
+        }
+    }
+    
+    var alignment: some View {
+        CITPincodeLabeledView(label: "Alignment:") {
+            Picker("Overall alignment:", selection: $overallAlignment) {
+                Text("Leading")
+                    .tag(CITPincodeResendButtonAlignment.leading)
+                
+                Text("Trailing")
+                    .tag(CITPincodeResendButtonAlignment.trailing)
+            }
+            .pickerStyle(.segmented)
+        }
+        .onChange(of: overallAlignment) { _ in
+            updateOverallAlignment()
         }
     }
     
     private func updateResendButton() {
         let cooldown: CITPincodeResendCodeCooldown = resendCooldown > 0 ? .duration(value: resendCooldown) : .none
-        config.resendButton = .plain(text: resendText, cooldown: cooldown, alignment: resendButtonAlignment.position)
+        config.resendButton = .plain(text: resendText, cooldown: cooldown)
+    }
+    
+    private func updateOverallAlignment() {
+        config.overallAlignment = overallAlignment.position
     }
 }

@@ -88,7 +88,7 @@ struct CITPincodeCellView: View {
             .cornerRadius(cornerRadius)
             .overlay(
                 RoundedRectangle(cornerRadius: cornerRadius)
-                    .stroke(selectedBorderColor, lineWidth: isSelected || config.alwaysShowSelectedBorder ? config.selectedBorderWidth : 0)
+                    .stroke(selectedBorderColor, lineWidth: isSelected || config.alwaysShowSelectedBorder || (config.showBorderIfHasError && hasError) ? config.selectedBorderWidth : 0)
             )
     }
 }

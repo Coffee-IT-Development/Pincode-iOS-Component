@@ -70,7 +70,7 @@ public struct CITPincodeView: View {
     }
     
     public var body: some View {
-        VStack(alignment: config.resendButtonStyle.alignment) {
+        VStack(alignment: config.overallAlignment, spacing: config.verticalSpacing) {
             HStack {
                 ForEach(0 ..< config.codeLength, id: \.self) { index in
                     CITPincodeCellView(
@@ -104,7 +104,7 @@ public struct CITPincodeView: View {
             .onLongPressGesture {
                 showPasteMenu()
             }
-            
+
             if config.resendButton.showButton {
                 CITPincodeResendButton(
                     forceCooldownOnce: $forceCooldownOnce,
@@ -114,13 +114,7 @@ public struct CITPincodeView: View {
                 .accessibility(label: Text(config.resendButtonStyle.text))
             }
             
-            if let error = error {
-                Text(error)
-                    .foregroundColor(config.errorColor)
-                    .font(config.errorFont)
-                    .padding(.vertical, 8)
-                    .accessibility(label: Text(error))
-            }
+            optionalErrorLabel
         }
         .onChange(of: code) { newValue in
             if newValue.count == config.codeLength && newValue != enteredCode {
@@ -131,6 +125,16 @@ public struct CITPincodeView: View {
                 enteredCode = ""
                 error = nil
             }
+        }
+    }
+    
+    @ViewBuilder
+    private var optionalErrorLabel: some View {
+        if let error = error {
+            Text(error)
+                .foregroundColor(config.errorColor)
+                .font(config.errorFont)
+                .accessibility(label: Text(error))
         }
     }
     
